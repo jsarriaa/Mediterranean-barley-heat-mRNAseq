@@ -1,6 +1,7 @@
 # Large local inputs
 data/input/kallisto.merged.gene_counts.tsv
 references/BARLEX_MorexV3_annotations.tsv
+references/MorexV3_tx2gene.tsv
 
 # Generated statistical tables and intermediate objects
 results/**/*.csv
@@ -21,6 +22,9 @@ results/**/*.log
 !results/03_heat_stress/heat_response_46_annotations.csv
 !results/03_heat_stress/heat_response_top12_annotations.csv
 !results/03_heat_stress/genes_without_description.csv
+!results/04_tpm_leaf_baseline/top12_gene_sample_tpm.csv
+!results/04_tpm_leaf_baseline/top12_gene_population_tpm_summary.csv
+!results/04_tpm_leaf_baseline/plots/*.png
 logs/
 
 # Sequencing data and large references, if added locally
@@ -48,3 +52,5 @@ references/*.gtf
 .Rhistory
 .RData
 Rplots.pdf
+__pycache__/
+*.py[cod]

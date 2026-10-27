@@ -3,6 +3,8 @@ channels:
   - conda-forge
   - bioconda
 dependencies:
+  - fastqc=0.12.1
   - fastp=1.3.6
   - gffread=0.12.9
   - kallisto=0.52.0
+  - matplotlib=3.10.8
