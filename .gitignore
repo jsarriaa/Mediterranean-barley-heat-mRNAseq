@@ -25,11 +25,15 @@ results/**/*.log
 !results/04_tpm_leaf_baseline/top12_gene_sample_tpm.csv
 !results/04_tpm_leaf_baseline/top12_gene_population_tpm_summary.csv
 !results/04_tpm_leaf_baseline/plots/*.png
+!results/04_tpm_leaf_baseline/morex_gene_atlas/*.csv
+!results/04_tpm_leaf_baseline/morex_gene_atlas/plots/*.png
 logs/
 
 # Sequencing data and large references, if added locally
 data/raw/
 data/processed/
+data/external/morex_gene_atlas/hvmxrtd_all_tpm_files.zip
+data/external/morex_gene_atlas/hvmxrtd_all_tpm_files.zip.part
 results/upstream/
 *.fastq
 *.fastq.gz

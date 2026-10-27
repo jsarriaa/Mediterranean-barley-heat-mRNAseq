@@ -19,6 +19,8 @@ available in this repository. The reference is Morex V3 from IPK Gatersleben.
 The repository includes individual R scripts and commands for each pipeline
 step. Large inputs and generated outputs remain in the local repository but
 are excluded from Git.
+Script 5 downloads the Morex Gene Atlas inputs when they are not present; its
+477 MB TPM archive is excluded from Git.
 
 ## Repository structure
 
@@ -34,6 +36,10 @@ transcriptomic-fingerprints-five-mediterranean-populations/
 │   ├── raw/                                    # paired FASTQ inputs
 │   ├── processed/fastp/                        # cleaned paired reads
 │   ├── input/kallisto.merged.gene_counts.tsv
+│   ├── external/
+│   │   └── morex_gene_atlas/
+│   │       ├── hvmxrtd_all_tpm_files.zip       # downloaded; Git-ignored
+│   │       └── MorexAtlas_allProjects_paper_23Aug23_exp_ids.txt
 │   └── metadata/                               # sample lists and QC summary
 ├── references/
 │   ├── MorexV3.fa
@@ -47,7 +53,8 @@ transcriptomic-fingerprints-five-mediterranean-populations/
 │   ├── 01_deseq2_populations.R
 │   ├── 02_go_enrichment.R
 │   ├── 03_heat_stress_and_annotation.R
-│   └── 04_population_tpm_heat_response.py
+│   ├── 04_population_tpm_heat_response.py
+│   └── 05_morex_gene_atlas_baseline.py
 ├── results/
 │   ├── upstream/
 │   │   ├── fastp/                              # fastp reports
@@ -60,7 +67,16 @@ transcriptomic-fingerprints-five-mediterranean-populations/
 │   └── 04_tpm_leaf_baseline/
 │       ├── top12_gene_sample_tpm.csv
 │       ├── top12_gene_population_tpm_summary.csv
-│       └── plots/                              # one plot per gene
+│       ├── plots/                              # population TPM plots
+│       └── morex_gene_atlas/
+│           ├── top12_morex_gene_atlas_relator_mapping.csv
+│           ├── top12_morex_leaf_tpm_by_sample.csv
+│           ├── top12_morex_biological_replicate_tpm.csv
+│           ├── top12_morex_primary_leaf_baseline_summary.csv
+│           ├── top12_morex_comparison_group_summary.csv
+│           ├── top12_population_vs_morex_baseline.csv
+│           ├── top12_population_vs_morex_context_groups.csv
+│           └── plots/                          # population vs baseline plots
 └── docs/
     └── figures/
 ```
@@ -260,13 +276,17 @@ analysis environment:
 | pheatmap | 1.0.13 |
 | gprofiler2 | 0.2.4 |
 | gffread (transcript FASTA/GTF preparation) | 0.12.9 (protocol environment) |
+| Python (TPM processing and plots) | 3.11 |
+| Matplotlib (TPM plots) | 3.10.8 |
+| unzip (Morex Gene Atlas archive access) | 6.0 |
 | seqtk | not required by this protocol |
 
 The R package versions are pinned by the downstream Conda environment files.
 `envs/deseq2.yml` specifies direct R dependencies; the accompanying Linux
 x86-64 explicit lock records resolved packages for exact recreation on that
-platform. `envs/rnaseq.yml` pins FastQC, fastp, gffread, and Kallisto for upstream read
-processing and quantification. The software versions are recorded for
+platform. `envs/rnaseq.yml` pins Python, Matplotlib, unzip, FastQC, fastp,
+gffread, and Kallisto for upstream processing, quantification, and TPM
+analysis. The software versions are recorded for
 the analyzed reads; gffread 0.12.9 is the version pinned in this protocol for
 reference preparation. The reference files and Kallisto index are derived
 from the cited Morex V3 release.
@@ -304,8 +324,8 @@ Every returned table and the query timestamp are saved under
 
 Perform the upstream steps in order: run `fastp`, prepare the Morex V3
 transcript reference, run Kallisto, and combine gene counts.
-Then run the three R scripts and the Python script below, one at a time. The
-commands use the project-relative paths shown in the repository structure.
+Then run the three R scripts and the two Python scripts below, one at a time.
+The commands use the project-relative paths shown in the repository structure.
 
 ### Prepare the gene-count matrix
 
@@ -382,6 +402,66 @@ replicate. Background bands and point colors show populations. The horizontal
 line marks the population median. The y-axis is linear TPM with zero at the
 bottom. Python and Matplotlib are required.
 
+#### Script 5 — Morex Gene Atlas leaf baseline
+
+```bash
+python3 scripts/05_morex_gene_atlas_baseline.py
+```
+
+Run this after Script 4 with the `barley-rnaseq-upstream` environment active
+and an internet connection. If needed, the script downloads the Morex Gene
+Atlas TPM archive and experiment-ID table into
+`data/external/morex_gene_atlas/`. The large archive is excluded from Git. The
+official [Morex Gene Atlas download page](https://ics.hutton.ac.uk/morexgeneatlas/download.html)
+provides the [TPM archive](https://ics.hutton.ac.uk/morexgeneatlas/downloads/hvmxrtd_all_tpm_files.zip),
+the [experiment-ID table](https://ics.hutton.ac.uk/morexgeneatlas/downloads/MorexAtlas_allProjects_paper_23Aug23_exp_ids.txt),
+and a supplementary [experiment metadata workbook](https://ics.hutton.ac.uk/morexgeneatlas/downloads/MorexAtlas_allProjects_paper_23Aug23.xlsx).
+
+The script sends the 12 Morex V3 IDs to the
+[Morex Gene Atlas relator](https://ics.hutton.ac.uk/morexgeneatlas/relator.html)
+and uses its `HvMxRTD` relationships to join into the Atlas TPM files. It
+prioritizes exact intron-chain matches (`=`). If there is no exact match, it
+uses same-strand relationships as a flagged non-exact fallback; opposite-
+strand (`x`) relationships are excluded. The complete returned relationship
+table, including MorexGS and PanBaRT20 IDs, is retained in the mapping audit.
+The Atlas archive is quantified on HvMxRTD IDs, so the expression join uses
+the direct V3-to-HvMxRTD relator relationship rather than the alternative
+MorexGS-to-PanBaRT20 route. Unmatched genes stay missing, not zero.
+
+The TPM archive contains transcript-level records. The script sums transcript
+TPM within each matched `HvMxRTD` gene ID. The sample-level output retains
+experiment IDs, study, condition, tissue, developmental stage, biological
+replicate, and technical replicate. It includes the three untreated
+one-week-old first-leaf replicates (experiment IDs 1–3, PRJEB29972), the
+two-month senescing-leaf samples (IDs 238–243, PRJEB14349), and four
+uninfested 5th-leaf controls from 30-day-old plants collected at 2 hours
+(experiment IDs 41–44, PRJNA326683). The two-week brushing study is excluded
+entirely, including its untreated controls. Other control seedling-leaf
+experiments, including no-DNase and mock controls, are retained in the sample
+table but not pooled into these comparison groups.
+
+The two-month senescing-leaf data have three biological replicates and two
+technical batches per replicate. The script averages each matched gene's TPM
+across the two batches, then summarizes across the three biological
+replicates; technical batches are not treated as independent samples. This is
+an age-context reference, but senescence makes it physiologically different
+from non-senescing leaves. The 30-day reference has four biological
+replicates and is explicitly an uninfested control from a spider-mite study.
+It is a separate developmental and experimental context, not a heat-stress
+control matched to the population samples.
+
+The archive text files have six tab-separated fields and no header. Script 5
+checks the experiment ID in column 1, reads transcript IDs from column 2,
+HvMxRTD gene IDs from column 4, and transcript TPM from column 5. Columns 3
+and 6 are retained in the source files but are not used in the TPM
+aggregation.
+
+The script writes the relator audit, sample-level and biological-replicate
+Atlas TPMs, three-group comparison summary, population comparison tables, and
+12 plots under `results/04_tpm_leaf_baseline/morex_gene_atlas/`. The plots
+preserve the population genotype grouping and replicate labels from Script 4
+and show the three Atlas groups separately. All TPM axes are linear.
+
 ## Analysis logic and why each step is used
 
 1. **Model population-level expression differences.** Round Kallisto estimated
@@ -424,6 +504,15 @@ bottom. Python and Matplotlib are required.
    gene for every sample, then calculate mean, standard deviation, and median
    within each population. Keep the sample-level table so the summary can be
    checked and replotted.
+8. **Compare with a Morex leaf reference.** Use the Morex Gene Atlas rather
+   than treating the external reference as another population. Query the
+   relator for the V3-to-HvMxRTD mapping, retain the mapping evidence, and
+   aggregate transcript TPM by matched Atlas gene. Use the three untreated,
+   one-week first-leaf Morex controls as the primary baseline. Show
+   two-month senescing leaves and 30-day uninfested 5th leaves collected at
+   2 hours as separate contextual groups. Average technical batches within
+   biological replicate. Preserve missing mappings and do not perform a
+   population-versus-reference significance test.
 
 ## Reported analysis results
 
@@ -466,6 +555,9 @@ Results are grouped by analysis step:
   coverage summaries, and a record of genes without descriptions.
 - `results/04_tpm_leaf_baseline/`: sample-level gene TPMs and population
   summaries and one plot per gene for the top 12 heat-response genes.
+- `results/04_tpm_leaf_baseline/morex_gene_atlas/`: relator audit,
+  sample-level and biological-replicate Atlas TPMs, primary-baseline and
+  three-group summaries, comparison tables, and one plot per gene.
 - `docs/figures/`: small PNG report figures embedded in this README.
 
 Large result tables are local and ignored by Git. Compact summaries, scripts,
@@ -476,10 +568,28 @@ and report images are tracked. Key result tables are
 [`heat_response_46_annotations.csv`](results/03_heat_stress/heat_response_46_annotations.csv),
 [`heat_response_top12_annotations.csv`](results/03_heat_stress/heat_response_top12_annotations.csv),
 [`top12_gene_sample_tpm.csv`](results/04_tpm_leaf_baseline/top12_gene_sample_tpm.csv),
-and [`top12_gene_population_tpm_summary.csv`](results/04_tpm_leaf_baseline/top12_gene_population_tpm_summary.csv).
+[`top12_gene_population_tpm_summary.csv`](results/04_tpm_leaf_baseline/top12_gene_population_tpm_summary.csv),
+[`top12_morex_gene_atlas_relator_mapping.csv`](results/04_tpm_leaf_baseline/morex_gene_atlas/top12_morex_gene_atlas_relator_mapping.csv),
+[`top12_morex_leaf_tpm_by_sample.csv`](results/04_tpm_leaf_baseline/morex_gene_atlas/top12_morex_leaf_tpm_by_sample.csv),
+[`top12_morex_biological_replicate_tpm.csv`](results/04_tpm_leaf_baseline/morex_gene_atlas/top12_morex_biological_replicate_tpm.csv),
+[`top12_morex_primary_leaf_baseline_summary.csv`](results/04_tpm_leaf_baseline/morex_gene_atlas/top12_morex_primary_leaf_baseline_summary.csv),
+[`top12_morex_comparison_group_summary.csv`](results/04_tpm_leaf_baseline/morex_gene_atlas/top12_morex_comparison_group_summary.csv),
+[`top12_population_vs_morex_context_groups.csv`](results/04_tpm_leaf_baseline/morex_gene_atlas/top12_population_vs_morex_context_groups.csv),
+and [`top12_population_vs_morex_baseline.csv`](results/04_tpm_leaf_baseline/morex_gene_atlas/top12_population_vs_morex_baseline.csv).
 g:Profiler and BARLEX supplied descriptions for all 46 genes.
 The top-12 TPM output contains 720 gene-sample values and 60 gene-population
-summaries. The BARLEX leaf baseline comparison is not part of this step.
+summaries. The Morex Gene Atlas outputs contain 300 gene-experiment rows from 25
+retained leaf experiments. There are three comparison groups: the one-week
+control, the two-month senescing leaf, and the 30-day uninfested 5th leaf
+collected at 2 hours. The senescing-leaf samples have 6 experiment rows but only 3
+biological replicates because each biological replicate was measured in two
+technical batches. Eleven genes have a usable HvMxRTD mapping; the
+first-ranked gene has no relator match and remains missing. Three mapped
+genes use a flagged same-strand non-exact fallback; eight use an exact
+intron-chain match. The outputs include a 120-row biological-replicate
+table, 36 gene-by-reference-group summaries, a 60-row primary-baseline
+comparison, a 96-row combined population/reference summary, the full relator
+audit, and 12 plots.
 
 ### Expression heatmap: 46 heat-response genes
 
@@ -509,8 +619,57 @@ The figure is regenerated from the VST matrix by
 The full g:Profiler response and a second plot highlighting GO:0009408 are
 written under `results/02_go_enrichment/`.
 
+### Population TPM and Morex leaf comparisons
+
+![Top-12 population TPMs compared with Morex Gene Atlas leaf samples](results/04_tpm_leaf_baseline/morex_gene_atlas/plots/top12_rank_03_HORVU.MOREX.r3.1HG0077030.png)
+
+The population samples remain grouped by genotype and colored by population.
+Labels identify each sample replicate. The three Morex groups are shown
+separately: the one-week control, two-month senescing leaf, and 30-day
+uninfested 5th-leaf control collected at 2 hours. The labeled dots show Atlas
+biological replicates;
+the black diamond and vertical error bar show each reference group's mean and
+sample standard deviation. The y-axis is linear TPM. Atlas samples are
+external context, not another population. A plot is saved for each top-12
+gene under
+`results/04_tpm_leaf_baseline/morex_gene_atlas/plots/`.
+
+The primary Morex baseline means and sample standard deviations are:
+
+| Rank | Morex V3 gene | HvMxRTD ID | Mapping | Morex leaf TPM, mean ± SD |
+|---:|---|---|---|---:|
+| 1 | HORVU.MOREX.r3.6HG0621200 | — | Unmapped | Missing |
+| 2 | HORVU.MOREX.r3.4HG0389370 | Hv_Mx_chr4HG26458 | Non-exact fallback | 0.015262 ± 0.026435 |
+| 3 | HORVU.MOREX.r3.1HG0077030 | Hv_Mx_chr1HG06602 | Exact | 7.365151 ± 9.801184 |
+| 4 | HORVU.MOREX.r3.4HG0389360 | Hv_Mx_chr4HG26457 | Non-exact fallback | 4.599486 ± 4.275193 |
+| 5 | HORVU.MOREX.r3.3HG0288370 | Hv_Mx_chr3HG19892 | Exact | 5.871307 ± 9.745157 |
+| 6 | HORVU.MOREX.r3.4HG0392240 | Hv_Mx_chr4HG26666 | Exact | 0.009761 ± 0.016907 |
+| 7 | HORVU.MOREX.r3.6HG0616950 | Hv_Mx_chr6HG40381 | Exact | 26.877209 ± 44.636210 |
+| 8 | HORVU.MOREX.r3.4HG0396100 | Hv_Mx_chr4HG26946 | Non-exact fallback | 0.049016 ± 0.044339 |
+| 9 | HORVU.MOREX.r3.7HG0714970 | Hv_Mx_chr7HG46171 | Exact | 24.950154 ± 38.055754 |
+| 10 | HORVU.MOREX.r3.7HG0732330 | Hv_Mx_chr7HG47518 | Exact | 6.667692 ± 7.650033 |
+| 11 | HORVU.MOREX.r3.7HG0721780 | Hv_Mx_chr7HG46708 | Exact | 374.312603 ± 109.538370 |
+| 12 | HORVU.MOREX.r3.5HG0489830 | Hv_Mx_chr5HG32508 | Exact | 16.849496 ± 26.847376 |
+
+Each mapped baseline uses three Morex biological replicates. The values are
+descriptive and are not used in significance tests.
+
+For rank 3 (`HORVU.MOREX.r3.1HG0077030`), the additional Atlas comparisons
+are:
+
+| Morex Atlas group | Biological replicates | Mean TPM ± sample SD |
+|---|---:|---:|
+| 2-month senescing leaf | 3 | 0.437174 ± 0.467466 |
+| 30-day uninfested 5th leaf, 2 hr | 4 | 0.694154 ± 0.256323 |
+
+The 2-month measurement is the closest available age comparison, but its
+samples are explicitly labeled senescing leaves. It should not be read as a
+physiologically matched untreated 2-month control.
+
 ## Output interpretation and limitations
 
 The analysis measures association with population; it does not show that heat
 stress caused expression differences. g:Profiler annotations can change over
-time. BARLEX annotations depend on the supplied reference release.
+time. BARLEX annotations depend on the supplied reference release. The Morex Gene Atlas comparisons are contextual: they come from external
+studies and are not another population or matched statistical groups.
+Non-exact relator matches are explicitly identified in the mapping audit.

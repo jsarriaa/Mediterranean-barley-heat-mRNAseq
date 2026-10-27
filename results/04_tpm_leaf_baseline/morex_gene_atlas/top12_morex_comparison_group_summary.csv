@@ -1,0 +1,37 @@
+rank,gene_id,comparison_group,comparison_label,biological_replicate_count,mean_gene_tpm,sd_gene_tpm,replicate_tpm_values,technical_replicate_counts,comparison_status
+1,HORVU.MOREX.r3.6HG0621200,morex_1week_control,1-week first-leaf control,0,,,,,missing
+1,HORVU.MOREX.r3.6HG0621200,morex_2month_senescing,2-month senescing leaf,0,,,,,missing
+1,HORVU.MOREX.r3.6HG0621200,morex_30day_5thleaf_uninfested_2hr,30-day 5th-leaf uninfested control (2 hr),0,,,,,missing
+2,HORVU.MOREX.r3.4HG0389370,morex_1week_control,1-week first-leaf control,3,0.015262,0.02643455943,0|0|0.045786,1|1|1,complete
+2,HORVU.MOREX.r3.4HG0389370,morex_2month_senescing,2-month senescing leaf,3,0,0,0|0|0,2|2|2,complete
+2,HORVU.MOREX.r3.4HG0389370,morex_30day_5thleaf_uninfested_2hr,30-day 5th-leaf uninfested control (2 hr),4,0,0,0|0|0|0,1|1|1|1,complete
+3,HORVU.MOREX.r3.1HG0077030,morex_1week_control,1-week first-leaf control,3,7.365151333,9.801183837,0.450979|3.0628|18.581675,1|1|1,complete
+3,HORVU.MOREX.r3.1HG0077030,morex_2month_senescing,2-month senescing leaf,3,0.437174,0.4674662591,0.974059|0.217111|0.120352,2|2|2,complete
+3,HORVU.MOREX.r3.1HG0077030,morex_30day_5thleaf_uninfested_2hr,30-day 5th-leaf uninfested control (2 hr),4,0.6941535,0.2563231862,0.682233|0.983656|0.362198|0.748527,1|1|1|1,complete
+4,HORVU.MOREX.r3.4HG0389360,morex_1week_control,1-week first-leaf control,3,4.599485667,4.275192974,1.241585|3.144644|9.412228,1|1|1,complete
+4,HORVU.MOREX.r3.4HG0389360,morex_2month_senescing,2-month senescing leaf,3,4.474529833,0.7228714318,5.299203|4.1739015|3.950485,2|2|2,complete
+4,HORVU.MOREX.r3.4HG0389360,morex_30day_5thleaf_uninfested_2hr,30-day 5th-leaf uninfested control (2 hr),4,2.372093,0.7318521361,3.046922|2.95218|1.861939|1.627331,1|1|1|1,complete
+5,HORVU.MOREX.r3.3HG0288370,morex_1week_control,1-week first-leaf control,3,5.871307,9.74515675,0.06177|0.430116|17.122035,1|1|1,complete
+5,HORVU.MOREX.r3.3HG0288370,morex_2month_senescing,2-month senescing leaf,3,3.958726167,0.9266982939,3.9890955|4.8698665|3.0172165,2|2|2,complete
+5,HORVU.MOREX.r3.3HG0288370,morex_30day_5thleaf_uninfested_2hr,30-day 5th-leaf uninfested control (2 hr),4,0.42631,0.1241098108,0.2752|0.57877|0.417556|0.433714,1|1|1|1,complete
+6,HORVU.MOREX.r3.4HG0392240,morex_1week_control,1-week first-leaf control,3,0.009761333333,0.01690712528,0|0|0.029284,1|1|1,complete
+6,HORVU.MOREX.r3.4HG0392240,morex_2month_senescing,2-month senescing leaf,3,0.07487283333,0.07860514986,0.1567425|0.067876|0,2|2|2,complete
+6,HORVU.MOREX.r3.4HG0392240,morex_30day_5thleaf_uninfested_2hr,30-day 5th-leaf uninfested control (2 hr),4,0,0,0|0|0|0,1|1|1|1,complete
+7,HORVU.MOREX.r3.6HG0616950,morex_1week_control,1-week first-leaf control,3,26.87720933,44.63621003,0.17983|2.044376|78.407422,1|1|1,complete
+7,HORVU.MOREX.r3.6HG0616950,morex_2month_senescing,2-month senescing leaf,3,1.666366667,1.931884262,3.87012|0.8641235|0.2648565,2|2|2,complete
+7,HORVU.MOREX.r3.6HG0616950,morex_30day_5thleaf_uninfested_2hr,30-day 5th-leaf uninfested control (2 hr),4,2.49934425,1.887688036,3.888078|4.288779|1.414771|0.405749,1|1|1|1,complete
+8,HORVU.MOREX.r3.4HG0396100,morex_1week_control,1-week first-leaf control,3,0.049016,0.04433869448,0.060718|0|0.08633,1|1|1,complete
+8,HORVU.MOREX.r3.4HG0396100,morex_2month_senescing,2-month senescing leaf,3,0.1077628333,0.05224583371,0.1291805|0.1458965|0.0482115,2|2|2,complete
+8,HORVU.MOREX.r3.4HG0396100,morex_30day_5thleaf_uninfested_2hr,30-day 5th-leaf uninfested control (2 hr),4,0.211,0.04329805402,0.205605|0.257148|0.154326|0.226921,1|1|1|1,complete
+9,HORVU.MOREX.r3.7HG0714970,morex_1week_control,1-week first-leaf control,3,24.95015433,38.05575434,0.948753|5.07312|68.82859,1|1|1,complete
+9,HORVU.MOREX.r3.7HG0714970,morex_2month_senescing,2-month senescing leaf,3,8.532355,7.66508638,17.345029|4.8374475|3.4145885,2|2|2,complete
+9,HORVU.MOREX.r3.7HG0714970,morex_30day_5thleaf_uninfested_2hr,30-day 5th-leaf uninfested control (2 hr),4,0.43984575,0.1379490957,0.531756|0.583814|0.314972|0.328841,1|1|1|1,complete
+10,HORVU.MOREX.r3.7HG0732330,morex_1week_control,1-week first-leaf control,3,6.667692,7.650033411,1.468133|3.0831|15.451843,1|1|1,complete
+10,HORVU.MOREX.r3.7HG0732330,morex_2month_senescing,2-month senescing leaf,3,6.6455065,0.9508290199,7.728263|5.9466335|6.261623,2|2|2,complete
+10,HORVU.MOREX.r3.7HG0732330,morex_30day_5thleaf_uninfested_2hr,30-day 5th-leaf uninfested control (2 hr),4,3.8908755,1.843506555,4.234709|5.85698|1.404769|4.067044,1|1|1|1,complete
+11,HORVU.MOREX.r3.7HG0721780,morex_1week_control,1-week first-leaf control,3,374.3126033,109.5383704,324.915859|499.85058|298.171371,1|1|1,complete
+11,HORVU.MOREX.r3.7HG0721780,morex_2month_senescing,2-month senescing leaf,3,1786.616747,107.9286458,1875.89194|1817.285509|1666.672793,2|2|2,complete
+11,HORVU.MOREX.r3.7HG0721780,morex_30day_5thleaf_uninfested_2hr,30-day 5th-leaf uninfested control (2 hr),4,290.4600215,24.07464601,265.257828|286.45014|323.243839|286.888279,1|1|1|1,complete
+12,HORVU.MOREX.r3.5HG0489830,morex_1week_control,1-week first-leaf control,3,16.849496,26.84737617,1.649047|1.051187|47.848254,1|1|1,complete
+12,HORVU.MOREX.r3.5HG0489830,morex_2month_senescing,2-month senescing leaf,3,26.53690617,18.81576409,46.6498015|23.5963955|9.3645215,2|2|2,complete
+12,HORVU.MOREX.r3.5HG0489830,morex_30day_5thleaf_uninfested_2hr,30-day 5th-leaf uninfested control (2 hr),4,8.40660825,8.537370172,10.740857|19.494364|1.381026|2.010186,1|1|1|1,complete

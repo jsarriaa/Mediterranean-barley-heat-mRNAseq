@@ -1,0 +1,317 @@
+expt_id	sample_type	study_accession	Study Keyword	run_accession_id	run_accessions_included	sample_accession	tax_id	sample_description	sample_title	cultivar	tissue_type	dev_stage	bio_replicate	expt_conditions
+1	control for treatment	PRJEB29972	4oC cold treatment	ERR2930823	ERR2930823	SAMEA5131712	112509	1 week old plants control first leaf	Morex_P_1	Morex	seedling leaf	1 week	1	control
+2	control for treatment	PRJEB29972	4oC cold treatment	ERR2930872	ERR2930872	SAMEA5131713	112509	1 week old plants control first leaf	Morex_P_2	Morex	seedling leaf	1 week	2	control
+3	control for treatment	PRJEB29972	4oC cold treatment	ERR2930805	ERR2930805	SAMEA5131714	112509	1 week old plants control first leaf	Morex_P_3	Morex	seedling leaf	1 week	3	control
+4	control for treatment	PRJEB29972	4oC cold treatment	ERR2930787	ERR2930787	SAMEA5131715	112509	1 week old plants control first leaf no DNAse	Morex121_noDNase	Morex	seedling leaf	1 week	1	control
+5	control for treatment	PRJEB29972	4oC cold treatment	ERR2930818	ERR2930818	SAMEA5131716	112509	1 week old plants control first leaf no DNAse	Morex38_noDNase	Morex	seedling leaf	1 week	1	control
+6	control for treatment	PRJEB29972	4oC cold treatment	ERR2930870	ERR2930870	SAMEA5131717	112509	1 week old plants control first leaf no DNAse	Morex68_noDNase	Morex	seedling leaf	1 week	1	control
+7	treatment	PRJEB29972	4oC cold treatment	ERR2930795	ERR2930795	SAMEA5131658	112509	1 week old plants - 4oC cold treated for 3 hrs 	Cold_Morex_P_1	Morex	seedling leaf	1 week	1	cold treated
+8	treatment	PRJEB29972	4oC cold treatment	ERR2930844	ERR2930844	SAMEA5131659	112509	2 week old plants - 4oC cold treated for 3 hrs 	Cold_Morex_P_2	Morex	seedling leaf	1 week	2	cold treated
+9	treatment	PRJEB29972	4oC cold treatment	ERR2930757	ERR2930757	SAMEA5131660	112509	3 week old plants - 4oC cold treated for 3 hrs 	Cold_Morex_P_3	Morex	seedling leaf	1 week	3	cold treated
+10	treatment	PRJEB29972	4oC cold treatment	ERR2930857	ERR2930857	SAMEA5131661	112509	4 week old plants - 4oC cold treated for 3 hrs 	Cold_Morex_P_4	Morex	seedling leaf	1 week	4	cold treated
+11	control for treatment	PRJEB52944	Brushing	ERR9744298	ERR9744298	SAMEA14416142	4513	"2 week old, second leaf 0min control"	HvT1R1	Morex	seedling leaf	2 weeks	1	control
+12	control for treatment	PRJEB52944	Brushing	ERR9744299	ERR9744299	SAMEA14416143	4513	"2 week old, second leaf 0min control"	HvT1R2	Morex	seedling leaf	2 weeks	2	control
+13	control for treatment	PRJEB52944	Brushing	ERR9744300	ERR9744300	SAMEA14416144	4513	"2 week old, second leaf 0min control"	HvT1R3	Morex	seedling leaf	2 weeks	3	control
+14	treatment	PRJEB52944	Brushing	ERR9744301	ERR9744301	SAMEA14416145	4513	"2 week old, second leaf 25min after brushing"	HvT2R1	Morex	seedling leaf	2 weeks	1	25 min after brushing
+15	treatment	PRJEB52944	Brushing	ERR9744302	ERR9744302	SAMEA14416146	4513	"2 week old, second leaf 25min after brushing"	HvT2R2	Morex	seedling leaf	2 weeks	2	25 min after brushing
+16	treatment	PRJEB52944	Brushing	ERR9744303	ERR9744303	SAMEA14416147	4513	"2 week old, second leaf 25min after brushing"	HvT2R3	Morex	seedling leaf	2 weeks	3	25 min after brushing
+17	treatment	PRJEB52944	Brushing	ERR9744304	ERR9744304	SAMEA14416148	4513	"2 week old, second leaf 1hr after brushing"	HvT3R1	Morex	seedling leaf	2 weeks	1	1 hr after brushing
+18	treatment	PRJEB52944	Brushing	ERR9744305	ERR9744305	SAMEA14416149	4513	"2 week old, second leaf 1hr after brushing"	HvT3R2	Morex	seedling leaf	2 weeks	2	1 hr after brushing
+19	treatment	PRJEB52944	Brushing	ERR9744306	ERR9744306	SAMEA14416150	4513	"2 week old, second leaf 1hr after brushing"	HvT3R3	Morex	seedling leaf	2 weeks	3	1 hr after brushing
+20	treatment	PRJEB52944	Brushing	ERR9744307	ERR9744307	SAMEA14416151	4513	"2 week old, second leaf 2hr after brushing"	HvT4R1	Morex	seedling leaf	2 weeks	1	2hr after brushing
+21	treatment	PRJEB52944	Brushing	ERR9744308	ERR9744308	SAMEA14416152	4513	"2 week old, second leaf 2hr after brushing"	HvT4R2	Morex	seedling leaf	2 weeks	2	2hr after brushing
+22	treatment	PRJEB52944	Brushing	ERR9744309	ERR9744309	SAMEA14416153	4513	"2 week old, second leaf 2hr after brushing"	HvT4R3	Morex	seedling leaf	2 weeks	3	2hr after brushing
+23	control for treatment	PRJNA315041	"Disease, Cochliobolus"	SRR3290257	SRR3290257; SRR3290258	SAMN04549453	112509	2 week old plants mock 12hrs post innoculation	R1_MOCK_WT_12	Morex	seedling leaf	2 weeks	1	Mock Control 12h
+24	control for treatment	PRJNA315041	"Disease, Cochliobolus"	SRR3290283	SRR3290283; SRR3290284	SAMN04549453	112509	2 week old plants mock 12hrs post innoculation	R2_MOCK_WT_12	Morex	seedling leaf	2 weeks	2	Mock Control 12h
+25	control for treatment	PRJNA315041	"Disease, Cochliobolus"	SRR3290313	SRR3290313; SRR3290314; SRR3290315 	SAMN04549453	112509	2 week old plants mock 12hrs post innoculation	R3_MOCK_WT_12	Morex	seedling leaf	2 weeks	3	Mock Control 12h
+26	control for treatment	PRJNA315041	"Disease, Cochliobolus"	SRR3290259	SRR3290259; SRR3290260	SAMN04549454	112509	2 week old plants mock 24hrs post innoculation	R1_MOCK_WT_24	Morex	seedling leaf	2 weeks	1	Mock Control 24h
+27	control for treatment	PRJNA315041	"Disease, Cochliobolus"	SRR3290285	SRR3290285; SRR3290286	SAMN04549454	112509	2 week old plants mock 24hrs post innoculation	R2_MOCK_WT_24	Morex	seedling leaf	2 weeks	2	Mock Control 24h
+28	control for treatment	PRJNA315041	"Disease, Cochliobolus"	SRR3290316	SRR3290316; SRR3290317; SRR3290318	SAMN04549454	112509	2 week old plants mock 24hrs post innoculation	R3_MOCK_WT_24	Morex	seedling leaf	2 weeks	3	Mock Control 24h
+29	control for treatment	PRJNA315041	"Disease, Cochliobolus"	SRR3290261	SRR3290261; SRR3290262	SAMN04549455	112509	2 week old plants mock 36hrs post innoculation	R1_MOCK_WT_36	Morex	seedling leaf	2 weeks	1	Mock Control 36h
+30	control for treatment	PRJNA315041	"Disease, Cochliobolus"	SRR3290287	SRR3290287; SRR3290288; SRR3290289	SAMN04549455	112509	2 week old plants mock 36hrs post innoculation	R2_MOCK_WT_36	Morex	seedling leaf	2 weeks	2	Mock Control 36h
+31	control for treatment	PRJNA315041	"Disease, Cochliobolus"	SRR3290319	SRR3290319; SRR3290320; SRR3290321	SAMN04549455	112509	2 week old plants mock 36hrs post innoculation	R3_MOCK_WT_36	Morex	seedling leaf	2 weeks	3	Mock Control 36h
+32	treatment	PRJNA315041	"Disease, Cochliobolus"	SRR3290245	SRR3290245; SRR3290246	SAMN04549447	112509	2 week old plants innoculated 12hrs post innoculation	R1_INOC_WT_12	Morex	seedling leaf	2 weeks	1	C. sativus 12hpi
+33	treatment	PRJNA315041	"Disease, Cochliobolus"	SRR3290269	SRR3290269; SRR3290270	SAMN04549447	112509	2 week old plants innoculated 12hrs post innoculation	R2_INOC_WT_12	Morex	seedling leaf	2 weeks	2	C. sativus 12hpi
+34	treatment	PRJNA315041	"Disease, Cochliobolus"	SRR3290297	SRR3290297; SRR3290298; SRR3290299	SAMN04549447	112509	2 week old plants innoculated 12hrs post innoculation	R3_INOC_WT_12	Morex	seedling leaf	2 weeks	3	C. sativus 12hpi
+35	treatment	PRJNA315041	"Disease, Cochliobolus"	SRR3290247	SRR3290247; SRR3290248	SAMN04549448	112509	2 week old plants innoculated 24 hrs post innoculation	R1_INOC_WT_24	Morex	seedling leaf	2 weeks	1	C. sativus 24hpi
+36	treatment	PRJNA315041	"Disease, Cochliobolus"	SRR3290271	SRR3290271; SRR3290272	SAMN04549448	112509	2 week old plants innoculated 24 hrs post innoculation	R2_INOC_WT_24	Morex	seedling leaf	2 weeks	2	C. sativus 24hpi
+37	treatment	PRJNA315041	"Disease, Cochliobolus"	SRR3290300	SRR3290300; SRR3290301; SRR3290302	SAMN04549448	112509	2 week old plants innoculated 24 hrs post innoculation	R3_INOC_WT_24	Morex	seedling leaf	2 weeks	3	C. sativus 24hpi
+38	treatment	PRJNA315041	"Disease, Cochliobolus"	SRR3290249	SRR3290249; SRR3290250 	SAMN04549449	112509	2 week old plants innoculated 36 hrs post innoculation	R1_INOC_WT_36	Morex	seedling leaf	2 weeks	1	C. sativus 36hpi
+39	treatment	PRJNA315041	"Disease, Cochliobolus"	SRR3290273	SRR3290273; SRR3290274; SRR3290275	SAMN04549449	112509	2 week old plants innoculated 36 hrs post innoculation	R2_INOC_WT_36	Morex	seedling leaf	2 weeks	2	C. sativus 36hpi
+40	treatment	PRJNA315041	"Disease, Cochliobolus"	SRR3290303	SRR3290303; SRR3290304; SRR3290305 	SAMN04549449	112509	2 week old plants innoculated 36 hrs post innoculation	R3_INOC_WT_36	Morex	seedling leaf	2 weeks	3	C. sativus 36hpi
+41	control for treatment	PRJNA326683	Spider mite	SRR3714108	SRR3714108	SAMN05290739	4513	"5th leaf tissue, 30 day old plants,  control uninfested, 2hrs"	Leaf non-infested rep1	Morex	"5th leaf, uninfested"	30 days old	1	non-infested
+42	control for treatment	PRJNA326683	Spider mite	SRR3714109	SRR3714109	SAMN05290740	4513	"5th leaf tissue, 30 day old plants,  control uninfested, 2hrs"	Leaf non-infested rep2	Morex	"5th leaf, uninfested"	30 days	2	non-infested
+43	control for treatment	PRJNA326683	Spider mite	SRR3714110	SRR3714110	SAMN05290741	4513	"5th leaf tissue, 30 day old plants,  control uninfested, 2hrs"	Leaf non-infested rep3	Morex	"5th leaf, uninfested"	30 days	3	non-infested
+44	control for treatment	PRJNA326683	Spider mite	SRR3714111	SRR3714111	SAMN05290742	4513	"5th leaf tissue, 30 day old plants,  control uninfested, 2hrs"	Leaf non-infested rep4	Morex	"5th leaf, uninfested"	30 days	4	non-infested
+45	treatment	PRJNA326683	Spider mite	SRR3714128	SRR3714128	SAMN05290759	4513	"5th leaf tissue, 30 day old plants, O. pratensis  infested 2hrs"	Leaf BGM-infested 2hr rep1	Morex	"5th leaf, mite infested"	30 days	1	infested Banks grass mite 2hr
+46	treatment	PRJNA326683	Spider mite	SRR3714129	SRR3714129	SAMN05290760	4513	"5th leaf tissue, 30 day old plants, O. pratensis  infested 2hrs"	Leaf BGM-infested 2hr rep2	Morex	"5th leaf, mite infested"	30 days	2	infested Banks grass mite 2hr
+47	treatment	PRJNA326683	Spider mite	SRR3714130	SRR3714130	SAMN05290761	4513	"5th leaf tissue, 30 day old plants, O. pratensis  infested 2hrs"	Leaf BGM-infested 2hr rep3	Morex	"5th leaf, mite infested"	30 days	3	infested Banks grass mite 2hr
+48	treatment	PRJNA326683	Spider mite	SRR3714131	SRR3714131	SAMN05290762	4513	"5th leaf tissue, 30 day old plants, O. pratensis  infested 2hrs"	Leaf BGM-infested 2hr rep4	Morex	"5th leaf, mite infested"	30 days	4	infested Banks grass mite 2hr
+49	treatment	PRJNA326683	Spider mite	SRR3714132	SRR3714132	SAMN05290763	4513	"5th leaf tissue, 30 day old plants, O. pratensis  infested 24hrs"	Leaf BGM-infested 24hr rep1	Morex	"5th leaf, mite infested"	30 days	1	infested Banks grass mite 24hr
+50	treatment	PRJNA326683	Spider mite	SRR3714133	SRR3714133	SAMN05290764	4513	"5th leaf tissue, 30 day old plants, O. pratensis  infested 24hrs"	Leaf BGM-infested 24hr rep2	Morex	"5th leaf, mite infested"	30 days	2	infested Banks grass mite 24hr
+51	treatment	PRJNA326683	Spider mite	SRR3714134	SRR3714134	SAMN05290765	4513	"5th leaf tissue, 30 day old plants, O. pratensis  infested 24hrs"	Leaf BGM-infested 24hr rep3	Morex	"5th leaf, mite infested"	30 days	3	infested Banks grass mite 24hr
+52	treatment	PRJNA326683	Spider mite	SRR3714135	SRR3714135	SAMN05290766	4513	"5th leaf tissue, 30 day old plants, O. pratensis  infested 24hrs"	Leaf BGM-infested 24hr rep4	Morex	"5th leaf, mite infested"	30 days	4	infested Banks grass mite 24hr
+53	treatment	PRJNA326683	Spider mite	SRR3714120	SRR3714120	SAMN05290751	4513	"5th leaf tissue, 30 day old plants, T. urticae infested, 2hrs"	Leaf TSSM-infested 2hr rep1	Morex	"5th leaf, mite infested"	30 days	1	infested two-spotted spider mite 2hr
+54	treatment	PRJNA326683	Spider mite	SRR3714121	SRR3714121	SAMN05290752	4513	"5th leaf tissue, 30 day old plants, T. urticae infested, 2hrs"	Leaf TSSM-infested 2hr rep2	Morex	"5th leaf, mite infested"	30 days	2	infested two-spotted spider mite 2hr
+55	treatment	PRJNA326683	Spider mite	SRR3714122	SRR3714122	SAMN05290753	4513	"5th leaf tissue, 30 day old plants, T. urticae infested, 2hrs"	Leaf TSSM-infested 2hr rep3	Morex	"5th leaf, mite infested"	30 days	3	infested two-spotted spider mite 2hr
+56	treatment	PRJNA326683	Spider mite	SRR3714123	SRR3714123	SAMN05290754	4513	"5th leaf tissue, 30 day old plants, T. urticae infested, 2hrs"	Leaf TSSM-infested 2hr rep4	Morex	"5th leaf, mite infested"	30 days	4	infested two-spotted spider mite 2hr
+57	treatment	PRJNA326683	Spider mite	SRR3714124	SRR3714124	SAMN05290755	4513	"5th leaf tissue, 30 day old plants, T. urticae infested, 24hrs"	Leaf TSSM-infested 24hr rep1	Morex	"5th leaf, mite infested"	30 days	1	infested two-spotted spider mite 24 hr
+58	treatment	PRJNA326683	Spider mite	SRR3714125	SRR3714125	SAMN05290756	4513	"5th leaf tissue, 30 day old plants, T. urticae infested, 24hrs"	Leaf TSSM-infested 24hr rep2	Morex	"5th leaf, mite infested"	30 days	2	infested two-spotted spider mite 24 hr
+59	treatment	PRJNA326683	Spider mite	SRR3714126	SRR3714126	SAMN05290757	4513	"5th leaf tissue, 30 day old plants, T. urticae infested, 24hrs"	Leaf TSSM-infested 24hr rep3	Morex	"5th leaf, mite infested"	30 days	3	infested two-spotted spider mite 24 hr
+60	treatment	PRJNA326683	Spider mite	SRR3714127	SRR3714127	SAMN05290758	4513	"5th leaf tissue, 30 day old plants, T. urticae infested, 24hrs"	Leaf TSSM-infested 24hr rep4	Morex	"5th leaf, mite infested"	30 days	4	infested two-spotted spider mite 24 hr
+61	treatment	PRJNA326683	Spider mite	SRR3714112	SRR3714112	SAMN05290743	4513	"5th leaf tissue, 30 day old plants,  wounded (sandpaper) 2hrs"	Leaf wounded 2hr rep1	Morex	"5th leaf, wounded"	30 days	1	wounded 2hr
+62	treatment	PRJNA326683	Spider mite	SRR3714113	SRR3714113	SAMN05290744	4513	"5th leaf tissue, 30 day old plants,  wounded (sandpaper) 2hrs"	Leaf wounded 2hr rep2	Morex	"5th leaf, wounded"	30 days	2	wounded 2hr
+63	treatment	PRJNA326683	Spider mite	SRR3714114	SRR3714114	SAMN05290745	4513	"5th leaf tissue, 30 day old plants,  wounded (sandpaper) 2hrs"	Leaf wounded 2hr rep3	Morex	"5th leaf, wounded"	30 days	3	wounded 2hr
+64	treatment	PRJNA326683	Spider mite	SRR3714115	SRR3714115	SAMN05290746	4513	"5th leaf tissue, 30 day old plants,  wounded (sandpaper) 2hrs"	Leaf wounded 2hr rep4	Morex	"5th leaf, wounded"	30 days	4	wounded 2hr
+65	treatment	PRJNA326683	Spider mite	SRR3714116	SRR3714116	SAMN05290747	4513	"5th leaf tissue, 30 day old plants,  wounded (sandpaper) 24hrs"	Leaf wounded 24hr rep1	Morex	"5th leaf, wounded"	30 days	1	wounded 24 hr
+66	treatment	PRJNA326683	Spider mite	SRR3714117	SRR3714117	SAMN05290748	4513	"5th leaf tissue, 30 day old plants,  wounded (sandpaper) 24hrs"	Leaf wounded 24hr rep2	Morex	"5th leaf, wounded"	30 days	2	wounded 24 hr
+67	treatment	PRJNA326683	Spider mite	SRR3714118	SRR3714118	SAMN05290749	4513	"5th leaf tissue, 30 day old plants,  wounded (sandpaper) 24hrs"	Leaf wounded 24hr rep3	Morex	"5th leaf, wounded"	30 days	3	wounded 24 hr
+68	treatment	PRJNA326683	Spider mite	SRR3714119	SRR3714119	SAMN05290750	4513	"5th leaf tissue, 30 day old plants,  wounded (sandpaper) 24hrs"	Leaf wounded 24hr rep4	Morex	"5th leaf, wounded"	30 days	4	wounded 24 hr
+69	control for treatment	PRJNA382490	"Heavy metal, cadmium"	SRR5452107	SRR5452107	SAMN06718709	4513	"7 day old roots, Cadmium control"	cadmium treatment control sample root 01	Morex	roots	7 days	1	cadmium treatment control
+70	control for treatment	PRJNA382490	"Heavy metal, cadmium"	SRR5452105	SRR5452105	SAMN06718711	4513	"7 day old roots, Cadmium control"	cadmium treatment control sample root 02	Morex	roots	7 days	2	cadmium treatment control
+71	control for treatment	PRJNA382490	"Heavy metal, cadmium"	SRR5452103	SRR5452103	SAMN06718713	4513	"7 day old roots, Cadmium control"	cadmium treatment control sample root 03	Morex	roots	7 days	3	cadmium treatment control
+72	treatment	PRJNA382490	"Heavy metal, cadmium"	SRR5452101	SRR5452101	SAMN06718715	4513	7 day old roots Cadmium treatment	cadmium treatment treated sample root 01	Morex	roots	7 days	1	cadmium treatment treated
+73	treatment	PRJNA382490	"Heavy metal, cadmium"	SRR5452099	SRR5452099	SAMN06718717	4513	7 day old roots Cadmium treatment	cadmium treatment treated sample root 02	Morex	roots	7 days	2	cadmium treatment treated
+74	treatment	PRJNA382490	"Heavy metal, cadmium"	SRR5452097	SRR5452097	SAMN06718719	4513	7 day old roots Cadmium treatment	cadmium treatment treated sample root 03	Morex	roots	7 days	3	cadmium treatment treated
+75	control for treatment	PRJNA382490	"Heavy metal, copper"	SRR5452131	SRR5452131	SAMN06718685	4513	"7 day old roots, Copper control"	copper treatment control sample root 01	Morex	roots	7 days	1	copper treatment control
+76	control for treatment	PRJNA382490	"Heavy metal, copper"	SRR5452129	SRR5452129	SAMN06718687	4513	"7 day old roots, Copper control"	copper treatment control sample root 02	Morex	roots	7 days	2	copper treatment control
+77	control for treatment	PRJNA382490	"Heavy metal, copper"	SRR5452127	SRR5452127	SAMN06718689	4513	"7 day old roots, Copper control"	copper treatment control sample root 03	Morex	roots	7 days	3	copper treatment control
+78	treatment	PRJNA382490	"Heavy metal, copper"	SRR5452125	SRR5452125	SAMN06718691	4513	7 day old roots Copper treatment	copper treatment treated sample root 01	Morex	roots	7 days	1	copper treatment treated
+79	treatment	PRJNA382490	"Heavy metal, copper"	SRR5452123	SRR5452123	SAMN06718693	4513	7 day old roots Copper treatment	copper treatment treated sample root 02	Morex	roots	7 days	2	copper treatment treated
+80	treatment	PRJNA382490	"Heavy metal, copper"	SRR5452121	SRR5452121	SAMN06718695	4513	7 day old roots Copper treatment	copper treatment treated sample root 03	Morex	roots	7 days	3	copper treatment treated
+81	control for treatment	PRJNA382490	"Heavy metal, zinc"	SRR5452119	SRR5452119	SAMN06718697	4513	"7 day old roots, Zinc control"	zinc treatment control sample root 01	Morex	roots	7 days	1	zinc treatment control
+82	control for treatment	PRJNA382490	"Heavy metal, zinc"	SRR5452117	SRR5452117	SAMN06718699	4513	"7 day old roots, Zinc control"	zinc treatment control sample root 02	Morex	roots	7 days	2	zinc treatment control
+83	control for treatment	PRJNA382490	"Heavy metal, zinc"	SRR5452115	SRR5452115	SAMN06718701	4513	"7 day old roots, Zinc control"	zinc treatment control sample root 03	Morex	roots	7 days	3	zinc treatment control
+84	treatment	PRJNA382490	"Heavy metal, zinc"	SRR5452113	SRR5452113	SAMN06718703	4513	7 day old roots Zinc treatment	zinc treatment treated sample root 01	Morex	roots	7 days	1	zinc treatment treated
+85	treatment	PRJNA382490	"Heavy metal, zinc"	SRR5452111	SRR5452111	SAMN06718705	4513	7 day old roots Zinc treatment	zinc treatment treated sample root 02	Morex	roots	7 days	2	zinc treatment treated
+86	treatment	PRJNA382490	"Heavy metal, zinc"	SRR5452109	SRR5452109	SAMN06718707	4513	7 day old roots Zinc treatment	zinc treatment treated sample root 03	Morex	roots	7 days	3	zinc treatment treated
+87	control for treatment	PRJNA382490	"Heavy metal, cadmium"	SRR5452108	SRR5452108	SAMN06718708	4513	"7 day old Shoots, Cadmium control"	cadmium treatment control sample shoot 01	Morex	shoots	7 days	1	cadmium treatment control
+88	control for treatment	PRJNA382490	"Heavy metal, cadmium"	SRR5452106	SRR5452106	SAMN06718710	4513	"7 day old Shoots, Cadmium control"	cadmium treatment control sample shoot 02	Morex	shoots	7 days	2	cadmium treatment control
+89	control for treatment	PRJNA382490	"Heavy metal, cadmium"	SRR5452104	SRR5452104	SAMN06718712	4513	"7 day old Shoots, Cadmium control"	cadmium treatment control sample shoot 03	Morex	shoots	7 days	3	cadmium treatment control
+90	treatment	PRJNA382490	"Heavy metal, cadmium"	SRR5452102	SRR5452102	SAMN06718714	4513	7 day old shoots Cadmium treatment	cadmium treatment treated sample shoot 01	Morex	shoots	7 days	1	cadmium treatment treated
+91	treatment	PRJNA382490	"Heavy metal, cadmium"	SRR5452100	SRR5452100	SAMN06718716	4513	7 day old shoots Cadmium treatment	cadmium treatment treated sample shoot 02	Morex	shoots	7 days	2	cadmium treatment treated
+92	treatment	PRJNA382490	"Heavy metal, cadmium"	SRR5452098	SRR5452098	SAMN06718718	4513	7 day old shoots Cadmium treatment	cadmium treatment treated sample shoot 03	Morex	shoots	7 days	3	cadmium treatment treated
+93	control for treatment	PRJNA382490	"Heavy metal, copper"	SRR5452132	SRR5452132	SAMN06718684	4513	"7 day old shoots, Copper control"	copper treatment control sample shoot 01	Morex	shoots	7 days	1	copper treatment control
+94	control for treatment	PRJNA382490	"Heavy metal, copper"	SRR5452130	SRR5452130	SAMN06718686	4513	"7 day old shoots, Copper control"	copper treatment control sample shoot 02	Morex	shoots	7 days	2	copper treatment control
+95	control for treatment	PRJNA382490	"Heavy metal, copper"	SRR5452128	SRR5452128	SAMN06718688	4513	"7 day old shoots, Copper control"	copper treatment control sample shoot 03	Morex	shoots	7 days	3	copper treatment control
+96	treatment	PRJNA382490	"Heavy metal, copper"	SRR5452126	SRR5452126	SAMN06718690	4513	"7 day old shoots, Copper treatment"	copper treatment treated sample shoot 01	Morex	shoots	7 days	1	copper treatment treated
+97	treatment	PRJNA382490	"Heavy metal, copper"	SRR5452124	SRR5452124	SAMN06718692	4513	"7 day old shoots, Copper treatment"	copper treatment treated sample shoot 02	Morex	shoots	7 days	2	copper treatment treated
+98	treatment	PRJNA382490	"Heavy metal, copper"	SRR5452122	SRR5452122	SAMN06718694	4513	"7 day old shoots, Copper treatment"	copper treatment treated sample shoot 03	Morex	shoots	7 days	3	copper treatment treated
+99	control for treatment	PRJNA382490	"Heavy metal, zinc"	SRR5452120	SRR5452120	SAMN06718696	4513	"7 day old shoots, Zinc control"	zinc treatment control sample shoot 01	Morex	shoots	7 days	1	zinc treatment control
+100	control for treatment	PRJNA382490	"Heavy metal, zinc"	SRR5452118	SRR5452118	SAMN06718698	4513	"7 day old shoots, Zinc control"	zinc treatment control sample shoot 02	Morex	shoots	7 days	2	zinc treatment control
+101	control for treatment	PRJNA382490	"Heavy metal, zinc"	SRR5452116	SRR5452116	SAMN06718700	4513	"7 day old shoots, Zinc control"	zinc treatment control sample shoot 03	Morex	shoots	7 days	3	zinc treatment control
+102	treatment	PRJNA382490	"Heavy metal, zinc"	SRR5452114	SRR5452114	SAMN06718702	4513	"7 day old shoots, Zinc treatment"	zinc treatment treated sample shoot 01	Morex	shoots	7 days	1	zinc treatment treated
+103	treatment	PRJNA382490	"Heavy metal, zinc"	SRR5452112	SRR5452112	SAMN06718704	4513	"7 day old shoots, Zinc treatment"	zinc treatment treated sample shoot 02	Morex	shoots	7 days	2	zinc treatment treated
+104	treatment	PRJNA382490	"Heavy metal, zinc"	SRR5452110	SRR5452110	SAMN06718706	4513	"7 day old shoots, Zinc treatment"	zinc treatment treated sample shoot 03	Morex	shoots	7 days	3	zinc treatment treated
+105	control for treatment	PRJNA639318	Salt stress	SRR12044052	SRR12044052	SAMN15232838	112509	32 day old seedlings control roots	CK-Morex-R1	Morex	roots	32 days	1	NaCl treatment control
+106	control for treatment	PRJNA639318	Salt stress	SRR12044051	SRR12044051	SAMN15232839	112509	32 day old seedlings control roots	CK-Morex-R2	Morex	roots	32 days	2	NaCl treatment control
+107	control for treatment	PRJNA639318	Salt stress	SRR12044050	SRR12044050	SAMN15232840	112509	32 day old seedlings control roots	CK-Morex-R3	Morex	roots	32 days	3	NaCl treatment control
+108	treatment	PRJNA639318	Salt stress	SRR12044042	SRR12044042	SAMN15232847	112509	32 day old seedlings 150mM Nacl roots	S150-Morex-R1	Morex	roots	32 days	1	150mM NaCl treatment 
+109	treatment	PRJNA639318	Salt stress	SRR12044041	SRR12044041	SAMN15232848	112509	32 day old seedlings 150mM Nacl roots	S150-Morex-R2	Morex	roots	32 days	2	150mM NaCl treatment 
+110	treatment	PRJNA639318	Salt stress	SRR12044040	SRR12044040	SAMN15232849	112509	32 day old seedlings 150mM Nacl roots	S150-Morex-R3	Morex	roots	32 days	3	150mM NaCl treatment 
+111	treatment	PRJNA639318	Salt stress	SRR12044032	SRR12044032	SAMN15232856	112509	32 day old seedlings 300mM Nacl roots	S300-Morex-R1	Morex	roots	32 days	1	300mM NaCl treatment
+112	treatment	PRJNA639318	Salt stress	SRR12044031	SRR12044031	SAMN15232857	112509	32 day old seedlings 300mM Nacl roots	S300-Morex-R2	Morex	roots	32 days	2	300mM NaCl treatment
+113	treatment	PRJNA639318	Salt stress	SRR12044030	SRR12044030	SAMN15232858	112509	32 day old seedlings 300mM Nacl roots	S300-Morex-R3	Morex	roots	32 days	3	300mM NaCl treatment
+114	control for treatment	PRJNA639318	Salt stress	SRR12044072	SRR12044072	SAMN15232811	112509	32 day old seedlings control shoots	CK-Morex-S1	Morex	shoots	32 days	1	NaCl treatment control
+115	control for treatment	PRJNA639318	Salt stress	SRR12044071	SRR12044071	SAMN15232812	112509	32 day old seedlings control shoots	CK-Morex-S2	Morex	shoots	32 days	2	NaCl treatment control
+116	control for treatment	PRJNA639318	Salt stress	SRR12044060	SRR12044060	SAMN15232813	112509	32 day old seedlings control shoots	CK-Morex-S3	Morex	shoots	32 days	3	NaCl treatment control
+117	treatment	PRJNA639318	Salt stress	SRR12044019	SRR12044019	SAMN15232820	112509	32 day old seedlings 150mM Nacl shoots	S150-Morex-S1	Morex	shoots	32 days	1	150mM NaCl treatment 
+118	treatment	PRJNA639318	Salt stress	SRR12044070	SRR12044070	SAMN15232821	112509	32 day old seedlings 150mM Nacl shoots	S150-Morex-S2	Morex	shoots	32 days	2	150mM NaCl treatment 
+119	treatment	PRJNA639318	Salt stress	SRR12044069	SRR12044069	SAMN15232822	112509	32 day old seedlings 150mM Nacl shoots	S150-Morex-S3	Morex	shoots	32 days	3	150mM NaCl treatment 
+120	treatment	PRJNA639318	Salt stress	SRR12044062	SRR12044062	SAMN15232829	112509	32 day old seedlings 300mM Nacl shoots	S300-Morex-S1	Morex	shoots	32 days	1	300mM NaCl treatment
+121	treatment	PRJNA639318	Salt stress	SRR12044061	SRR12044061	SAMN15232830	112509	32 day old seedlings 300mM Nacl shoots	S300-Morex-S2	Morex	shoots	32 days	2	300mM NaCl treatment
+122	treatment	PRJNA639318	Salt stress	SRR12044059	SRR12044059	SAMN15232831	112509	32 day old seedlings 300mM Nacl shoots	S300-Morex-S3	Morex	shoots	32 days	3	300mM NaCl treatment
+123	control for treatment	PRJNA661163	ABA treatment	SRR12638964	SRR12638964	SAMN16047333	4513	2-3 leaf stage EtOH control 1 hr roots	Control_1h_1	Morex	roots	2-3 leaf stage	1	control 1h
+124	control for treatment	PRJNA661163	ABA treatment	SRR12638963	SRR12638963	SAMN16047334	4513	2-3 leaf stage EtOH control 1 hr roots	Control_1h_2	Morex	roots	2-3 leaf stage	2	control 1h
+125	control for treatment	PRJNA661163	ABA treatment	SRR12638952	SRR12638952	SAMN16047335	4513	2-3 leaf stage EtOH control 1 hr roots	Control_1h_3	Morex	roots	2-3 leaf stage	3	control 1h
+126	control for treatment	PRJNA661163	ABA treatment	SRR12638947	SRR12638947	SAMN16047336	4513	2-3 leaf stage EtOH control 3 hr roots	Control_3h_1	Morex	roots	2-3 leaf stage	1	control 3h
+127	control for treatment	PRJNA661163	ABA treatment	SRR12638946	SRR12638946	SAMN16047337	4513	2-3 leaf stage EtOH control 3 hr roots	Control_3h_2	Morex	roots	2-3 leaf stage	2	control 3h
+128	control for treatment	PRJNA661163	ABA treatment	SRR12638945	SRR12638945	SAMN16047338	4513	2-3 leaf stage EtOH control 3 hr roots	Control_3h_3	Morex	roots	2-3 leaf stage	3	control 3h
+129	control for treatment	PRJNA661163	ABA treatment	SRR12638944	SRR12638944	SAMN16047339	4513	2-3 leaf stage EtOH control 6 hr roots	Control_6h_1	Morex	roots	2-3 leaf stage	1	control 6h
+130	control for treatment	PRJNA661163	ABA treatment	SRR12638943	SRR12638943	SAMN16047340	4513	2-3 leaf stage EtOH control 6 hr roots	Control_6h_2	Morex	roots	2-3 leaf stage	2	control 6h
+131	control for treatment	PRJNA661163	ABA treatment	SRR12638942	SRR12638942	SAMN16047341	4513	2-3 leaf stage EtOH control 6 hr roots	Control_6h_3	Morex	roots	2-3 leaf stage	3	control 6h
+132	control for treatment	PRJNA661163	ABA treatment	SRR12638941	SRR12638941	SAMN16047342	4513	2-3 leaf stage EtOH control 24 hr roots	Control_24h_1	Morex	roots	2-3 leaf stage	1	control 24h
+133	control for treatment	PRJNA661163	ABA treatment	SRR12638962	SRR12638962	SAMN16047343	4513	2-3 leaf stage EtOH control 24 hr roots	Control_24h_2	Morex	roots	2-3 leaf stage	2	control 24h
+134	control for treatment	PRJNA661163	ABA treatment	SRR12638961	SRR12638961	SAMN16047344	4513	2-3 leaf stage EtOH control 24 hr roots	Control_24h_3	Morex	roots	2-3 leaf stage	3	control 24h
+135	treatment	PRJNA661163	ABA treatment	SRR12638960	SRR12638960	SAMN16047345	4513	2-3 leaf stage EtOH + ABA 1 hr roots	ABA_1h_1	Morex	roots	2-3 leaf stage	1	ABA 1h
+136	treatment	PRJNA661163	ABA treatment	SRR12638959	SRR12638959	SAMN16047346	4513	2-3 leaf stage EtOH + ABA 1 hr roots	ABA_1h_2	Morex	roots	2-3 leaf stage	2	ABA 1h
+137	treatment	PRJNA661163	ABA treatment	SRR12638958	SRR12638958	SAMN16047347	4513	2-3 leaf stage EtOH + ABA 1 hr roots	ABA_1h_3	Morex	roots	2-3 leaf stage	3	ABA 1h
+138	treatment	PRJNA661163	ABA treatment	SRR12638957	SRR12638957	SAMN16047348	4513	2-3 leaf stage EtOH + ABA 3 hr roots	ABA_3h_1	Morex	roots	2-3 leaf stage	1	ABA 3h
+139	treatment	PRJNA661163	ABA treatment	SRR12638956	SRR12638956	SAMN16047349	4513	2-3 leaf stage EtOH + ABA 3 hr roots	ABA_3h_2	Morex	roots	2-3 leaf stage	2	ABA 3h
+140	treatment	PRJNA661163	ABA treatment	SRR12638955	SRR12638955	SAMN16047350	4513	2-3 leaf stage EtOH + ABA 3 hr roots	ABA_3h_3	Morex	roots	2-3 leaf stage	3	ABA 3h
+141	treatment	PRJNA661163	ABA treatment	SRR12638954	SRR12638954	SAMN16047351	4513	2-3 leaf stage EtOH + ABA 6 hr roots	ABA_6h_1	Morex	roots	2-3 leaf stage	1	ABA 6h
+142	treatment	PRJNA661163	ABA treatment	SRR12638953	SRR12638953	SAMN16047352	4513	2-3 leaf stage EtOH + ABA 6 hr roots	ABA_6h_2	Morex	roots	2-3 leaf stage	2	ABA 6h
+143	treatment	PRJNA661163	ABA treatment	SRR12638951	SRR12638951	SAMN16047353	4513	2-3 leaf stage EtOH + ABA 6 hr roots	ABA_6h_3	Morex	roots	2-3 leaf stage	3	ABA 6h
+144	treatment	PRJNA661163	ABA treatment	SRR12638950	SRR12638950	SAMN16047354	4513	2-3 leaf stage EtOH + ABA 24 hr roots	ABA_24h_1	Morex	roots	2-3 leaf stage	1	ABA 24h
+145	treatment	PRJNA661163	ABA treatment	SRR12638949	SRR12638949	SAMN16047355	4513	2-3 leaf stage EtOH + ABA 24 hr roots	ABA_24h_2	Morex	roots	2-3 leaf stage	2	ABA 24h
+146	treatment	PRJNA661163	ABA treatment	SRR12638948	SRR12638948	SAMN16047356	4513	2-3 leaf stage EtOH + ABA 24 hr roots	ABA_24h_3	Morex	roots	2-3 leaf stage	3	ABA 24h
+147	developmental tissue	PRJEB14349	16 developmental stages	ERR1457163	ERR1457163	SAMEA4034914	4513	"Developing grain, bracts removed (5 DPA), replicate 2, batch 2"	CAR5_2_B2	Morex	caryopsis	5 DPA	1	
+148	developmental tissue	PRJEB14349	16 developmental stages	ERR1457188	ERR1457188	SAMEA4034939	4513	"Developing grain, bracts removed (5 DPA), replicate 2, batch 1"	CAR5_2_B1	Morex	caryopsis	5 DPA	1	
+149	developmental tissue	PRJEB14349	16 developmental stages	ERR1457164	ERR1457164	SAMEA4034915	4513	"Developing grain, bracts removed (5 DPA), replicate 3, batch 2"	CAR5_3_B2	Morex	caryopsis	5 DPA	2	
+150	developmental tissue	PRJEB14349	16 developmental stages	ERR1457189	ERR1457189	SAMEA4034940	4513	"Developing grain, bracts removed (5 DPA), replicate 3, batch 1"	CAR5_3_B1	Morex	caryopsis	5 DPA	2	
+151	developmental tissue	PRJEB14349	16 developmental stages	ERR1457165	ERR1457165	SAMEA4034916	4513	"Developing grain, bracts removed (5 DPA), replicate 4, batch 2"	CAR5_4_B2	Morex	caryopsis	5 DPA	3	
+152	developmental tissue	PRJEB14349	16 developmental stages	ERR1457190	ERR1457190	SAMEA4034941	4513	"Developing grain, bracts removed (5 DPA), replicate 4, batch 1"	CAR5_4_B1	Morex	caryopsis	5 DPA	3	
+153	developmental tissue	PRJEB14349	16 developmental stages	ERR1457172	ERR1457172	SAMEA4034923	4513	"Developing grain, bracts removed (15 DPA), replicate 1, batch 2"	CAR15_1_B2	Morex	caryopsis	15 DPA	1	
+154	developmental tissue	PRJEB14349	16 developmental stages	ERR1457197	ERR1457197	SAMEA4034948	4513	"Developing grain, bracts removed (15 DPA), replicate 1, batch 1"	CAR15_1_B1	Morex	caryopsis	15 DPA	1	
+155	developmental tissue	PRJEB14349	16 developmental stages	ERR1457173	ERR1457173	SAMEA4034924	4513	"Developing grain, bracts removed (15 DPA), replicate 2, batch 2"	CAR15_2_B2	Morex	caryopsis	15 DPA	2	
+156	developmental tissue	PRJEB14349	16 developmental stages	ERR1457198	ERR1457198	SAMEA4034949	4513	"Developing grain, bracts removed (15 DPA), replicate 2, batch 1"	CAR15_2_B1	Morex	caryopsis	15 DPA	2	
+157	developmental tissue	PRJEB14349	16 developmental stages	ERR1457174	ERR1457174	SAMEA4034925	4513	"Developing grain, bracts removed (15 DPA), replicate 4, batch 2"	CAR15_4_B2	Morex	caryopsis	15 DPA	3	
+158	developmental tissue	PRJEB14349	16 developmental stages	ERR1457199	ERR1457199	SAMEA4034950	4513	"Developing grain, bracts removed (15 DPA), replicate 4, batch 1"	CAR15_4_B1	Morex	caryopsis	15 DPA	3	
+159	developmental tissue	PRJEB14349	16 developmental stages	ERR1457184	ERR1457184	SAMEA4034935	4513	"Young developing inflorescences (5mm), replicate A, batch 2"	INF1_a_B2	Morex	developing inflorescence	5 mm	1	
+160	developmental tissue	PRJEB14349	16 developmental stages	ERR1457209	ERR1457209	SAMEA4034960	4513	"Young developing inflorescences (5mm), replicate A, batch 1"	INF1_a_B1	Morex	developing inflorescence	5 mm	1	
+161	developmental tissue	PRJEB14349	16 developmental stages	ERR1457185	ERR1457185	SAMEA4034936	4513	"Young developing inflorescences (5mm), replicate B, batch 2"	INF1_b_B2	Morex	developing inflorescence	5 mm	2	
+162	developmental tissue	PRJEB14349	16 developmental stages	ERR1457210	ERR1457210	SAMEA4034961	4513	"Young developing inflorescences (5mm), replicate B, batch 1"	INF1_b_B1	Morex	developing inflorescence	5 mm	2	
+163	developmental tissue	PRJEB14349	16 developmental stages	ERR1457186	ERR1457186	SAMEA4034937	4513	"Young developing inflorescences (5mm), replicate c, batch 2"	INF1_c_B2	Morex	developing inflorescence	5 mm	3	
+164	developmental tissue	PRJEB14349	16 developmental stages	ERR1457211	ERR1457211	SAMEA4034962	4513	"Young developing inflorescences (5mm), replicate c, batch 1"	INF1_c_B1	Morex	developing inflorescence	5 mm	3	
+165	developmental tissue	PRJEB14349	16 developmental stages	ERR1457178	ERR1457178	SAMEA4034929	4513	"Developing inflorescences (1-1.5 cm), replicate F, batch 2"	INF2_f_B2	Morex	developing inflorescence	10-15 mm	1	
+166	developmental tissue	PRJEB14349	16 developmental stages	ERR1457203	ERR1457203	SAMEA4034954	4513	"Developing inflorescences (1-1.5 cm), replicate F, batch 1"	INF2_f_B1	Morex	developing inflorescence	10-15 mm	1	
+167	developmental tissue	PRJEB14349	16 developmental stages	ERR1457179	ERR1457179	SAMEA4034930	4513	"Developing inflorescences (1-1.5 cm), replicate G, batch 2"	INF2_g_B2	Morex	developing inflorescence	10-15 mm	2	
+168	developmental tissue	PRJEB14349	16 developmental stages	ERR1457204	ERR1457204	SAMEA4034955	4513	"Developing inflorescences (1-1.5 cm), replicate G, batch 1"	INF2_g_B1	Morex	developing inflorescence	10-15 mm	2	
+169	developmental tissue	PRJEB14349	16 developmental stages	ERR1457180	ERR1457180	SAMEA4034931	4513	"Developing inflorescences (1-1.5 cm), replicate H, batch 2"	INF2_h_B2	Morex	developing inflorescence	10-15 mm	3	
+170	developmental tissue	PRJEB14349	16 developmental stages	ERR1457205	ERR1457205	SAMEA4034956	4513	"Developing inflorescences (1-1.5 cm), replicate H, batch 1"	INF2_h_B1	Morex	developing inflorescence	10-15 mm	3	
+171	developmental tissue	PRJEB14349	16 developmental stages	ERR1457166	ERR1457166	SAMEA4034917	4513	"4-day embryos dissected from germinating grains, replicate A, batch 2"	EMB_a_B2	Morex	embryo	4 DPG	1	
+172	developmental tissue	PRJEB14349	16 developmental stages	ERR1457191	ERR1457191	SAMEA4034942	4513	"4-day embryos dissected from germinating grains, replicate A, batch 1"	EMB_a_B1	Morex	embryo	4 DPG	1	
+173	developmental tissue	PRJEB14349	16 developmental stages	ERR1457167	ERR1457167	SAMEA4034918	4513	"4-day embryos dissected from germinating grains, replicate B, batch 2"	EMB_b_B2	Morex	embryo	4 DPG	2	
+174	developmental tissue	PRJEB14349	16 developmental stages	ERR1457192	ERR1457192	SAMEA4034943	4513	"4-day embryos dissected from germinating grains, replicate B, batch 1"	EMB_b_B1	Morex	embryo	4 DPG	2	
+175	developmental tissue	PRJEB14349	16 developmental stages	ERR1457168	ERR1457168	SAMEA4034919	4513	"4-day embryos dissected from germinating grains, replicate C, batch 2"	EMB_c_B2	Morex	embryo	4 DPG	3	
+176	developmental tissue	PRJEB14349	16 developmental stages	ERR1457193	ERR1457193	SAMEA4034944	4513	"4-day embryos dissected from germinating grains, replicate C, batch 1"	EMB_c_B1	Morex	embryo	4 DPG	3	
+177	developmental tissue	PRJEB14349	16 developmental stages	ERR1457224	ERR1457224	SAMEA4034975	4513	"Epidermis (4 weeks ), replicate1, batch1"	EPI_1_B1	Morex	epidermis	4 weeks	1	
+178	developmental tissue	PRJEB14349	16 developmental stages	ERR1457248	ERR1457248	SAMEA4034999	4513	"Epidermis (4 weeks ), replicate1, batch2"	EPI_1_B2	Morex	epidermis	4 weeks	1	
+179	developmental tissue	PRJEB14349	16 developmental stages	ERR1457225	ERR1457225	SAMEA4034976	4513	"Epidermis (4 weeks ), replicate2, batch1"	EPI_2_B1	Morex	epidermis	4 weeks	2	
+180	developmental tissue	PRJEB14349	16 developmental stages	ERR1457249	ERR1457249	SAMEA4035000	4513	"Epidermis (4 weeks ), replicate2, batch2"	EPI_2_B2	Morex	epidermis	4 weeks	2	
+181	developmental tissue	PRJEB14349	16 developmental stages	ERR1457226	ERR1457226	SAMEA4034977	4513	"Epidermis (4 weeks ), replicate3, batch1"	EPI_3_B1	Morex	epidermis	4 weeks	3	
+182	developmental tissue	PRJEB14349	16 developmental stages	ERR1457250	ERR1457250	SAMEA4035001	4513	"Epidermis (4 weeks ), replicate3, batch2"	EPI_3_B2	Morex	epidermis	4 weeks	3	
+183	developmental tissue	PRJEB14349	16 developmental stages	ERR1457212	ERR1457212	SAMEA4034963	4513	"Etiolated (10 day old seedling), replicate1, batch1"	ETI_1_B1	Morex	etiolated leaf	10 day old seedling	1	
+184	developmental tissue	PRJEB14349	16 developmental stages	ERR1457236	ERR1457236	SAMEA4034987	4513	"Etiolated (10 day old seedling), replicate1, batch2"	ETI_1_B2	Morex	etiolated leaf	10 day old seedling	1	
+185	developmental tissue	PRJEB14349	16 developmental stages	ERR1457213	ERR1457213	SAMEA4034964	4513	"Etiolated (10 day old seedling), replicate2, batch1"	ETI_2_B1	Morex	etiolated leaf	10 day old seedling	2	
+186	developmental tissue	PRJEB14349	16 developmental stages	ERR1457237	ERR1457237	SAMEA4034988	4513	"Etiolated (10 day old seedling), replicate2, batch2"	ETI_2_B2	Morex	etiolated leaf	10 day old seedling	2	
+187	developmental tissue	PRJEB14349	16 developmental stages	ERR1457214	ERR1457214	SAMEA4034965	4513	"Etiolated (10 day old seedling), replicate3, batch1"	ETI_3_B1	Morex	etiolated leaf	10 day old seedling	3	
+188	developmental tissue	PRJEB14349	16 developmental stages	ERR1457238	ERR1457238	SAMEA4034989	4513	"Etiolated (10 day old seedling), replicate3, batch2"	ETI_3_B2	Morex	etiolated leaf	10 day old seedling	3	
+189	developmental tissue	PRJEB14349	16 developmental stages	ERR1457181	ERR1457181	SAMEA4034932	4513	"Developing tillers at six leaf stage, 3rd internode, replicate A, batch 2"	NOD_a_B2	Morex	internode	42 DO	1	
+190	developmental tissue	PRJEB14349	16 developmental stages	ERR1457206	ERR1457206	SAMEA4034957	4513	"Developing tillers at six leaf stage, 3rd internode, replicate A, batch 1"	NOD_a_B1	Morex	internode	42 DO	1	
+191	developmental tissue	PRJEB14349	16 developmental stages	ERR1457182	ERR1457182	SAMEA4034933	4513	"Developing tillers at six leaf stage, 3rd internode, replicate B, batch 2"	NOD_b_B2	Morex	internode	42 DO	2	
+192	developmental tissue	PRJEB14349	16 developmental stages	ERR1457207	ERR1457207	SAMEA4034958	4513	"Developing tillers at six leaf stage, 3rd internode, replicate B, batch 1"	NOD_b_B1	Morex	internode	42 DO	2	
+193	developmental tissue	PRJEB14349	16 developmental stages	ERR1457183	ERR1457183	SAMEA4034934	4513	"Developing tillers at six leaf stage, 3rd internode, replicate C, batch 2"	NOD_c_B2	Morex	internode	42 DO	3	
+194	developmental tissue	PRJEB14349	16 developmental stages	ERR1457208	ERR1457208	SAMEA4034959	4513	"Developing tillers at six leaf stage, 3rd internode, replicate C, batch 1"	NOD_c_B1	Morex	internode	42 DO	3	
+195	developmental tissue	PRJEB14349	16 developmental stages	ERR1457187	ERR1457187	SAMEA4034938	4513	"Developing tillers at six leaf stage, 3rd internode, replicate B, batch 2"	extraNOD_b_B2	Morex	internode	42 DO	2	
+196	developmental tissue	PRJEB14349	16 developmental stages	ERR1457175	ERR1457175	SAMEA4034926	4513	"Shoots from the seedlings (10 cm shoot stage), replicate A, batch 2"	LEA_a_B2	Morex	leaf	10 cm shoot	1	
+197	developmental tissue	PRJEB14349	16 developmental stages	ERR1457200	ERR1457200	SAMEA4034951	4513	"Shoots from the seedlings (10 cm shoot stage), replicate A, batch 1"	LEA_a_B1	Morex	leaf	10 cm shoot	1	
+198	developmental tissue	PRJEB14349	16 developmental stages	ERR1457176	ERR1457176	SAMEA4034927	4513	"Shoots from the seedlings (10 cm shoot stage), replicate B, batch 2"	LEA_b_B2	Morex	leaf	10 cm shoot	2	
+199	developmental tissue	PRJEB14349	16 developmental stages	ERR1457201	ERR1457201	SAMEA4034952	4513	"Shoots from the seedlings (10 cm shoot stage), replicate B, batch 1"	LEA_b_B1	Morex	leaf	10 cm shoot	2	
+200	developmental tissue	PRJEB14349	16 developmental stages	ERR1457177	ERR1457177	SAMEA4034928	4513	"Shoots from the seedlings (10 cm shoot stage), replicate C, batch 2"	LEA_c_B2	Morex	leaf	10 cm shoot	3	
+201	developmental tissue	PRJEB14349	16 developmental stages	ERR1457202	ERR1457202	SAMEA4034953	4513	"Shoots from the seedlings (10 cm shoot stage), replicate C, batch 1"	LEA_c_B1	Morex	leaf	10 cm shoot	3	
+202	developmental tissue	PRJEB14349	16 developmental stages	ERR1457215	ERR1457215	SAMEA4034966	4513	"Lemma (6 weeks after planting), replicate1, batch1"	LEM_1_B1	Morex	lemma	6 weeks PA	1	
+203	developmental tissue	PRJEB14349	16 developmental stages	ERR1457239	ERR1457239	SAMEA4034990	4513	"Lemma (6 weeks PA), replicate1, batch2"	LEM_1_B2	Morex	lemma	6 weeks PA	1	
+204	developmental tissue	PRJEB14349	16 developmental stages	ERR1457216	ERR1457216	SAMEA4034967	4513	"Lemma (6 weeks PA), replicate2, batch1"	LEM_2_B1	Morex	lemma	6 weeks PA	2	
+205	developmental tissue	PRJEB14349	16 developmental stages	ERR1457240	ERR1457240	SAMEA4034991	4513	"Lemma (6 weeks PA), replicate2, batch2"	LEM_2_B2	Morex	lemma	6 weeks PA	2	
+206	developmental tissue	PRJEB14349	16 developmental stages	ERR1457217	ERR1457217	SAMEA4034968	4513	"Lemma (6 weeks PA), replicate3, batch1"	LEM_3_B1	Morex	lemma	6 weeks PA	3	
+207	developmental tissue	PRJEB14349	16 developmental stages	ERR1457241	ERR1457241	SAMEA4034992	4513	"Lemma (6 weeks PA), replicate3, batch2"	LEM_3_B2	Morex	lemma	6 weeks PA	3	
+208	developmental tissue	PRJEB14349	16 developmental stages	ERR1457218	ERR1457218	SAMEA4034969	4513	"Lodicule (6 weeks after planting), replicate1, batch1"	LOD_1_B1	Morex	lodicule	6 weeks PA	1	
+209	developmental tissue	PRJEB14349	16 developmental stages	ERR1457242	ERR1457242	SAMEA4034993	4513	"Lodicule (6 weeks PA), replicate1, batch2"	LOD_1_B2	Morex	lodicule	6 weeks PA	1	
+210	developmental tissue	PRJEB14349	16 developmental stages	ERR1457219	ERR1457219	SAMEA4034970	4513	"Lodicule (6 weeks PA), replicate2, batch1"	LOD_2_B1	Morex	lodicule	6 weeks PA	2	
+211	developmental tissue	PRJEB14349	16 developmental stages	ERR1457243	ERR1457243	SAMEA4034994	4513	"Lodicule (6 weeks PA), replicate2, batch2"	LOD_2_B2	Morex	lodicule	6 weeks PA	2	
+212	developmental tissue	PRJEB14349	16 developmental stages	ERR1457220	ERR1457220	SAMEA4034971	4513	"Lodicule (6 weeks PA), replicate3, batch1"	LOD_3_B1	Morex	lodicule	6 weeks PA	3	
+213	developmental tissue	PRJEB14349	16 developmental stages	ERR1457244	ERR1457244	SAMEA4034995	4513	"Lodicule (6 weeks PA), replicate3, batch2"	LOD_3_B2	Morex	lodicule	6 weeks PA	3	
+214	developmental tissue	PRJEB14349	16 developmental stages	ERR1457221	ERR1457221	SAMEA4034972	4513	"Palea (6 weeks after planting), replicate1, batch1"	PAL_1_B1	Morex	palea	6 weeks PA	1	
+215	developmental tissue	PRJEB14349	16 developmental stages	ERR1457245	ERR1457245	SAMEA4034996	4513	"Palea (6 weeks PA), replicate1, batch2"	PAL_1_B2	Morex	palea	6 weeks PA	1	
+216	developmental tissue	PRJEB14349	16 developmental stages	ERR1457222	ERR1457222	SAMEA4034973	4513	"Palea (6 weeks PA), replicate2, batch1"	PAL_2_B1	Morex	palea	6 weeks PA	2	
+217	developmental tissue	PRJEB14349	16 developmental stages	ERR1457246	ERR1457246	SAMEA4034997	4513	"Palea (6 weeks PA), replicate2, batch2"	PAL_2_B2	Morex	palea	6 weeks PA	2	
+218	developmental tissue	PRJEB14349	16 developmental stages	ERR1457223	ERR1457223	SAMEA4034974	4513	"Palea (6 weeks PA), replicate3, batch1"	PAL_3_B1	Morex	palea	6 weeks PA	3	
+219	developmental tissue	PRJEB14349	16 developmental stages	ERR1457247	ERR1457247	SAMEA4034998	4513	"Palea (6 weeks PA), replicate3, batch2"	PAL_3_B2	Morex	palea	6 weeks PA	3	
+220	developmental tissue	PRJEB14349	16 developmental stages	ERR1457227	ERR1457227	SAMEA4034978	4513	"Rachis (5 weeks after planting), replicate1, batch1"	RAC_1_B1	Morex	rachis	5 weeks PA	1	
+221	developmental tissue	PRJEB14349	16 developmental stages	ERR1457251	ERR1457251	SAMEA4035002	4513	"Rachis (5 weeks PA), replicate1, batch2"	RAC_1_B2	Morex	rachis	5 weeks PA	1	
+222	developmental tissue	PRJEB14349	16 developmental stages	ERR1457228	ERR1457228	SAMEA4034979	4513	"Rachis (5 weeks PA), replicate2, batch1"	RAC_2_B1	Morex	rachis	5 weeks PA	2	
+223	developmental tissue	PRJEB14349	16 developmental stages	ERR1457252	ERR1457252	SAMEA4035003	4513	"Rachis (5 weeks PA), replicate2, batch2"	RAC_2_B2	Morex	rachis	5 weeks PA	2	
+224	developmental tissue	PRJEB14349	16 developmental stages	ERR1457229	ERR1457229	SAMEA4034980	4513	"Rachis (5 weeks PA), replicate3, batch1"	RAC_3_B1	Morex	rachis	5 weeks PA	3	
+225	developmental tissue	PRJEB14349	16 developmental stages	ERR1457253	ERR1457253	SAMEA4035004	4513	"Rachis (5 weeks PA), replicate3, batch2"	RAC_3_B2	Morex	rachis	5 weeks PA	3	
+226	developmental tissue	PRJEB14349	16 developmental stages	ERR1457230	ERR1457230	SAMEA4034981	4513	"Root (4 weeks ), replicate1, batch1"	ROO2_1_B1	Morex	root	4 week seedling	1	
+227	developmental tissue	PRJEB14349	16 developmental stages	ERR1457254	ERR1457254	SAMEA4035005	4513	"Root (4 weeks ), replicate1, batch2"	ROO2_1_B2	Morex	root	4 week seedling	1	
+228	developmental tissue	PRJEB14349	16 developmental stages	ERR1457231	ERR1457231	SAMEA4034982	4513	"Root (4 weeks ), replicate2, batch1"	ROO2_2_B1	Morex	root	4 week seedling	2	
+229	developmental tissue	PRJEB14349	16 developmental stages	ERR1457255	ERR1457255	SAMEA4035006	4513	"Root (4 weeks ), replicate2, batch2"	ROO2_2_B2	Morex	root	4 week seedling	2	
+230	developmental tissue	PRJEB14349	16 developmental stages	ERR1457232	ERR1457232	SAMEA4034983	4513	"Root (4 weeks ), replicate3, batch1"	ROO2_3_B1	Morex	root	4 week seedling	3	
+231	developmental tissue	PRJEB14349	16 developmental stages	ERR1457256	ERR1457256	SAMEA4035007	4513	"Root (4 weeks ), replicate3, batch2"	ROO2_3_B2	Morex	root	4 week seedling	3	
+232	developmental tissue	PRJEB14349	16 developmental stages	ERR1457169	ERR1457169	SAMEA4034920	4513	"Roots from the seedlings (10 cm shoot stage), replicate A, batch 2"	ROO_a_B2	Morex	root	10 cm shoot	1	
+233	developmental tissue	PRJEB14349	16 developmental stages	ERR1457194	ERR1457194	SAMEA4034945	4513	"Roots from the seedlings (10 cm shoot stage), replicate A, batch 1"	ROO_a_B1	Morex	root	10 cm shoot	1	
+234	developmental tissue	PRJEB14349	16 developmental stages	ERR1457170	ERR1457170	SAMEA4034921	4513	"Roots from the seedlings (10 cm shoot stage), replicate B, batch 2"	ROO_b_B2	Morex	root	10 cm shoot	2	
+235	developmental tissue	PRJEB14349	16 developmental stages	ERR1457195	ERR1457195	SAMEA4034946	4513	"Roots from the seedlings (10 cm shoot stage), replicate B, batch 1"	ROO_b_B1	Morex	root	10 cm shoot	2	
+236	developmental tissue	PRJEB14349	16 developmental stages	ERR1457171	ERR1457171	SAMEA4034922	4513	"Roots from the seedlings (10 cm shoot stage), replicate C, batch 2"	ROO_c_B2	Morex	root	10 cm shoot	3	
+237	developmental tissue	PRJEB14349	16 developmental stages	ERR1457196	ERR1457196	SAMEA4034947	4513	"Roots from the seedlings (10 cm shoot stage), replicate C, batch 1"	ROO_c_B1	Morex	root	10 cm shoot	3	
+238	developmental tissue	PRJEB14349	16 developmental stages	ERR1457233	ERR1457233	SAMEA4034984	4513	"Senescing leaf (2months), replicate1, batch1"	SEN_1_B1	Morex	senescing leaf	2 months	1	
+239	developmental tissue	PRJEB14349	16 developmental stages	ERR1457257	ERR1457257	SAMEA4035008	4513	"Senescing leaf (2months), replicate1, batch2"	SEN_1_B2	Morex	senescing leaf	2 months	1	
+240	developmental tissue	PRJEB14349	16 developmental stages	ERR1457234	ERR1457234	SAMEA4034985	4513	"Senescing leaf (2months), replicate2, batch1"	SEN_2_B1	Morex	senescing leaf	2 months	2	
+241	developmental tissue	PRJEB14349	16 developmental stages	ERR1457258	ERR1457258	SAMEA4035009	4513	"Senescing leaf (2months), replicate2, batch2"	SEN_2_B2	Morex	senescing leaf	2 months	2	
+242	developmental tissue	PRJEB14349	16 developmental stages	ERR1457235	ERR1457235	SAMEA4034986	4513	"Senescing leaf (2months), replicate3, batch1"	SEN_3_B1	Morex	senescing leaf	2 months	3	
+243	developmental tissue	PRJEB14349	16 developmental stages	ERR1457259	ERR1457259	SAMEA4035010	4513	"Senescing leaf (2months), replicate3, batch2"	SEN_3_B2	Morex	senescing leaf	2 months	3	
+244	developmental tissue	PRJNA910827	Pollen	SRR22672690	SRR22672690	SAMN32145656	4513	mature pollen	HvuPol_RepA	Morex	mature pollen	flowering	1	
+245	developmental tissue	PRJNA910827	Pollen	SRR22672689	SRR22672689	SAMN32145656	4513	mature pollen	HvuPol_RepB	Morex	mature pollen	flowering	2	
+246	developmental tissue	PRJNA910827	Pollen	SRR22672688	SRR22672688	SAMN32145656	4513	mature pollen	HvuPol_RepC	Morex	mature pollen	flowering	3	
+247	developmental tissue	PRJNA910827	Stigma	SRR22672687	SRR22672687	SAMN32145657	4513	mature stigma	HvuStig_RepA	Morex	mature stigma	flowering	1	
+248	developmental tissue	PRJNA910827	Stigma	SRR22672686	SRR22672686	SAMN32145657	4513	mature stigma	HvuStig_RepB	Morex	mature stigma	flowering	2	
+249	developmental tissue	PRJNA910827	Stigma	SRR22672685	SRR22672685	SAMN32145657	4513	mature stigma	HvuStig_RepC	Morex	mature stigma	flowering	3	
+250	developmental tissue	PRJNA975859	Grain Development	SRR24724057	SRR24724057	SAMN35345539	4513	embryo 8 DAP	EMB_08_REP1	Morex	seed embryo	caryopsis	1	
+251	developmental tissue	PRJNA975859	Grain Development	SRR24724056	SRR24724056	SAMN35345538	4513	embryo 8 DAP	EMB_08_REP2	Morex	seed embryo	caryopsis	2	
+252	developmental tissue	PRJNA975859	Grain Development	SRR24724055	SRR24724055	SAMN35345537	4513	embryo 8 DAP	EMB_08_REP3	Morex	seed embryo	caryopsis	3	
+253	developmental tissue	PRJNA975859	Grain Development	SRR24724054	SRR24724054	SAMN35345536	4513	embryo 16 DAP	EMB_16_REP1	Morex	seed embryo	caryopsis	1	
+254	developmental tissue	PRJNA975859	Grain Development	SRR24724053	SRR24724053	SAMN35345535	4513	embryo 16 DAP	EMB_16_REP2	Morex	seed embryo	caryopsis	2	
+255	developmental tissue	PRJNA975859	Grain Development	SRR24724052	SRR24724052	SAMN35345534	4513	embryo 16 DAP	EMB_16_REP3	Morex	seed embryo	caryopsis	3	
+256	developmental tissue	PRJNA975859	Grain Development	SRR24724051	SRR24724051	SAMN35345533	4513	embryo 24DAP	EMB_24_REP1	Morex	seed embryo	caryopsis	1	
+257	developmental tissue	PRJNA975859	Grain Development	SRR24724050	SRR24724050	SAMN35345532	4513	embryo 24DAP	EMB_24_REP2	Morex	seed embryo	caryopsis	2	
+258	developmental tissue	PRJNA975859	Grain Development	SRR24724049	SRR24724049	SAMN35345531	4513	embryo 24DAP	EMB_24_REP3	Morex	seed embryo	caryopsis	3	
+259	developmental tissue	PRJNA975859	Grain Development	SRR24724048	SRR24724048	SAMN35345530	4513	embryo 32 DAP	EMB_32_REP1	Morex	seed embryo	caryopsis	1	
+260	developmental tissue	PRJNA975859	Grain Development	SRR24724047	SRR24724047	SAMN35345529	4513	embryo 32 DAP	EMB_32_REP2	Morex	seed embryo	caryopsis	2	
+261	developmental tissue	PRJNA975859	Grain Development	SRR24724046	SRR24724046	SAMN35345528	4513	embryo 32 DAP	EMB_32_REP3	Morex	seed embryo	caryopsis	3	
+262	developmental tissue	PRJNA975859	Grain Development	SRR24724077	SRR24724077	SAMN35345554	4513	endosperm 4 DAP	END_04_REP1	Morex	seed endosperm	caryopsis	1	
+263	developmental tissue	PRJNA975859	Grain Development	SRR24724076	SRR24724076	SAMN35345553	4513	endosperm 4 DAP	END_04_REP2	Morex	seed endosperm	caryopsis	2	
+264	developmental tissue	PRJNA975859	Grain Development	SRR24724070	SRR24724070	SAMN35345552	4513	endosperm 4 DAP	END_04_REP3	Morex	seed endosperm	caryopsis	3	
+265	developmental tissue	PRJNA975859	Grain Development	SRR24724069	SRR24724069	SAMN35345551	4513	endosperm 8 DAP	END_08_REP1	Morex	seed endosperm	caryopsis	1	
+266	developmental tissue	PRJNA975859	Grain Development	SRR24724068	SRR24724068	SAMN35345550	4513	endosperm 8 DAP	END_08_REP2	Morex	seed endosperm	caryopsis	2	
+267	developmental tissue	PRJNA975859	Grain Development	SRR24724067	SRR24724067	SAMN35345549	4513	endosperm 8 DAP	END_08_REP3	Morex	seed endosperm	caryopsis	3	
+268	developmental tissue	PRJNA975859	Grain Development	SRR24724066	SRR24724066	SAMN35345548	4513	endosperm 16 DAP	END_16_REP1	Morex	seed endosperm	caryopsis	1	
+269	developmental tissue	PRJNA975859	Grain Development	SRR24724065	SRR24724065	SAMN35345547	4513	endosperm 16 DAP	END_16_REP2	Morex	seed endosperm	caryopsis	2	
+270	developmental tissue	PRJNA975859	Grain Development	SRR24724064	SRR24724064	SAMN35345546	4513	endosperm 16 DAP	END_16_REP3	Morex	seed endosperm	caryopsis	3	
+271	developmental tissue	PRJNA975859	Grain Development	SRR24724063	SRR24724063	SAMN35345545	4513	endosperm 24 DAP	END_24_REP1	Morex	seed endosperm	caryopsis	1	
+272	developmental tissue	PRJNA975859	Grain Development	SRR24724062	SRR24724062	SAMN35345544	4513	endosperm 24 DAP	END_24_REP2	Morex	seed endosperm	caryopsis	2	
+273	developmental tissue	PRJNA975859	Grain Development	SRR24724061	SRR24724061	SAMN35345543	4513	endosperm 24 DAP	END_24_REP3	Morex	seed endosperm	caryopsis	3	
+274	developmental tissue	PRJNA975859	Grain Development	SRR24724060	SRR24724060	SAMN35345542	4513	endosperm 32 DAP	END_32_REP1	Morex	seed endosperm	caryopsis	1	
+275	developmental tissue	PRJNA975859	Grain Development	SRR24724059	SRR24724059	SAMN35345541	4513	endosperm 32 DAP	END_32_REP2	Morex	seed endosperm	caryopsis	2	
+276	developmental tissue	PRJNA975859	Grain Development	SRR24724058	SRR24724058	SAMN35345540	4513	endosperm 32 DAP	END_32_REP3	Morex	seed endosperm	caryopsis	3	
+277	developmental tissue	PRJNA975859	Grain Development	SRR24724045	SRR24724045	SAMN35345527	4513	seed maternal tissues 4 DAP	SMT_04_REP1	Morex	seed maternal tissue	caryopsis	1	
+278	developmental tissue	PRJNA975859	Grain Development	SRR24724044	SRR24724044	SAMN35345526	4513	seed maternal tissues 4 DAP	SMT_04_REP2	Morex	seed maternal tissue	caryopsis	2	
+279	developmental tissue	PRJNA975859	Grain Development	SRR24724043	SRR24724043	SAMN35345525	4513	seed maternal tissues 4 DAP	SMT_04_REP3	Morex	seed maternal tissue	caryopsis	3	
+280	developmental tissue	PRJNA975859	Grain Development	SRR24724042	SRR24724042	SAMN35345524	4513	seed maternal tissues 8 DAP	SMT_08_REP1	Morex	seed maternal tissue	caryopsis	1	
+281	developmental tissue	PRJNA975859	Grain Development	SRR24724041	SRR24724041	SAMN35345523	4513	seed maternal tissues 8 DAP	SMT_08_REP2	Morex	seed maternal tissue	caryopsis	2	
+282	developmental tissue	PRJNA975859	Grain Development	SRR24724040	SRR24724040	SAMN35345522	4513	seed maternal tissues 8 DAP	SMT_08_REP3	Morex	seed maternal tissue	caryopsis	3	
+283	developmental tissue	PRJNA975859	Grain Development	SRR24724039	SRR24724039	SAMN35345521	4513	seed maternal tissues 16 DAP	SMT_16_REP1	Morex	seed maternal tissue	caryopsis	1	
+284	developmental tissue	PRJNA975859	Grain Development	SRR24724075	SRR24724075	SAMN35345520	4513	seed maternal tissues 16 DAP	SMT_16_REP2	Morex	seed maternal tissue	caryopsis	2	
+285	developmental tissue	PRJNA975859	Grain Development	SRR24724074	SRR24724074	SAMN35345519	4513	seed maternal tissues 16 DAP	SMT_16_REP3	Morex	seed maternal tissue	caryopsis	3	
+286	developmental tissue	PRJNA975859	Grain Development	SRR24724073	SRR24724073	SAMN35345518	4513	seed maternal tissues 24 DAP	SMT_24_REP1	Morex	seed maternal tissue	caryopsis	1	
+287	developmental tissue	PRJNA975859	Grain Development	SRR24724072	SRR24724072	SAMN35345517	4513	seed maternal tissues 24 DAP	SMT_24_REP2	Morex	seed maternal tissue	caryopsis	2	
+288	developmental tissue	PRJNA975859	Grain Development	SRR24724071	SRR24724071	SAMN35345516	4513	seed maternal tissues 24 DAP	SMT_24_REP3	Morex	seed maternal tissue	caryopsis	3	
+289	developmental tissue	PRJNA589222	Root	SRR10436255	SRR10436255	SAMN13269169	112509	root elongation zone		Morex	root elongation zone	3 days	1	
+290	developmental tissue	PRJNA589222	Root	SRR10436259	SRR10436259	SAMN13269166	112509	root elongation zone		Morex	root elongation zone	3 days	2	
+291	developmental tissue	PRJNA589222	Root	SRR10436262	SRR10436262	SAMN13269163	112509	root elongation zone		Morex	root elongation zone	3 days	3	
+292	developmental tissue	PRJNA589222	Root	SRR10436265	SRR10436265	SAMN13269160	112509	root elongation zone		Morex	root elongation zone	3 days	4	
+293	developmental tissue	PRJNA589222	Root	SRR10436257	SRR10436257	SAMN13269168	112509	root meristem		Morex	root meristem	3 days	1	
+294	developmental tissue	PRJNA589222	Root	SRR10436260	SRR10436260	SAMN13269165	112509	root meristem		Morex	root meristem	3 days	2	
+295	developmental tissue	PRJNA589222	Root	SRR10436263	SRR10436263	SAMN13269162	112509	root meristem		Morex	root meristem	3 days	3	
+296	developmental tissue	PRJNA589222	Root	SRR10436266	SRR10436266	SAMN13269159	112509	root meristem		Morex	root meristem	3 days	4	
+297	developmental tissue	PRJNA589222	Root	SRR10436245	SRR10436245	SAMN13269158	112509	root cap		Morex	root cap	3 days	1	
+298	developmental tissue	PRJNA589222	Root	SRR10436258	SRR10436258	SAMN13269167	112509	root cap		Morex	root cap	3 days	2	
+299	developmental tissue	PRJNA589222	Root	SRR10436261	SRR10436261	SAMN13269164	112509	root cap		Morex	root cap	3 days	3	
+300	developmental tissue	PRJNA589222	Root	SRR10436264	SRR10436264	SAMN13269161	112509	root cap		Morex	root cap	3 days	4	
+301	developmental tissue	PRJEB64639	Pan Transcriptome	Morex_Co1		SAMEA114228364	4513	germinating grain 4-8 days (minus seed)	Morex_Co1	Morex	germinating grain	4-8 days germination	1	
+302	developmental tissue	PRJEB64639	Pan Transcriptome	Morex_Co2		SAMEA114228386	4513	germinating grain 4-8 days (minus seed)	Morex_Co2	Morex	germinating grain	4-8 days germination	2	
+303	developmental tissue	PRJEB64639	Pan Transcriptome	Morex_Co3		SAMEA114228408	4513	germinating grain 4-8 days (minus seed)	Morex_Co3	Morex	germinating grain	4-8 days germination	3	
+304	developmental tissue	PRJEB64639	Pan Transcriptome	Morex_Sh1		SAMEA114228430	4513	14 day seedling shoot	Morex_Sh1	Morex	epicotyl	14 days epicotyl	1	
+305	developmental tissue	PRJEB64639	Pan Transcriptome	Morex_Sh2		SAMEA114228452	4513	14 day seedling shoot	Morex_Sh2	Morex	epicotyl	14 days epicotyl	2	
+306	developmental tissue	PRJEB64639	Pan Transcriptome	Morex_Sh3		SAMEA114228474	4513	14 day seedling shoot	Morex_Sh3	Morex	epicotyl	14 days epicotyl	3	
+307	developmental tissue	PRJEB64639	Pan Transcriptome	Morex_Ro1		SAMEA114228496	4513	14 day seedling root	Morex_Ro1	Morex	root	14 days shoot	1	
+308	developmental tissue	PRJEB64639	Pan Transcriptome	Morex_Ro2		SAMEA114228517	4513	14 day seedling root	Morex_Ro2	Morex	root	14 days shoot	2	
+309	developmental tissue	PRJEB64639	Pan Transcriptome	Morex_Ro3		SAMEA114228539	4513	14 day seedling root	Morex_Ro3	Morex	root	14 days shoot	3	
+310	developmental tissue	PRJEB64639	Pan Transcriptome	Morex_In1		SAMEA114228561	4513	1-1.5 cm Inflorescence	Morex_In1	Morex	inflorescence	1-1.5 cm Inflorescence	1	
+311	developmental tissue	PRJEB64639	Pan Transcriptome	Morex_In2		SAMEA114228583	4513	1-1.5 cm Inflorescence	Morex_In2	Morex	inflorescence	1-1.5 cm Inflorescence	2	
+312	developmental tissue	PRJEB64639	Pan Transcriptome	Morex_In3		SAMEA114228604	4513	1-1.5 cm Inflorescence	Morex_In3	Morex	inflorescence	1-1.5 cm Inflorescence	3	
+313	developmental tissue	PRJEB64639	Pan Transcriptome	Morex_Ca1		SAMEA114228626	4513	Developing Caryopsis 15-20 DPA	Morex_Ca1	Morex	caryopsis	Caryopsis 15-20 DPA	1	
+314	developmental tissue	PRJEB64639	Pan Transcriptome	Morex_Ca2		SAMEA114228648	4513	Developing Caryopsis 15-20 DPA	Morex_Ca2	Morex	caryopsis	Caryopsis 15-20 DPA	2	
+315	developmental tissue	PRJEB64639	Pan Transcriptome	Morex_Ca3		SAMEA114228669	4513	Developing Caryopsis 15-20 DPA	Morex_Ca3	Morex	caryopsis	Caryopsis 15-20 DPA	3	
+			 											

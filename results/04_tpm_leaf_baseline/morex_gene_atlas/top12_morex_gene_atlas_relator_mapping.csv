@@ -1,0 +1,139 @@
+gene_id,related_id,dataset,class_text,class_codes,class_descriptions,selected_for_expression,selection_policy,gene_mapping_status
+HORVU.MOREX.r3.6HG0621200,,-,-,,,false,,unmapped
+HORVU.MOREX.r3.4HG0389370,BART1_0-u29953,BARTv1,001 (k),k,contains reference transcript (reverse containment),false,,single_nonexact_match
+HORVU.MOREX.r3.4HG0389370,BaRT2v18chr4HG202190,BARTv2,1 (k),k,contains reference transcript (reverse containment),false,,single_nonexact_match
+HORVU.MOREX.r3.4HG0389370,BaRT2v18chr4HG202200,BARTv2,1 (x),x,exonic overlap on the opposite strand,false,,single_nonexact_match
+HORVU.MOREX.r3.4HG0389370,HORVU4Hr1G060760,HORVU1,1 (k),k,contains reference transcript (reverse containment),false,,single_nonexact_match
+HORVU.MOREX.r3.4HG0389370,Hv_Mx_chr4HG26458,HvMxRTD,1 (k),k,contains reference transcript (reverse containment),true,same_strand_nonexact_fallback,single_nonexact_match
+HORVU.MOREX.r3.4HG0389370,Hv_Mx_chr4HG26459,HvMxRTD,1 (x),x,exonic overlap on the opposite strand,false,,single_nonexact_match
+HORVU.MOREX.r3.4HG0389370,JLOC1_1404,JLOC,1 (x),x,exonic overlap on the opposite strand,false,,single_nonexact_match
+HORVU.MOREX.r3.4HG0389370,MLOC_2337,MLOC,1 (x),x,exonic overlap on the opposite strand,false,,single_nonexact_match
+HORVU.MOREX.r3.4HG0389370,Morex_chr4HG20210,MxGSRTD,1 (k),k,contains reference transcript (reverse containment),false,,single_nonexact_match
+HORVU.MOREX.r3.4HG0389370,Morex_chr4HG20211,MxGSRTD,1 (x),x,exonic overlap on the opposite strand,false,,single_nonexact_match
+HORVU.MOREX.r3.4HG0389370,chr4H40478,PanBart20,1 (k),k,contains reference transcript (reverse containment),false,,single_nonexact_match
+HORVU.MOREX.r3.4HG0389370,chr4H40479,PanBart20,1 (x),x,exonic overlap on the opposite strand,false,,single_nonexact_match
+HORVU.MOREX.r3.1HG0077030,AK370126,MLOC,AK370126 (=),=,"complete, exact intron chain match",false,,single_exact_match
+HORVU.MOREX.r3.1HG0077030,BART1_0-u05229,BARTv1,001 (x),x,exonic overlap on the opposite strand,false,,single_exact_match
+HORVU.MOREX.r3.1HG0077030,BART1_0-u05238,BARTv1,001 (=),=,"complete, exact intron chain match",false,,single_exact_match
+HORVU.MOREX.r3.1HG0077030,BaRT2v18chr1HG038310,BARTv2,"1 (k) , 2 (m) , 3 (m) , 4 (m) , 5 (=) , 6 (=)",k|m|=,"contains reference transcript (reverse containment); retained intron(s) compared to reference, full intron chain match everywhere else; complete, exact intron chain match",false,,single_exact_match
+HORVU.MOREX.r3.1HG0077030,BaRT2v18chr1HG038320,BARTv2,1 (x),x,exonic overlap on the opposite strand,false,,single_exact_match
+HORVU.MOREX.r3.1HG0077030,HORVU1Hr1G076100,HORVU1,1 (c),c,contained in reference transcript (intron compatible),false,,single_exact_match
+HORVU.MOREX.r3.1HG0077030,HORVU1Hr1G076190,HORVU1,"1 (m) , 2 (j) , 3 (j) , 4 (=) , 5 (n) , 6 (j) , 7 (j) , 8 (o)",m|j|=|n|o,"retained intron(s) compared to reference, full intron chain match everywhere else; multi-exon with at least one junction match; complete, exact intron chain match; completely overlaps intron from reference transcript, partial or no intron chain match everywhere else; other same strand overlap with reference exons",false,,single_exact_match
+HORVU.MOREX.r3.1HG0077030,HORVU1Hr1G076200,HORVU1,"1 (m) , 2 (m) , 3 (j)",m|j,"retained intron(s) compared to reference, full intron chain match everywhere else; multi-exon with at least one junction match",false,,single_exact_match
+HORVU.MOREX.r3.1HG0077030,Hv_Mx_chr1HG06601,HvMxRTD,1 (x),x,exonic overlap on the opposite strand,false,,single_exact_match
+HORVU.MOREX.r3.1HG0077030,Hv_Mx_chr1HG06602,HvMxRTD,1 (=),=,"complete, exact intron chain match",true,exact_intron_chain,single_exact_match
+HORVU.MOREX.r3.1HG0077030,JLOC1_20165,JLOC,1 (x),x,exonic overlap on the opposite strand,false,,single_exact_match
+HORVU.MOREX.r3.1HG0077030,JLOC1_20388,JLOC,1 (c),c,contained in reference transcript (intron compatible),false,,single_exact_match
+HORVU.MOREX.r3.1HG0077030,JLOC1_26209,JLOC,1 (x),x,exonic overlap on the opposite strand,false,,single_exact_match
+HORVU.MOREX.r3.1HG0077030,JLOC1_48311,JLOC,1 (c),c,contained in reference transcript (intron compatible),false,,single_exact_match
+HORVU.MOREX.r3.1HG0077030,MLOC_30491,MLOC,1 (x),x,exonic overlap on the opposite strand,false,,single_exact_match
+HORVU.MOREX.r3.1HG0077030,MLOC_30910,MLOC,"1 (c) , 2 (n)",c|n,"contained in reference transcript (intron compatible); completely overlaps intron from reference transcript, partial or no intron chain match everywhere else",false,,single_exact_match
+HORVU.MOREX.r3.1HG0077030,MLOC_40109,MLOC,1 (x),x,exonic overlap on the opposite strand,false,,single_exact_match
+HORVU.MOREX.r3.1HG0077030,MLOC_72624,MLOC,1 (c),c,contained in reference transcript (intron compatible),false,,single_exact_match
+HORVU.MOREX.r3.1HG0077030,Morex_chr1HG04504,MxGSRTD,1 (x),x,exonic overlap on the opposite strand,false,,single_exact_match
+HORVU.MOREX.r3.1HG0077030,Morex_chr1HG04505,MxGSRTD,1 (=),=,"complete, exact intron chain match",false,,single_exact_match
+HORVU.MOREX.r3.1HG0077030,chr1H07789,PanBart20,1 (x),x,exonic overlap on the opposite strand,false,,single_exact_match
+HORVU.MOREX.r3.1HG0077030,chr1H07790,PanBart20,"1 (=) , 2 (=) , 3 (m) , 4 (m) , 5 (m) , 6 (m) , 7 (m) , 8 (=) , 9 (j) , 10 (m) , 11 (m)",=|m|j,"complete, exact intron chain match; retained intron(s) compared to reference, full intron chain match everywhere else; multi-exon with at least one junction match",false,,single_exact_match
+HORVU.MOREX.r3.4HG0389360,BART1_0-u29951,BARTv1,"001 (k) , 002 (o)",k|o,contains reference transcript (reverse containment); other same strand overlap with reference exons,false,,single_nonexact_match
+HORVU.MOREX.r3.4HG0389360,BaRT2v18chr4HG202180,BARTv2,1 (x),x,exonic overlap on the opposite strand,false,,single_nonexact_match
+HORVU.MOREX.r3.4HG0389360,HORVU4Hr1G060710,HORVU1,"1 (x) , 2 (x) , 3 (x)",x,exonic overlap on the opposite strand,false,,single_nonexact_match
+HORVU.MOREX.r3.4HG0389360,HORVU4Hr1G060720,HORVU1,"1 (o) , 2 (=)",o|=,"other same strand overlap with reference exons; complete, exact intron chain match",false,,single_nonexact_match
+HORVU.MOREX.r3.4HG0389360,Hv_Mx_chr4HG26456,HvMxRTD,1 (x),x,exonic overlap on the opposite strand,false,,single_nonexact_match
+HORVU.MOREX.r3.4HG0389360,Hv_Mx_chr4HG26457,HvMxRTD,1 (k),k,contains reference transcript (reverse containment),true,same_strand_nonexact_fallback,single_nonexact_match
+HORVU.MOREX.r3.4HG0389360,JLOC1_4441,JLOC,1 (k),k,contains reference transcript (reverse containment),false,,single_nonexact_match
+HORVU.MOREX.r3.4HG0389360,MLOC_6787,MLOC,"1 (k) , 2 (o) , 3 (x)",k|o|x,contains reference transcript (reverse containment); other same strand overlap with reference exons; exonic overlap on the opposite strand,false,,single_nonexact_match
+HORVU.MOREX.r3.4HG0389360,Morex_chr4HG20208,MxGSRTD,1 (x),x,exonic overlap on the opposite strand,false,,single_nonexact_match
+HORVU.MOREX.r3.4HG0389360,Morex_chr4HG20209,MxGSRTD,1 (k),k,contains reference transcript (reverse containment),false,,single_nonexact_match
+HORVU.MOREX.r3.4HG0389360,chr4H40475,PanBart20,"1 (x) , 2 (x) , 3 (x) , 4 (x)",x,exonic overlap on the opposite strand,false,,single_nonexact_match
+HORVU.MOREX.r3.4HG0389360,chr4H40476,PanBart20,"1 (k) , 2 (k)",k,contains reference transcript (reverse containment),false,,single_nonexact_match
+HORVU.MOREX.r3.3HG0288370,BART1_0-u22146,BARTv1,"001 (=) , 002 (n) , 003 (n)",=|n,"complete, exact intron chain match; completely overlaps intron from reference transcript, partial or no intron chain match everywhere else",false,,single_exact_match
+HORVU.MOREX.r3.3HG0288370,BaRT2v18chr3HG148720,BARTv2,1 (x),x,exonic overlap on the opposite strand,false,,single_exact_match
+HORVU.MOREX.r3.3HG0288370,BaRT2v18chr3HG148730,BARTv2,"1 (=) , 2 (m) , 3 (m) , 4 (m)",=|m,"complete, exact intron chain match; retained intron(s) compared to reference, full intron chain match everywhere else",false,,single_exact_match
+HORVU.MOREX.r3.3HG0288370,HORVU3Hr1G071120,HORVU1,"1 (m) , 2 (=) , 3 (m) , 4 (j) , 5 (m) , 6 (m) , 7 (=) , 8 (j) , 9 (j)",m|=|j,"retained intron(s) compared to reference, full intron chain match everywhere else; complete, exact intron chain match; multi-exon with at least one junction match",false,,single_exact_match
+HORVU.MOREX.r3.3HG0288370,HORVU3Hr1G071130,HORVU1,1 (x),x,exonic overlap on the opposite strand,false,,single_exact_match
+HORVU.MOREX.r3.3HG0288370,Hv_Mx_chr3HG19892,HvMxRTD,"1 (c) , 2 (c) , 3 (c) , 4 (c) , 5 (=) , 6 (m)",c|=|m,"contained in reference transcript (intron compatible); complete, exact intron chain match; retained intron(s) compared to reference, full intron chain match everywhere else",true,exact_intron_chain,single_exact_match
+HORVU.MOREX.r3.3HG0288370,JLOC1_32528,JLOC,1 (=),=,"complete, exact intron chain match",false,,single_exact_match
+HORVU.MOREX.r3.3HG0288370,MLOC_50979,MLOC,1 (=),=,"complete, exact intron chain match",false,,single_exact_match
+HORVU.MOREX.r3.3HG0288370,Morex_chr3HG15021,MxGSRTD,"1 (c) , 2 (c) , 3 (c) , 4 (c) , 5 (=)",c|=,"contained in reference transcript (intron compatible); complete, exact intron chain match",false,,single_exact_match
+HORVU.MOREX.r3.3HG0288370,chr3H29391,PanBart20,"1 (=) , 2 (j) , 3 (m) , 4 (m) , 5 (m) , 6 (m) , 7 (m) , 8 (m) , 9 (j) , 10 (m) , 11 (c) , 12 (c)",=|j|m|c,"complete, exact intron chain match; multi-exon with at least one junction match; retained intron(s) compared to reference, full intron chain match everywhere else; contained in reference transcript (intron compatible)",false,,single_exact_match
+HORVU.MOREX.r3.4HG0392240,BART1_0-u30117,BARTv1,001 (=),=,"complete, exact intron chain match",false,,single_exact_match
+HORVU.MOREX.r3.4HG0392240,BaRT2v18chr4HG203850,BARTv2,1 (x),x,exonic overlap on the opposite strand,false,,single_exact_match
+HORVU.MOREX.r3.4HG0392240,BaRT2v18chr4HG203860,BARTv2,1 (=),=,"complete, exact intron chain match",false,,single_exact_match
+HORVU.MOREX.r3.4HG0392240,HORVU4Hr1G063350,HORVU1,1 (=),=,"complete, exact intron chain match",false,,single_exact_match
+HORVU.MOREX.r3.4HG0392240,Hv_Mx_chr4HG26666,HvMxRTD,1 (=),=,"complete, exact intron chain match",true,exact_intron_chain,single_exact_match
+HORVU.MOREX.r3.4HG0392240,JLOC1_51985,JLOC,1 (=),=,"complete, exact intron chain match",false,,single_exact_match
+HORVU.MOREX.r3.4HG0392240,MLOC_77985,MLOC,"1 (x) , 2 (=)",x|=,"exonic overlap on the opposite strand; complete, exact intron chain match",false,,single_exact_match
+HORVU.MOREX.r3.4HG0392240,Morex_chr4HG20397,MxGSRTD,1 (=),=,"complete, exact intron chain match",false,,single_exact_match
+HORVU.MOREX.r3.4HG0392240,chr4H40744,PanBart20,"1 (=) , 2 (m)",=|m,"complete, exact intron chain match; retained intron(s) compared to reference, full intron chain match everywhere else",false,,single_exact_match
+HORVU.MOREX.r3.4HG0392240,chr4H40745,PanBart20,1 (x),x,exonic overlap on the opposite strand,false,,single_exact_match
+HORVU.MOREX.r3.6HG0616950,BART1_0-u46832,BARTv1,001 (=),=,"complete, exact intron chain match",false,,single_exact_match
+HORVU.MOREX.r3.6HG0616950,BaRT2v18chr6HG318310,BARTv2,1 (x),x,exonic overlap on the opposite strand,false,,single_exact_match
+HORVU.MOREX.r3.6HG0616950,BaRT2v18chr6HG318320,BARTv2,1 (=),=,"complete, exact intron chain match",false,,single_exact_match
+HORVU.MOREX.r3.6HG0616950,HORVU6Hr1G077710,HORVU1,"1 (=) , 2 (=) , 3 (m) , 4 (x) , 5 (x) , 6 (j)",=|m|x|j,"complete, exact intron chain match; retained intron(s) compared to reference, full intron chain match everywhere else; exonic overlap on the opposite strand; multi-exon with at least one junction match",false,,single_exact_match
+HORVU.MOREX.r3.6HG0616950,Hv_Mx_chr6HG40380,HvMxRTD,1 (x),x,exonic overlap on the opposite strand,false,,single_exact_match
+HORVU.MOREX.r3.6HG0616950,Hv_Mx_chr6HG40381,HvMxRTD,"1 (=) , 2 (m)",=|m,"complete, exact intron chain match; retained intron(s) compared to reference, full intron chain match everywhere else",true,exact_intron_chain,single_exact_match
+HORVU.MOREX.r3.6HG0616950,JLOC1_50137,JLOC,"1 (o) , 2 (=)",o|=,"other same strand overlap with reference exons; complete, exact intron chain match",false,,single_exact_match
+HORVU.MOREX.r3.6HG0616950,MLOC_75175,MLOC,"1 (=) , 2 (x)",=|x,"complete, exact intron chain match; exonic overlap on the opposite strand",false,,single_exact_match
+HORVU.MOREX.r3.6HG0616950,Morex_chr6HG31184,MxGSRTD,1 (x),x,exonic overlap on the opposite strand,false,,single_exact_match
+HORVU.MOREX.r3.6HG0616950,Morex_chr6HG31185,MxGSRTD,"1 (=) , 2 (m)",=|m,"complete, exact intron chain match; retained intron(s) compared to reference, full intron chain match everywhere else",false,,single_exact_match
+HORVU.MOREX.r3.6HG0616950,chr6H64797,PanBart20,"1 (=) , 2 (m) , 3 (j) , 4 (m)",=|m|j,"complete, exact intron chain match; retained intron(s) compared to reference, full intron chain match everywhere else; multi-exon with at least one junction match",false,,single_exact_match
+HORVU.MOREX.r3.6HG0616950,chr6H64798,PanBart20,1 (x),x,exonic overlap on the opposite strand,false,,single_exact_match
+HORVU.MOREX.r3.4HG0396100,BART1_0-u30389,BARTv1,"001 (k) , 002 (k) , 003 (k) , 004 (o)",k|o,contains reference transcript (reverse containment); other same strand overlap with reference exons,false,,single_nonexact_match
+HORVU.MOREX.r3.4HG0396100,BaRT2v18chr4HG206250,BARTv2,"1 (k) , 2 (k) , 3 (o) , 4 (o) , 5 (k)",k|o,contains reference transcript (reverse containment); other same strand overlap with reference exons,false,,single_nonexact_match
+HORVU.MOREX.r3.4HG0396100,HORVU4Hr1G067430,HORVU1,"1 (k) , 2 (o) , 3 (=)",k|o|=,"contains reference transcript (reverse containment); other same strand overlap with reference exons; complete, exact intron chain match",false,,single_nonexact_match
+HORVU.MOREX.r3.4HG0396100,Hv_Mx_chr4HG26946,HvMxRTD,1 (k),k,contains reference transcript (reverse containment),true,same_strand_nonexact_fallback,single_nonexact_match
+HORVU.MOREX.r3.4HG0396100,JLOC1_44639,JLOC,1 (k),k,contains reference transcript (reverse containment),false,,single_nonexact_match
+HORVU.MOREX.r3.4HG0396100,MLOC_67581,MLOC,1 (k),k,contains reference transcript (reverse containment),false,,single_nonexact_match
+HORVU.MOREX.r3.4HG0396100,Morex_chr4HG20641,MxGSRTD,1 (k),k,contains reference transcript (reverse containment),false,,single_nonexact_match
+HORVU.MOREX.r3.4HG0396100,chr4H41152,PanBart20,"1 (k) , 2 (=)",k|=,"contains reference transcript (reverse containment); complete, exact intron chain match",false,,single_nonexact_match
+HORVU.MOREX.r3.4HG0396100,chr4H41153,PanBart20,1 (x),x,exonic overlap on the opposite strand,false,,single_nonexact_match
+HORVU.MOREX.r3.7HG0714970,BART1_0-u54390,BARTv1,001 (k),k,contains reference transcript (reverse containment),false,,single_exact_match
+HORVU.MOREX.r3.7HG0714970,BaRT2v18chr7HG367220,BARTv2,1 (x),x,exonic overlap on the opposite strand,false,,single_exact_match
+HORVU.MOREX.r3.7HG0714970,HORVU7Hr1G085130,HORVU1,1 (k),k,contains reference transcript (reverse containment),false,,single_exact_match
+HORVU.MOREX.r3.7HG0714970,Hv_Mx_chr7HG46170,HvMxRTD,1 (x),x,exonic overlap on the opposite strand,false,,single_exact_match
+HORVU.MOREX.r3.7HG0714970,Hv_Mx_chr7HG46171,HvMxRTD,"1 (k) , 2 (=)",k|=,"contains reference transcript (reverse containment); complete, exact intron chain match",true,exact_intron_chain,single_exact_match
+HORVU.MOREX.r3.7HG0714970,JLOC1_8791,JLOC,1 (k),k,contains reference transcript (reverse containment),false,,single_exact_match
+HORVU.MOREX.r3.7HG0714970,MLOC_13045,MLOC,1 (k),k,contains reference transcript (reverse containment),false,,single_exact_match
+HORVU.MOREX.r3.7HG0714970,Morex_chr7HG35615,MxGSRTD,1 (x),x,exonic overlap on the opposite strand,false,,single_exact_match
+HORVU.MOREX.r3.7HG0714970,Morex_chr7HG35616,MxGSRTD,"1 (k) , 2 (=)",k|=,"contains reference transcript (reverse containment); complete, exact intron chain match",false,,single_exact_match
+HORVU.MOREX.r3.7HG0714970,chr7H75599,PanBart20,"1 (x) , 2 (k)",x|k,exonic overlap on the opposite strand; contains reference transcript (reverse containment),false,,single_exact_match
+HORVU.MOREX.r3.7HG0714970,chr7H75600,PanBart20,"1 (k) , 2 (k)",k,contains reference transcript (reverse containment),false,,single_exact_match
+HORVU.MOREX.r3.7HG0732330,BART1_0-u55658,BARTv1,"001 (=) , 003 (j)",=|j,"complete, exact intron chain match; multi-exon with at least one junction match",false,,single_exact_match
+HORVU.MOREX.r3.7HG0732330,BaRT2v18chr7HG376900,BARTv2,"1 (m) , 2 (=) , 3 (m) , 4 (m) , 5 (=) , 6 (m) , 7 (j) , 8 (m)",m|=|j,"retained intron(s) compared to reference, full intron chain match everywhere else; complete, exact intron chain match; multi-exon with at least one junction match",false,,single_exact_match
+HORVU.MOREX.r3.7HG0732330,HORVU7Hr1G101920,HORVU1,"1 (=) , 2 (=) , 3 (j) , 4 (m) , 5 (j)",=|j|m,"complete, exact intron chain match; multi-exon with at least one junction match; retained intron(s) compared to reference, full intron chain match everywhere else",false,,single_exact_match
+HORVU.MOREX.r3.7HG0732330,Hv_Mx_chr7HG47518,HvMxRTD,1 (=),=,"complete, exact intron chain match",true,exact_intron_chain,single_exact_match
+HORVU.MOREX.r3.7HG0732330,JLOC1_12365,JLOC,1 (=),=,"complete, exact intron chain match",false,,single_exact_match
+HORVU.MOREX.r3.7HG0732330,JLOC1_24863,JLOC,1 (x),x,exonic overlap on the opposite strand,false,,single_exact_match
+HORVU.MOREX.r3.7HG0732330,MLOC_17893,MLOC,1 (=),=,"complete, exact intron chain match",false,,single_exact_match
+HORVU.MOREX.r3.7HG0732330,MLOC_38255,MLOC,1 (x),x,exonic overlap on the opposite strand,false,,single_exact_match
+HORVU.MOREX.r3.7HG0732330,Morex_chr7HG36688,MxGSRTD,1 (=),=,"complete, exact intron chain match",false,,single_exact_match
+HORVU.MOREX.r3.7HG0732330,chr7H77301,PanBart20,"3 (j) , 5 (k) , 9 (j) , 10 (=) , 11 (m) , 12 (m) , 13 (m) , 14 (m) , 15 (m) , 16 (m) , 17 (j) , 18 (m) , 19 (j) , 20 (m) , 21 (=)",j|k|=|m,"multi-exon with at least one junction match; contains reference transcript (reverse containment); complete, exact intron chain match; retained intron(s) compared to reference, full intron chain match everywhere else",false,,single_exact_match
+HORVU.MOREX.r3.7HG0721780,AK248369,MLOC,AK248369 (=),=,"complete, exact intron chain match",false,,single_exact_match
+HORVU.MOREX.r3.7HG0721780,BART1_0-u54862,BARTv1,"001 (=) , 002 (k) , 003 (m) , 004 (m) , 005 (m) , 006 (m) , 007 (m) , 008 (m) , 009 (m)",=|k|m,"complete, exact intron chain match; contains reference transcript (reverse containment); retained intron(s) compared to reference, full intron chain match everywhere else",false,,single_exact_match
+HORVU.MOREX.r3.7HG0721780,BaRT2v18chr7HG370910,BARTv2,1 (x),x,exonic overlap on the opposite strand,false,,single_exact_match
+HORVU.MOREX.r3.7HG0721780,BaRT2v18chr7HG370920,BARTv2,"1 (m) , 2 (=) , 3 (m) , 4 (m) , 5 (m) , 6 (m) , 7 (m) , 8 (m)",m|=,"retained intron(s) compared to reference, full intron chain match everywhere else; complete, exact intron chain match",false,,single_exact_match
+HORVU.MOREX.r3.7HG0721780,HORVU7Hr1G091740,HORVU1,"1 (k) , 2 (j) , 3 (=) , 4 (c) , 5 (j) , 6 (m) , 7 (j) , 8 (j) , 9 (j) , 10 (k)",k|j|=|c|m,"contains reference transcript (reverse containment); multi-exon with at least one junction match; complete, exact intron chain match; contained in reference transcript (intron compatible); retained intron(s) compared to reference, full intron chain match everywhere else",false,,single_exact_match
+HORVU.MOREX.r3.7HG0721780,HORVU7Hr1G091750,HORVU1,1 (x),x,exonic overlap on the opposite strand,false,,single_exact_match
+HORVU.MOREX.r3.7HG0721780,Hv_Mx_chr7HG46707,HvMxRTD,1 (x),x,exonic overlap on the opposite strand,false,,single_exact_match
+HORVU.MOREX.r3.7HG0721780,Hv_Mx_chr7HG46708,HvMxRTD,"1 (=) , 2 (=) , 3 (=) , 4 (j) , 5 (c)",=|j|c,"complete, exact intron chain match; multi-exon with at least one junction match; contained in reference transcript (intron compatible)",true,exact_intron_chain,single_exact_match
+HORVU.MOREX.r3.7HG0721780,JLOC1_33434,JLOC,1 (k),k,contains reference transcript (reverse containment),false,,single_exact_match
+HORVU.MOREX.r3.7HG0721780,MLOC_52218,MLOC,1 (x),x,exonic overlap on the opposite strand,false,,single_exact_match
+HORVU.MOREX.r3.7HG0721780,MLOC_52219,MLOC,"1 (=) , 2 (m) , 3 (m) , 4 (k) , 5 (m) , 6 (k)",=|m|k,"complete, exact intron chain match; retained intron(s) compared to reference, full intron chain match everywhere else; contains reference transcript (reverse containment)",false,,single_exact_match
+HORVU.MOREX.r3.7HG0721780,Morex_chr7HG36041,MxGSRTD,1 (x),x,exonic overlap on the opposite strand,false,,single_exact_match
+HORVU.MOREX.r3.7HG0721780,Morex_chr7HG36042,MxGSRTD,"1 (=) , 2 (=) , 3 (=) , 4 (m) , 5 (c)",=|m|c,"complete, exact intron chain match; retained intron(s) compared to reference, full intron chain match everywhere else; contained in reference transcript (intron compatible)",false,,single_exact_match
+HORVU.MOREX.r3.7HG0721780,chr7H76199,PanBart20,"1 (m) , 2 (m) , 3 (=) , 4 (m) , 5 (m) , 6 (m) , 7 (m) , 8 (m) , 9 (m) , 10 (m) , 11 (m) , 12 (m) , 13 (m) , 14 (m)",m|=,"retained intron(s) compared to reference, full intron chain match everywhere else; complete, exact intron chain match",false,,single_exact_match
+HORVU.MOREX.r3.7HG0721780,chr7H76200,PanBart20,1 (x),x,exonic overlap on the opposite strand,false,,single_exact_match
+HORVU.MOREX.r3.5HG0489830,BART1_0-u37175,BARTv1,001 (=),=,"complete, exact intron chain match",false,,single_exact_match
+HORVU.MOREX.r3.5HG0489830,BaRT2v18chr5HG253190,BARTv2,1 (=),=,"complete, exact intron chain match",false,,single_exact_match
+HORVU.MOREX.r3.5HG0489830,BaRT2v18chr5HG253200,BARTv2,1 (x),x,exonic overlap on the opposite strand,false,,single_exact_match
+HORVU.MOREX.r3.5HG0489830,HORVU5Hr1G072050,HORVU1,"1 (=) , 2 (p)",=|p,"complete, exact intron chain match; possible polymerase run-on (close to reference but no overlap)",false,,single_exact_match
+HORVU.MOREX.r3.5HG0489830,Hv_Mx_chr5HG32507,HvMxRTD,1 (x),x,exonic overlap on the opposite strand,false,,single_exact_match
+HORVU.MOREX.r3.5HG0489830,Hv_Mx_chr5HG32508,HvMxRTD,1 (=),=,"complete, exact intron chain match",true,exact_intron_chain,single_exact_match
+HORVU.MOREX.r3.5HG0489830,JLOC1_37357,JLOC,1 (=),=,"complete, exact intron chain match",false,,single_exact_match
+HORVU.MOREX.r3.5HG0489830,MLOC_57604,MLOC,1 (=),=,"complete, exact intron chain match",false,,single_exact_match
+HORVU.MOREX.r3.5HG0489830,Morex_chr5HG25023,MxGSRTD,1 (p),p,possible polymerase run-on (close to reference but no overlap),false,,single_exact_match
+HORVU.MOREX.r3.5HG0489830,Morex_chr5HG25024,MxGSRTD,1 (x),x,exonic overlap on the opposite strand,false,,single_exact_match
+HORVU.MOREX.r3.5HG0489830,Morex_chr5HG25025,MxGSRTD,1 (=),=,"complete, exact intron chain match",false,,single_exact_match
+HORVU.MOREX.r3.5HG0489830,chr5H51304,PanBart20,1 (p),p,possible polymerase run-on (close to reference but no overlap),false,,single_exact_match
+HORVU.MOREX.r3.5HG0489830,chr5H51305,PanBart20,"1 (=) , 2 (m)",=|m,"complete, exact intron chain match; retained intron(s) compared to reference, full intron chain match everywhere else",false,,single_exact_match
+HORVU.MOREX.r3.5HG0489830,chr5H51306,PanBart20,1 (x),x,exonic overlap on the opposite strand,false,,single_exact_match
