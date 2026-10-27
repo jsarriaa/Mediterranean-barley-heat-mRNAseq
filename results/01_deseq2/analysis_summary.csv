@@ -1,0 +1,7 @@
+"metric","value"
+"samples",60
+"genes_in_matrix",81687
+"genes_tested_by_LRT",53244
+"significant_LRT_genes",20306
+"heat_response_genes",46
+"populations",5

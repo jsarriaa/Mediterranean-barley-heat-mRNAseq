@@ -1,0 +1,11 @@
+name: five-populations-deseq2
+channels:
+  - bioconda
+  - conda-forge
+  - defaults
+dependencies:
+  - r-base=4.5.3
+  - bioconductor-deseq2=1.50.2
+  - r-ggplot2=4.0.3
+  - r-pheatmap=1.0.13
+  - r-gprofiler2=0.2.4

@@ -1,0 +1,50 @@
+# Large local inputs
+data/input/kallisto.merged.gene_counts.tsv
+references/BARLEX_MorexV3_annotations.tsv
+
+# Generated statistical tables and intermediate objects
+results/**/*.csv
+results/**/*.tsv
+results/**/*.rds
+results/**/*.RData
+results/**/*.Rhistory
+results/**/*.pdf
+results/**/*.png
+results/**/*.log
+!results/01_deseq2/analysis_summary.csv
+!results/01_deseq2/pairwise_contrast_summary.csv
+!results/01_deseq2/heat_response_46_population_variation_ranking.csv
+!results/01_deseq2/heat_response_top12_gene_ids.csv
+!results/02_go_enrichment/heat_response_term_summary.csv
+!results/02_go_enrichment/GO_0009408_heat_response_genes.csv
+!results/03_heat_stress/annotation_summary.csv
+!results/03_heat_stress/heat_response_46_annotations.csv
+!results/03_heat_stress/heat_response_top12_annotations.csv
+!results/03_heat_stress/genes_without_description.csv
+logs/
+
+# Sequencing data and large references, if added locally
+data/raw/
+data/processed/
+results/upstream/
+*.fastq
+*.fastq.gz
+*.fq.gz
+*.bam
+*.bai
+*.h5
+*.idx
+references/*.fa
+references/*.fasta
+references/*.fna
+references/*.gff
+references/*.gff3
+references/*.gtf
+
+# Local environment and R state
+.env
+.aws/
+.Renviron
+.Rhistory
+.RData
+Rplots.pdf

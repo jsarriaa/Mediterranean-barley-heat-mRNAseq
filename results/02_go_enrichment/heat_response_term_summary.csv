@@ -1,0 +1,2 @@
+"term_id","term_name","p_value","intersection_size","curated_overlap","same_gene_set","query_date_utc"
+"GO:0009408","response to heat",0.0273468890733042,46,46,TRUE,"2026-10-27 09:50:27 UTC"
