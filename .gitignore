@@ -1,47 +1,32 @@
-# Large local inputs
-data/input/kallisto.merged.gene_counts.tsv
-references/BARLEX_MorexV3_annotations.tsv
+# Large local inputs (checksums tracked in data/input/MD5SUMS and references/MD5SUMS)
+data/input/kallisto.merged.gene_counts.HC.tsv
+data/input/kallisto.merged.gene_counts.LC.tsv
 references/MorexV3_tx2gene.tsv
+references/MorexV3_gene_confidence.tsv
 
-# Generated statistical tables and intermediate objects
-results/**/*.csv
-results/**/*.tsv
-results/**/*.rds
-results/**/*.RData
-results/**/*.Rhistory
-results/**/*.pdf
-results/**/*.png
-results/**/*.log
-!results/01_deseq2/analysis_summary.csv
-!results/01_deseq2/pairwise_contrast_summary.csv
-!results/01_deseq2/heat_response_46_population_variation_ranking.csv
-!results/01_deseq2/heat_response_top12_gene_ids.csv
-!results/02_go_enrichment/heat_response_term_summary.csv
-!results/02_go_enrichment/GO_0009408_heat_response_genes.csv
-!results/03_heat_stress/annotation_summary.csv
-!results/03_heat_stress/heat_response_46_annotations.csv
-!results/03_heat_stress/heat_response_top12_annotations.csv
-!results/03_heat_stress/genes_without_description.csv
-!results/04_tpm_leaf_baseline/top12_gene_sample_tpm.csv
-!results/04_tpm_leaf_baseline/top12_gene_population_tpm_summary.csv
-!results/04_tpm_leaf_baseline/plots/*.png
-!results/04_tpm_leaf_baseline/morex_gene_atlas/*.csv
-!results/04_tpm_leaf_baseline/morex_gene_atlas/plots/*.png
-logs/
+# Upstream outputs: only the small files that document each library are
+# tracked (fastp JSON reports and logs; kallisto run info, log and abundance.h5).
+# FastQC reports, fastp HTML and kallisto abundance.tsv stay local.
+results/upstream/**
+!results/upstream/**/
+!results/upstream/fastp/*.fastp.json
+!results/upstream/fastp/log/*
+!results/upstream/kallisto/*/run_info.json
+!results/upstream/kallisto/*/kallisto_quant.log
+!results/upstream/kallisto/*/abundance.h5
 
-# Sequencing data and large references, if added locally
+# Sequencing data and large references
 data/raw/
 data/processed/
-data/external/morex_gene_atlas/hvmxrtd_all_tpm_files.zip
-data/external/morex_gene_atlas/hvmxrtd_all_tpm_files.zip.part
-results/upstream/
+data/external/
+logs/
 *.fastq
 *.fastq.gz
 *.fq.gz
 *.bam
 *.bai
-*.h5
 *.idx
+references/ipk/
 references/*.fa
 references/*.fasta
 references/*.fna
@@ -49,7 +34,8 @@ references/*.gff
 references/*.gff3
 references/*.gtf
 
-# Local environment and R state
+# Local environment, assistant notes and R state
+CLAUDE.md
 .env
 .aws/
 .Renviron

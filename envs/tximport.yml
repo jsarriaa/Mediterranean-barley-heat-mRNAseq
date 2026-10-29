@@ -1,0 +1,11 @@
+# Transcript-to-gene summarisation of kallisto counts (README, step 4).
+# tximport reads kallisto's abundance.h5 files through rhdf5.
+# All Bioconductor packages are from release 3.18.
+name: barley-tximport
+channels:
+  - conda-forge
+  - bioconda
+dependencies:
+  - r-base=4.3.3
+  - bioconductor-tximport=1.30.0
+  - bioconductor-rhdf5=2.46.1

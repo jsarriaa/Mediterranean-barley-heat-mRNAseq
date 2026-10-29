@@ -1,0 +1,14 @@
+{
+	"n_targets": 83990,
+	"n_bootstraps": 0,
+	"n_processed": 32375248,
+	"n_pseudoaligned": 28604331,
+	"n_unique": 24971043,
+	"p_pseudoaligned": 88.4,
+	"p_unique": 77.1,
+	"kallisto_version": "0.52.0",
+	"index_version": 13,
+	"k-mer length": 31,
+	"start_time": "Wed Oct 28 20:50:05 2026",
+	"call": "/scratch/software-phgv2/miniconda3/envs/mrna_seq/bin/kallisto quant --threads 12 --index references/MorexV3.idx --gtf references/MorexV3.gtf -o results/D_validation/upstream/kallisto/SRR35220177 data/processed/pratx2025/SRR35220177_R1.fastp.fastq.gz data/processed/pratx2025/SRR35220177_R2.fastp.fastq.gz"
+}

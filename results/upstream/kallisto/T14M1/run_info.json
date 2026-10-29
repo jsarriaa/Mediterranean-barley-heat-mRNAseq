@@ -1,0 +1,14 @@
+{
+	"n_targets": 83990,
+	"n_bootstraps": 0,
+	"n_processed": 28082741,
+	"n_pseudoaligned": 12645558,
+	"n_unique": 10924342,
+	"p_pseudoaligned": 45.0,
+	"p_unique": 38.9,
+	"kallisto_version": "0.52.0",
+	"index_version": 13,
+	"k-mer length": 31,
+	"start_time": "Fri Oct 16 08:55:31 2026",
+	"call": "kallisto quant --threads 6 --index kallisto --gtf MorexV3.filtered.gtf --rf-stranded -o T14M1 T14M1_R1.fastp.fastq.gz T14M1_R2.fastp.fastq.gz"
+}

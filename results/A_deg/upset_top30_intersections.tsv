@@ -1,0 +1,31 @@
+id	pattern	genes
+1	k10_vs_k5	1085
+2	k10_vs_k1 & k10_vs_k5	821
+3	k10_vs_k1 & k10_vs_k5 & k12_vs_k10 & k14_vs_k10	684
+4	k10_vs_k1	639
+5	k14_vs_k1	584
+6	k10_vs_k1 & k10_vs_k5 & k12_vs_k10	475
+7	k14_vs_k1 & k14_vs_k5 & k14_vs_k10 & k14_vs_k12	428
+8	k10_vs_k1 & k14_vs_k1	405
+9	k10_vs_k1 & k14_vs_k1 & k10_vs_k5 & k14_vs_k5	405
+10	k10_vs_k5 & k14_vs_k5	400
+11	k14_vs_k5	329
+12	k14_vs_k1 & k14_vs_k5	314
+13	k12_vs_k10	259
+14	k14_vs_k10	239
+15	k10_vs_k1 & k10_vs_k5 & k14_vs_k10	237
+16	k10_vs_k5 & k12_vs_k10	234
+17	k14_vs_k1 & k14_vs_k5 & k14_vs_k10	172
+18	k10_vs_k5 & k14_vs_k10	163
+19	k10_vs_k1 & k14_vs_k1 & k10_vs_k5	155
+20	k10_vs_k1 & k14_vs_k1 & k10_vs_k5 & k14_vs_k5 & k12_vs_k10	154
+21	k10_vs_k1 & k14_vs_k1 & k10_vs_k5 & k14_vs_k5 & k12_vs_k10 & k14_vs_k12	151
+22	k10_vs_k5 & k12_vs_k10 & k14_vs_k10	148
+23	k10_vs_k1 & k10_vs_k5 & k14_vs_k5 & k12_vs_k10	145
+24	k14_vs_k1 & k14_vs_k5 & k14_vs_k12	137
+25	k10_vs_k1 & k10_vs_k5 & k14_vs_k5	135
+26	k14_vs_k1 & k14_vs_k10	125
+27	k14_vs_k12	93
+28	k14_vs_k1 & k10_vs_k5 & k14_vs_k5	90
+29	k10_vs_k1 & k14_vs_k1 & k10_vs_k5 & k12_vs_k10	89
+30	k10_vs_k1 & k12_vs_k10	88

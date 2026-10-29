@@ -1,0 +1,5 @@
+file	source	url	version	retrieved_utc
+morexv3_go.tsv	Morex V3 gene annotation (IPK), `ontology` attribute of references/MorexV3.gtf	https://doi.org/10.5447/ipk/2021/3	Morex V3	2026-10-28
+ensembl63_go.tsv	Ensembl Plants BioMart, dataset hvulgare_eg_gene (MorexV3_pseudomolecules_assembly); columns gene, GO, evidence code, namespace	https://jun2026-plants.ensembl.org/biomart/martservice	Ensembl Plants release 63 (June 2026 archive)	2026-10-28
+go-basic.obo	Gene Ontology, basic version	https://purl.obolibrary.org/obo/go/go-basic.obo	releases/2026-07-26	2026-10-28
+goslim_plant.obo	Gene Ontology, plant GO slim	https://purl.obolibrary.org/obo/go/subsets/goslim_plant.obo	releases/2026-07-26	2026-10-28

@@ -1,0 +1,10 @@
+17bdb6d76b4c0c5457d23c6c16c76fc7  MorexV3.fa
+18d7100cf9e97cda4dcc31cce748903a  MorexV3.gff3
+3da4cbf900fb5d9ac79391c84538cf13  MorexV3.gtf
+3a7c76604f4b7133246fc905f89e7ad2  MorexV3.transcripts.fa
+97b20573be4e8a2cf787b4cd19b0de55  MorexV3_tx2gene.tsv
+900fae14da7d926f7e80c5f4b75ce540  MorexV3_gene_confidence.tsv
+9de0386026d9583093f9d09c808ed00f  annotation/morexv3_go.tsv
+3099c40ce8d547e3b4a5b7f4bb0017c5  annotation/ensembl63_go.tsv
+26de643e50af9a1588f9a31062348cc4  annotation/go-basic.obo
+1378ca4151daf1de7992c6b06a40b769  annotation/goslim_plant.obo

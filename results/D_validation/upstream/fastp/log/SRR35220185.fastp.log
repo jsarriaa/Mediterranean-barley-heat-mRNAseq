@@ -1,0 +1,56 @@
+INFO:    fuse2fs not found, will not be able to mount EXT3 filesystems
+Detecting adapter sequence for read1...
+>Illumina TruSeq Adapter Read 1
+AGATCGGAAGAGCACACGTCTGAACTCCAGTCA
+
+Detecting adapter sequence for read2...
+>Illumina TruSeq Adapter Read 2
+AGATCGGAAGAGCGTCGTGTAGGGAAAGAGTGT
+
+Read1 before filtering:
+total reads: 44983798
+total bases: 6747569700
+Q20 bases: 6704653548(99.364%)
+Q30 bases: 6537733277(96.8902%)
+Q40 bases: 6537733277(96.8902%)
+
+Read2 before filtering:
+total reads: 44983798
+total bases: 6747569700
+Q20 bases: 6673922397(98.9085%)
+Q30 bases: 6456241600(95.6825%)
+Q40 bases: 6456241600(95.6825%)
+
+Read1 after filtering:
+total reads: 41512508
+total bases: 6199279926
+Q20 bases: 6188294707(99.8228%)
+Q30 bases: 6091503697(98.2615%)
+Q40 bases: 6091503697(98.2615%)
+
+Read2 after filtering:
+total reads: 41512508
+total bases: 6199284948
+Q20 bases: 6184975190(99.7692%)
+Q30 bases: 6070194245(97.9177%)
+Q40 bases: 6070194245(97.9177%)
+
+Filtering result:
+reads passed filter: 83025016
+reads failed due to low quality: 6057536
+reads failed due to too many N: 13166
+reads failed due to too short: 869792
+reads failed due to low complexity: 1250
+reads failed due to adapter dimer: 836
+reads with adapter trimmed: 3515408
+bases trimmed due to adapters: 107597700
+
+Duplication rate: 38.3243%
+
+Insert size peak (evaluated by paired-end reads): 268
+
+JSON report: results/D_validation/upstream/fastp/SRR35220185.fastp.json
+HTML report: results/D_validation/upstream/fastp/SRR35220185.fastp.html
+
+/opt/wave/.pixi/envs/default/bin/fastp --in1 data/external/pratx2025/SRR35220185_1.fastq.gz --in2 data/external/pratx2025/SRR35220185_2.fastq.gz --out1 data/processed/pratx2025/SRR35220185_R1.fastp.fastq.gz --out2 data/processed/pratx2025/SRR35220185_R2.fastp.fastq.gz --json results/D_validation/upstream/fastp/SRR35220185.fastp.json --html results/D_validation/upstream/fastp/SRR35220185.fastp.html --thread 6 --detect_adapter_for_pe -q 30 -u 15 -y -g -Y 10 -l 100 -b 150 -B 150 
+fastp v1.3.6, time used: 189 seconds

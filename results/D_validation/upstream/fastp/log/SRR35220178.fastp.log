@@ -1,0 +1,56 @@
+INFO:    fuse2fs not found, will not be able to mount EXT3 filesystems
+Detecting adapter sequence for read1...
+>Illumina TruSeq Adapter Read 1
+AGATCGGAAGAGCACACGTCTGAACTCCAGTCA
+
+Detecting adapter sequence for read2...
+>Illumina TruSeq Adapter Read 2
+AGATCGGAAGAGCGTCGTGTAGGGAAAGAGTGT
+
+Read1 before filtering:
+total reads: 47169258
+total bases: 7075388700
+Q20 bases: 7032630546(99.3957%)
+Q30 bases: 6840354520(96.6781%)
+Q40 bases: 6840354520(96.6781%)
+
+Read2 before filtering:
+total reads: 47169258
+total bases: 7075388700
+Q20 bases: 7003286083(98.9809%)
+Q30 bases: 6756999385(95.5%)
+Q40 bases: 6756999385(95.5%)
+
+Read1 after filtering:
+total reads: 43518656
+total bases: 6521329993
+Q20 bases: 6507266235(99.7843%)
+Q30 bases: 6391323052(98.0064%)
+Q40 bases: 6391323052(98.0064%)
+
+Read2 after filtering:
+total reads: 43518656
+total bases: 6521322272
+Q20 bases: 6503406233(99.7253%)
+Q30 bases: 6363700821(97.583%)
+Q40 bases: 6363700821(97.583%)
+
+Filtering result:
+reads passed filter: 87037312
+reads failed due to low quality: 6935576
+reads failed due to too many N: 1072
+reads failed due to too short: 235522
+reads failed due to low complexity: 128308
+reads failed due to adapter dimer: 726
+reads with adapter trimmed: 1021950
+bases trimmed due to adapters: 24004840
+
+Duplication rate: 30.7247%
+
+Insert size peak (evaluated by paired-end reads): 269
+
+JSON report: results/D_validation/upstream/fastp/SRR35220178.fastp.json
+HTML report: results/D_validation/upstream/fastp/SRR35220178.fastp.html
+
+/opt/wave/.pixi/envs/default/bin/fastp --in1 data/external/pratx2025/SRR35220178_1.fastq.gz --in2 data/external/pratx2025/SRR35220178_2.fastq.gz --out1 data/processed/pratx2025/SRR35220178_R1.fastp.fastq.gz --out2 data/processed/pratx2025/SRR35220178_R2.fastp.fastq.gz --json results/D_validation/upstream/fastp/SRR35220178.fastp.json --html results/D_validation/upstream/fastp/SRR35220178.fastp.html --thread 6 --detect_adapter_for_pe -q 30 -u 15 -y -g -Y 10 -l 100 -b 150 -B 150 
+fastp v1.3.6, time used: 210 seconds

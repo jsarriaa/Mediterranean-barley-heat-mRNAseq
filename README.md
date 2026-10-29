@@ -1,675 +1,820 @@
 # Transcriptomic fingerprints across five Mediterranean barley populations
 
-This project analyzes barley RNA-seq data from 60 samples. Samples T1–T20
-belong to five populations: `k1`, `k5`, `k10`, `k12`, and `k14`. The analysis
-finds genes with different expression among populations and examines
-heat-response genes.
+This repository holds the code and processed inputs for a study of
+Mediterranean barley (*Hordeum vulgare*) landraces exposed to heat stress at
+the flowering stage. It documents how the raw RNA-seq reads are cleaned and
+quantified, up to the gene-level count matrices in `data/input/`, and the
+analyses done on them (see [Analysis](#analysis)).
 
-## Pipeline scope and data availability
+## Samples
 
-The protocol covers FASTQ quality control, Morex V3 transcript quantification,
-gene-count generation, differential expression, GO enrichment, and
-heat-response gene annotation.
+The study includes 20 six-rowed landraces (GDB accessions) from around the
+Mediterranean basin. They belong to five ancestral populations (`k1`, `k5`,
+`k10`, `k12`, `k14`), with four genotypes per population.
 
-The FASTQ files are intended for release through the European Nucleotide
-Archive (ENA). Their public accession and download link are under embargo and
-will be added here after release. The sample manifest and QC reports are
-available in this repository. The reference is Morex V3 from IPK Gatersleben.
+![Geographic distribution of the 20 landrace genotypes, coloured by ancestral population](docs/figures/Mapa_genotipos_k17.png)
 
-The repository includes individual R scripts and commands for each pipeline
-step. Large inputs and generated outputs remain in the local repository but
-are excluded from Git.
-Script 5 downloads the Morex Gene Atlas inputs when they are not present; its
-477 MB TPM archive is excluded from Git.
+Each genotype is identified by its number (`T1`–`T20`) in library names and
+results. Three plants (biological replicates) of each genotype were
+sequenced; library `T<genotype>M<plant>` is one plant.
+
+| Genotype | Accession | Country | Spike | Population | Libraries (plants) |
+|---|---|---|---|---|---|
+| T1 | GDB-0204 | LBY | 6-rowed | k1 | T1M1, T1M2, T1M3 |
+| T2 | GDB-0520 | TUN | 6-rowed | k1 | T2M1, T2M3, T2M4 |
+| T3 | GDB-0721 | EGY | 6-rowed | k1 | T3M1, T3M3, T3M4 |
+| T4 | GDB-0728 | EGY | 6-rowed | k1 | T4M1, T4M2, T4M4 |
+| T5 | GDB-0708 | EGY | 6-rowed | k5 | T5M1, T5M3, T5M4 |
+| T6 | GDB-0727 | EGY | 6-rowed | k5 | T6M1, T6M3, T6M4 |
+| T7 | GDB-0731 | EGY | 6-rowed | k5 | T7M1, T7M2, T7M3 |
+| T8 | GDB-0813 | LBY | 6-rowed | k5 | T8M1, T8M3, T8M4 |
+| T9 | GDB-0351 | CYP | 6-rowed | k10 | T9M1, T9M3, T9M4 |
+| T10 | GDB-0368 | GRC | 6-rowed | k10 | T10M1, T10M3, T10M4 |
+| T11 | GDB-0565 | MAR | 6-rowed | k10 | T11M1, T11M3, T11M4 |
+| T12 | GDB-0771 | DZA | 6-rowed | k10 | T12M1, T12M3, T12M4 |
+| T13 | GDB-0474 | JOR | 6-rowed | k12 | T13M1, T13M3, T13M4 |
+| T14 | GDB-0476 | JOR | 6-rowed | k12 | T14M1, T14M3, T14M4 |
+| T15 | GDB-0496 | IRQ | 6-rowed | k12 | T15M1, T15M3, T15M4 |
+| T16 | GDB-0575 | MAR | 6-rowed | k12 | T16M1, T16M3, T16M4 |
+| T17 | GDB-0093 | TUR | 6-rowed | k14 | T17M1, T17M3, T17M4 |
+| T18 | GDB-0125 | TUR | 6-rowed | k14 | T18M1, T18M3, T18M4 |
+| T19 | GDB-0128 | TUR | 6-rowed | k14 | T19M1, T19M3, T19M4 |
+| T20 | GDB-0134 | TUR | 6-rowed | k14 | T20M1, T20M3, T20M4 |
+
+The population is the `K17_pop` value of the genotype (population `k1` =
+`K17_pop` 1, and so on). Full sample information is in
+[`data/input/samples_metadata.tsv`](data/input/samples_metadata.tsv), with
+these columns:
+
+| Column | Content |
+|---|---|
+| (first) | genotype number, 1–20 |
+| `Name` | GDB accession |
+| `Spike` | spike type |
+| `Country` | country of origin (ISO 3166 alpha-3) |
+| `Latitude`, `Longitude` | collection site, decimal degrees (decimal comma) |
+| `K17_pop`, `K17_maxQ` | population assignment and maximum ancestry coefficient at K = 17 |
+
+The first column is the genotype number: row *n* is genotype `Tn`. The count
+matrices contain the 60 libraries listed above.
+
+## Data availability
+
+The 2 × 150 bp paired-end Illumina reads (~9 Gb per library) were produced by
+BMKGENE (Biomarker Technologies). They are not stored in this repository. They
+will be deposited in the European Nucleotide Archive (ENA), and the accession
+will be added here when the embargo ends.
 
 ## Repository structure
 
 ```text
 transcriptomic-fingerprints-five-mediterranean-populations/
 ├── README.md
-├── .gitignore
-├── envs/
-│   ├── rnaseq.yml
-│   ├── deseq2.yml
-│   └── conda-linux-64.lock
+├── docs/figures/                               # figures used in this README
+├── envs/                                       # one conda environment per tool group
+│   ├── qc.yml                                  # FastQC, fastp
+│   ├── reference.yml                           # gffread, RSEM
+│   ├── kallisto.yml                            # kallisto
+│   ├── tximport.yml                            # R, tximport
+│   └── deseq2.yml                              # R, DESeq2, ggplot2, pheatmap (analysis)
+├── references/                                 # Morex V3 reference files (large files Git-ignored)
+│   ├── MorexV3.fa                              # genome (modified headers, see below)
+│   ├── MorexV3.gff3                            # gene annotation
+│   ├── MorexV3.gtf                             # filtered GTF used for quantification
+│   ├── MorexV3.transcripts.fa                  # transcript sequences indexed by kallisto
+│   ├── MorexV3.idx                             # kallisto index
+│   ├── MorexV3_tx2gene.tsv                     # transcript -> gene
+│   ├── MorexV3_gene_confidence.tsv             # gene -> high / low confidence
+│   ├── annotation/                             # GO sources (Part B), SOURCES.tsv, gene2go_HC.tsv
+│   └── MD5SUMS
 ├── data/
-│   ├── raw/                                    # paired FASTQ inputs
-│   ├── processed/fastp/                        # cleaned paired reads
-│   ├── input/kallisto.merged.gene_counts.tsv
-│   ├── external/
-│   │   └── morex_gene_atlas/
-│   │       ├── hvmxrtd_all_tpm_files.zip       # downloaded; Git-ignored
-│   │       └── MorexAtlas_allProjects_paper_23Aug23_exp_ids.txt
-│   └── metadata/                               # sample lists and QC summary
-├── references/
-│   ├── MorexV3.fa
-│   ├── MorexV3.gff3
-│   ├── MorexV3.transcripts.fa
-│   ├── MorexV3.gtf
-│   ├── MorexV3.idx
-│   ├── MorexV3_tx2gene.tsv
-│   └── BARLEX_MorexV3_annotations.tsv
-├── scripts/
-│   ├── 01_deseq2_populations.R
-│   ├── 02_go_enrichment.R
-│   ├── 03_heat_stress_and_annotation.R
-│   ├── 04_population_tpm_heat_response.py
-│   └── 05_morex_gene_atlas_baseline.py
+│   ├── raw/                                    # raw FASTQ (local only)
+│   ├── processed/                              # clean FASTQ, merged matrix (local only)
+│   └── input/
+│       ├── samples_metadata.tsv
+│       ├── samplesheet.tsv                     # library ID -> raw FASTQ files
+│       ├── samplesheet_E.tsv                   # same, Part E control experiment (15 libraries)
+│       ├── raw_MD5SUMS                         # provider checksums of the raw FASTQ
+│       ├── kallisto.merged.gene_counts.HC.tsv  # high-confidence genes
+│       ├── kallisto.merged.gene_counts.LC.tsv  # low-confidence genes
+│       ├── pratx2025_ENA_MD5SUMS               # ENA checksums of the Part D reference FASTQ
+│       └── MD5SUMS
 ├── results/
-│   ├── upstream/
-│   │   ├── fastp/                              # fastp reports
-│   │   ├── fastqc/raw/                         # raw-read QC reports
-│   │   ├── fastqc/trim/                        # cleaned-read QC reports
-│   │   └── kallisto/                           # per-sample abundance results
-│   ├── 01_deseq2/
-│   ├── 02_go_enrichment/
-│   ├── 03_heat_stress/
-│   └── 04_tpm_leaf_baseline/
-│       ├── top12_gene_sample_tpm.csv
-│       ├── top12_gene_population_tpm_summary.csv
-│       ├── plots/                              # population TPM plots
-│       └── morex_gene_atlas/
-│           ├── top12_morex_gene_atlas_relator_mapping.csv
-│           ├── top12_morex_leaf_tpm_by_sample.csv
-│           ├── top12_morex_biological_replicate_tpm.csv
-│           ├── top12_morex_primary_leaf_baseline_summary.csv
-│           ├── top12_morex_comparison_group_summary.csv
-│           ├── top12_population_vs_morex_baseline.csv
-│           ├── top12_population_vs_morex_context_groups.csv
-│           └── plots/                          # population vs baseline plots
-└── docs/
-    └── figures/
+│   ├── upstream/                               # per library: fastp JSON + log, kallisto
+│   │                                           # abundance.h5, run_info.json, log (tracked)
+│   │                                           # FastQC, fastp HTML, abundance.tsv (local only)
+│   ├── A_deg/                                  # Part A: differential expression
+│   ├── B_go/                                   # Part B: GO enrichment of DEG groups
+│   ├── C_cherrypicking/                        # Part C: selected gene groups
+│   ├── D_validation/                           # Part D: external reference (Pratx et al. 2025)
+│   └── E_control/                              # Part E: control vs heat experiment
+└── scripts/
+    ├── gene_counts.R                           # Step 4
+    ├── A_deg_populations.R                     # Part A
+    ├── B_go_enrichment.R                       # Part B
+    ├── C_cherrypicking.R                       # Part C
+    └── D_reference_upstream.sh                 # Part D, Step D2
 ```
 
-All 60 raw and cleaned FASTQ pairs, Morex V3 reference files, QC reports,
-Kallisto results, and downstream results are available locally. Large files
-are symlinks or are ignored by Git.
+## Software and environments
 
-## Samples
+| Tool | Version | Used for | Environment |
+|---|---|---|---|
+| FastQC | 0.12.1 | read quality reports | `envs/qc.yml` |
+| fastp | 1.3.6 | read cleaning | `envs/qc.yml` |
+| gffread | 0.12.7 | GFF3 → GTF | `envs/reference.yml` |
+| RSEM (`rsem-prepare-reference`) | 1.3.1 | transcript FASTA from genome + GTF | `envs/reference.yml` |
+| kallisto | 0.52.0 | index and quantification | `envs/kallisto.yml` |
+| R | 4.3.3 | transcript → gene summarisation | `envs/tximport.yml` |
+| tximport | 1.30.0 | transcript → gene summarisation | `envs/tximport.yml` |
+| rhdf5 | 2.46.1 | lets tximport read `abundance.h5` | `envs/tximport.yml` |
+| R | 4.5.3 | analysis (Parts A, B) | `envs/deseq2.yml` |
+| DESeq2 | 1.50.2 | differential expression | `envs/deseq2.yml` |
+| ggplot2 | 4.0.3 | plots | `envs/deseq2.yml` |
+| pheatmap | 1.0.13 | heatmaps | `envs/deseq2.yml` |
+| gridExtra | 2.3.1 | UpSet plot layout | `envs/deseq2.yml` |
 
-The sample sheet lists the sample names and population assignments.
-
-| Population | Genotypes | Samples |
-|---|---|---:|
-| k1 | T1–T4 | 12 |
-| k5 | T5–T8 | 12 |
-| k10 | T9–T12 | 12 |
-| k12 | T13–T16 | 12 |
-| k14 | T17–T20 | 12 |
-
-The sample IDs and group labels are listed in
-[`data/metadata/samples.csv`](data/metadata/samples.csv).
-
-## Raw FASTQ inputs and sample mapping
-
-The paired-end Illumina libraries are listed in
-[`data/metadata/fastq_manifest.csv`](data/metadata/fastq_manifest.csv), with
-sample ID, population, library strandedness, and the paired read filenames.
-Each sample has two 150-cycle reads. The libraries are reverse stranded. Use
-the manifest to match FASTQ file names to samples.
-
-## FASTQ quality control and preparation
-
-`fastp` cleans each read pair and writes JSON and HTML reports. The reports
-cover all 60 samples. A per-sample summary is in
-[`data/metadata/fastp_qc_summary.csv`](data/metadata/fastp_qc_summary.csv).
-`fastp` 1.3.6 reports read counts, quality, adapter trimming, and filtering.
-The options used were:
-
-```text
--q 30 -u 15 -y -g -Y 10 -l 100 -b 150 -B 150
-```
-
-These settings trim poly-G tails and adapters, filter low-quality and
-low-complexity reads, discard reads shorter than 100 bases, and cap read
-length at 150 bases. The HTML and JSON reports show the QC results.
-
-Across the 60 libraries, the reports record 1,891,663,404 input read pairs
-and 1,578,532,879 retained pairs (83.45% overall). Mean per-library Q30
-base fractions changed from 94.86% to 98.65% for read 1 and from 93.58% to
-98.42% for read 2.
-
-FastQC 0.12.1 reports for raw and cleaned reads are in
-`results/upstream/fastqc/raw/` and `results/upstream/fastqc/trim/`.
-
-Run these commands once per row in `data/metadata/fastq_manifest.csv`. For
-sample `T1M1`:
+Each tool group has its own conda environment, which keeps dependencies
+small and avoids version conflicts between unrelated tools. Create them with:
 
 ```bash
-sample=T1M1
-R1=Unknown_CU317-001T0001_1.fq.gz
-R2=Unknown_CU317-001T0001_2.fq.gz
-mkdir -p data/processed/fastp results/upstream/fastp
-fastp \
-  -i "data/raw/${R1}" -I "data/raw/${R2}" \
-  -o "data/processed/fastp/${sample}_R1.fastq.gz" \
-  -O "data/processed/fastp/${sample}_R2.fastq.gz" \
-  --html "results/upstream/fastp/${sample}.fastp.html" \
-  --json "results/upstream/fastp/${sample}.fastp.json" \
-  -q 30 -u 15 -y -g -Y 10 -l 100 -b 150 -B 150
+conda env create -f envs/qc.yml          # -> barley-qc
+conda env create -f envs/reference.yml   # -> barley-reference
+conda env create -f envs/kallisto.yml    # -> barley-kallisto
+conda env create -f envs/tximport.yml    # -> barley-tximport
+conda env create -f envs/deseq2.yml      # -> barley-deseq2
 ```
 
-Run FastQC on the raw and cleaned reads:
+Activate the environment named in each step with `conda activate <name>`.
+`grep`, `sed`, `awk`, `md5sum` and `sha256sum` are standard Unix tools.
+
+## Reference genome and annotation
+
+The reference is the barley cv. Morex genome assembly and gene annotation,
+version 3 (Morex V3):
+
+- Mascher M, Wicker T, Jenkins J, *et al.* (2021). Long-read sequence
+  assembly: a technical evaluation in barley. *The Plant Cell* 33:1888–1906.
+  <https://doi.org/10.1093/plcell/koab077>
+- Data release: "Pseudomolecules and annotation of the third version of the
+  reference genome sequence assembly of barley cv. Morex [Morex V3]", IPK
+  Gatersleben. <https://doi.org/10.5447/ipk/2021/3>
+
+Two files of the release are used:
+
+| IPK file | Size | MD5 | Local name |
+|---|---:|---|---|
+| `Barley_MorexV3_pseudomolecules.fasta` | 4,296,032,540 B | `621c39c513f2f55a26fd9cf3e9c8850a` | `references/MorexV3.fa` (headers renamed) |
+| `Hv_Morex.pgsb.Jul2020.gff3` | 95,708,927 B | `18d7100cf9e97cda4dcc31cce748903a` | `references/MorexV3.gff3` (unchanged) |
+
+Download them and build the local files. The chromosome names stay
+`chr1H` … `chr7H` and `chrUn`; only the tag `sampleName=MorexV3` is added to
+each FASTA header (for example `>chr1H sampleName=MorexV3`). Sequence names
+in the GFF3 already match. Each gene model has a `confidence` attribute
+(`high` or `low`), which is used in Step 5.
 
 ```bash
-mkdir -p results/upstream/fastqc/raw results/upstream/fastqc/trim
-fastqc --threads 12 --outdir results/upstream/fastqc/raw \
-  "data/raw/${R1}" "data/raw/${R2}"
-fastqc --threads 12 --outdir results/upstream/fastqc/trim \
-  "data/processed/fastp/${sample}_R1.fastq.gz" \
-  "data/processed/fastp/${sample}_R2.fastq.gz"
+mkdir -p references/ipk
+cd references/ipk
+B=https://doi.ipk-gatersleben.de/DOI/b2f47dfb-47ff-4114-89ae-bad8dcc515a1
+wget -c "$B/b6e6a2e5-2746-4522-8465-019c8f56df7f/1/DOWNLOAD" -O Barley_MorexV3_pseudomolecules.fasta
+wget -c "$B/5d16cc17-c37f-417f-855d-c5e72c721f6c/1/DOWNLOAD" -O Hv_Morex.pgsb.Jul2020.gff3
+md5sum Barley_MorexV3_pseudomolecules.fasta Hv_Morex.pgsb.Jul2020.gff3   # compare with the table
+cd ../..
+sed 's/^>\(.*\)$/>\1 sampleName=MorexV3/' references/ipk/Barley_MorexV3_pseudomolecules.fasta \
+    > references/MorexV3.fa
+cp references/ipk/Hv_Morex.pgsb.Jul2020.gff3 references/MorexV3.gff3
 ```
 
-Check the FastQC reports before quantification.
-
-## Reference and Kallisto quantification
-
-Use the Morex V3 barley reference genome and gene annotation released by
-[IPK Gatersleben](https://doi.org/10.5447/ipk/2021/3). The release,
-“Pseudomolecules and annotation of the third version of the reference genome
-sequence assembly of barley cv. Morex [Morex V3],” provides genomic
-pseudomolecules in FASTA format and structural gene models in GFF3 format.
-Download the genome FASTA and gene annotation from this release and record the
-release DOI with the analysis:
-
-```text
-references/MorexV3.fa
-references/MorexV3.gff3
-```
-
-Prepare a GTF and transcript FASTA that are both derived from the same
-Morex V3 GFF3/FASTA release. If the release does not provide a transcript
-FASTA directly, extract transcript sequences and convert the annotation with
-`gffread`. Build the Kallisto index once from that transcript FASTA. The index
-and transcript-to-gene relationships must come from the same reference
-release. Kallisto 0.52.0 quantifies the cleaned reads with `--rf-stranded`, six
-threads, and zero bootstrap replicates. The reference, transcriptome, index, and
-transcript-to-gene map used for this analysis are in `references/`.
-
-Example reference preparation and index commands:
+Check that your reference files are identical to the ones used:
 
 ```bash
-gffread -T references/MorexV3.gff3 \
-  -o references/MorexV3.gtf
-gffread -w references/MorexV3.transcripts.fa \
-  -g references/MorexV3.fa references/MorexV3.gff3
-kallisto index -i references/MorexV3.idx \
-  references/MorexV3.transcripts.fa
+cd references
+md5sum -c MD5SUMS
 ```
 
-Pin the `gffread` version used for this conversion in the record of any
-reproduction. Use the resulting GTF to map transcript estimates back to genes.
+## Processing: raw reads to gene count matrices
 
-Run the quantification once per sample using the paired fastp outputs:
+### Step 0 — raw reads
+
+BMKGENE delivered one pair of files per library, named
+`Unknown_CU317-001T00NN_1.fq.gz` and `Unknown_CU317-001T00NN_2.fq.gz`. Put the
+FASTQ files of the 60 study libraries in `data/raw/`.
+
+- [`data/input/samplesheet.tsv`](data/input/samplesheet.tsv) links each
+  library ID to its two files (`library_id`, `fastq_1`, `fastq_2`). It was
+  built from the provider's name table and lists the 60 study libraries
+  (genotypes T1–T20). Every step below reads it.
+
+### Step 1 — reference preparation
+
+Environment: `barley-reference`, then `barley-kallisto`.
+
+1. **Convert the GFF3 to GTF.** kallisto and RSEM read GTF. `--keep-exon-attrs`
+   keeps attributes on exon lines, `-F` keeps all GFF attributes (including
+   `confidence`), and `-T` writes GTF.
+
+   ```bash
+   gffread references/MorexV3.gff3 --keep-exon-attrs -F -T -o MorexV3.unfiltered.gtf
+   ```
+
+2. **Filter the GTF.** Keep only lines whose chromosome exists in the genome
+   FASTA and that carry a `transcript_id`. This guarantees every annotated
+   transcript can be extracted from the genome. The first command lists the
+   chromosome names in the FASTA; the second keeps the matching GTF lines.
+
+   ```bash
+   grep '^>' references/MorexV3.fa | sed 's/^>//; s/ .*//' > chroms.txt
+   awk -F'\t' 'NR==FNR{keep[$1]; next} !/^#/ && ($1 in keep) && /transcript_id "/' \
+       chroms.txt MorexV3.unfiltered.gtf > references/MorexV3.gtf
+   ```
+
+3. **Extract the transcript sequences.** RSEM writes one sequence per GTF
+   transcript (83,990 transcripts).
+
+   ```bash
+   mkdir -p rsem
+   rsem-prepare-reference --gtf references/MorexV3.gtf --num-threads 12 \
+       references/MorexV3.fa rsem/genome
+   cp rsem/genome.transcripts.fa references/MorexV3.transcripts.fa
+   ```
+
+4. **Build the kallisto index** with k-mer length 31.
+
+   ```bash
+   kallisto index -k 31 -i references/MorexV3.idx references/MorexV3.transcripts.fa
+   ```
+5. **Write the transcript-to-gene table.** One line per transcript:
+   transcript ID, gene ID. Step 4 uses it.
+
+   ```bash
+   awk -F'\t' '$3=="transcript"' references/MorexV3.gtf \
+     | grep -o 'transcript_id "[^"]*"\|gene_id "[^"]*"' | paste - - \
+     | sed 's/transcript_id "//; s/"\tgene_id "/\t/; s/"$//' \
+     > references/MorexV3_tx2gene.tsv
+   ```
+
+### Step 2 — clean reads
+
+Environment: `barley-qc`.
+
+For each library in the samplesheet, the loop:
+
+1. writes a FastQC report on the raw reads;
+2. cleans the read pair with fastp (JSON and HTML reports, plus the fastp
+   log);
+3. writes a FastQC report on the clean reads.
+
+The clean reads go to `data/processed/fastp/` and the reports to
+`results/upstream/`.
 
 ```bash
-mkdir -p results/upstream/kallisto
-kallisto quant \
-  --threads 6 \
-  --index references/MorexV3.idx \
-  --gtf references/MorexV3.gtf \
-  --rf-stranded \
-  -o "results/upstream/kallisto/${sample}" \
-  "data/processed/fastp/${sample}_R1.fastq.gz" \
-  "data/processed/fastp/${sample}_R2.fastq.gz"
+mkdir -p data/processed/fastp results/upstream/fastp/log \
+         results/upstream/fastqc/raw results/upstream/fastqc/trim
+
+tail -n +2 data/input/samplesheet.tsv | while IFS=$'\t' read -r id fq1 fq2; do
+    echo "== ${id}"
+
+    fastqc --threads 6 --outdir results/upstream/fastqc/raw \
+        data/raw/${fq1} data/raw/${fq2}
+
+    fastp \
+        --in1 data/raw/${fq1} \
+        --in2 data/raw/${fq2} \
+        --out1 data/processed/fastp/${id}_R1.fastp.fastq.gz \
+        --out2 data/processed/fastp/${id}_R2.fastp.fastq.gz \
+        --json results/upstream/fastp/${id}.fastp.json \
+        --html results/upstream/fastp/${id}.fastp.html \
+        --thread 6 --detect_adapter_for_pe \
+        -q 30 -u 15 -y -g -Y 10 -l 100 -b 150 -B 150 \
+        2> results/upstream/fastp/log/${id}.fastp.log
+
+    fastqc --threads 6 --outdir results/upstream/fastqc/trim \
+        data/processed/fastp/${id}_R1.fastp.fastq.gz data/processed/fastp/${id}_R2.fastp.fastq.gz
+done
 ```
 
-The run records 83,990 Kallisto targets and a 31-base k-mer. Across the 60
-libraries, weighted pseudoalignment was 45.23% (per-library values
-ranged from 43.4% to 50.8%). Per-sample `run_info.json` files record the
-pseudoaligned read counts and command.
+fastp options:
 
-Kallisto writes per-sample transcript abundance estimates. These were merged
-and summarized by gene ID into
-`kallisto.merged.gene_counts.tsv`, with `gene_id` and `gene_name` columns and
-60 sample columns. That matrix contains 81,687 gene rows. The DESeq2 analysis
-rounds estimated counts to integers before modeling; it does not use TPM as
-DESeq2 count input.
-
-### Gene-count matrix and annotation resources
-
-The matrix `data/input/kallisto.merged.gene_counts.tsv` is produced by merging
-the Kallisto per-sample estimated counts and summarizing transcript estimates
-to gene IDs using the matching transcript-to-gene map. Preserve gene IDs and
-sample names as columns in the matrix. The committed matrix checksum
-identifies the exact input used for the reported downstream results.
-
-The independently required BARLEX table is staged at
-`references/BARLEX_MorexV3_annotations.tsv`. It supplies Morex V3 gene
-descriptions, Pfam, and InterPro fields to supplement online gene annotation.
-Use the Morex V3 genome/GFF3 from the IPK release for read quantification, and
-the BARLEX table as a separate functional annotation resource when describing
-the candidate genes.
-
-| Input | SHA-256 |
+| Option | Effect |
 |---|---|
-| `kallisto.merged.gene_counts.tsv` (60 samples) | `dfd94f50cfe070009f8971d38d2ed2c8718d14dcf8a075e675f26b5cdf7e2108` |
-| `BARLEX_MorexV3_annotations.tsv` | `5f25fcfcb2d69346fdfa6be80dbc0cc790de3cad8f2b58cc53bb46115d9e9275` |
-| `samples.csv` | `b1004640c8be6ef79abd7aa0052b8c836e3be1d62ceec2d106aeab6a5f371f35` |
-| `fastq_manifest.csv` | `8dd97c18544044b1d03cb8cfc4d4088d17393d1fd9598a4ca743f4d8835f662c` |
-| `fastp_qc_summary.csv` | `cf5754c2d5176af4d763f0e3059b785662e84b4afbbf9fbade333b9867dafd9f` |
-| `heat_stress_gene_ids.csv` | `42218f0c0d38fafccba2ae40e6c7a3d6ca333864e1f024252bdcec5e123f6a88` |
+| `--detect_adapter_for_pe` | detects and removes adapters from the read-pair overlap |
+| `-q 30 -u 15` | a base is low quality below Q30; a read is discarded if more than 15 % of its bases are low quality |
+| `-y -Y 10` | low-complexity filter; discards reads with less than 10 % complexity |
+| `-g` | trims poly-G tails (an artefact of two-colour Illumina chemistry) |
+| `-l 100` | discards reads shorter than 100 bases after trimming |
+| `-b 150 -B 150` | caps read 1 and read 2 at 150 bases |
 
-Verify the matrix and annotation files with:
+### Step 3 — quantification
 
-```bash
-echo 'dfd94f50cfe070009f8971d38d2ed2c8718d14dcf8a075e675f26b5cdf7e2108  data/input/kallisto.merged.gene_counts.tsv' | sha256sum --check
-echo '5f25fcfcb2d69346fdfa6be80dbc0cc790de3cad8f2b58cc53bb46115d9e9275  references/BARLEX_MorexV3_annotations.tsv' | sha256sum --check
-```
+Environment: `barley-kallisto`.
 
-Large input files and generated results are ignored by Git. The ENA accession
-will be added after the archive release.
-
-## Software and versions
-
-Versions were taken from the per-sample quantification reports and the active
-analysis environment:
-
-| Program/package | Version |
-|---|---:|
-| FastQC (read quality reports) | 0.12.1 |
-| fastp (paired-read filtering and QC) | 1.3.6 |
-| Kallisto (transcriptome pseudoalignment and quantification) | 0.52.0 |
-| R | 4.5.3 |
-| DESeq2 | 1.50.2 |
-| ggplot2 | 4.0.3 |
-| pheatmap | 1.0.13 |
-| gprofiler2 | 0.2.4 |
-| gffread (transcript FASTA/GTF preparation) | 0.12.9 (protocol environment) |
-| Python (TPM processing and plots) | 3.11 |
-| Matplotlib (TPM plots) | 3.10.8 |
-| unzip (Morex Gene Atlas archive access) | 6.0 |
-| seqtk | not required by this protocol |
-
-The R package versions are pinned by the downstream Conda environment files.
-`envs/deseq2.yml` specifies direct R dependencies; the accompanying Linux
-x86-64 explicit lock records resolved packages for exact recreation on that
-platform. `envs/rnaseq.yml` pins Python, Matplotlib, unzip, FastQC, fastp,
-gffread, and Kallisto for upstream processing, quantification, and TPM
-analysis. The software versions are recorded for
-the analyzed reads; gffread 0.12.9 is the version pinned in this protocol for
-reference preparation. The reference files and Kallisto index are derived
-from the cited Morex V3 release.
-
-Create the upstream tools environment with:
+kallisto pseudoaligns each library's clean read pairs to the transcript
+index and estimates read counts per transcript. kallisto runs in unstranded
+mode (no strand option). `--gtf` lets kallisto place transcripts on the
+genome; it does not change the counts. The kallisto log is saved next to the
+results.
 
 ```bash
-conda env create --file envs/rnaseq.yml
-conda activate barley-rnaseq-upstream
-fastp --version
-fastqc --version
-kallisto version
+tail -n +2 data/input/samplesheet.tsv | while IFS=$'\t' read -r id fq1 fq2; do
+    echo "== ${id}"
+    mkdir -p results/upstream/kallisto/${id}
+    kallisto quant --threads 12 --index references/MorexV3.idx \
+        --gtf references/MorexV3.gtf \
+        -o results/upstream/kallisto/${id} \
+        data/processed/fastp/${id}_R1.fastp.fastq.gz data/processed/fastp/${id}_R2.fastp.fastq.gz \
+        2> results/upstream/kallisto/${id}/kallisto_quant.log
+done
 ```
 
-Kallisto indexing requires a transcript FASTA and transcript-to-gene
-annotation. Use the transcript sequences and gene identifiers derived from
-the same Morex V3 GFF3. The upstream environment pins `gffread` for transcript
-extraction. For a different operating system, solve each YAML separately and
-retain platform-specific locks.
+Each library folder holds `abundance.tsv` (estimated counts and TPM per
+transcript), `abundance.h5`, `run_info.json` and `kallisto_quant.log`.
 
-Create and activate the environment:
+### Step 4 — gene-level count matrix
+
+Environment: `barley-tximport`.
+
+[`scripts/gene_counts.R`](scripts/gene_counts.R) reads the kallisto
+`abundance.h5` of every library in the samplesheet. It adds up the estimated
+counts of all transcripts of a gene, using `references/MorexV3_tx2gene.tsv`.
+Counts are kept as estimated by kallisto, with no length or library-size
+scaling. Libraries are written in a fixed (C-locale) order so the output does
+not depend on the computer's settings.
 
 ```bash
-conda create --name five-populations-deseq2 --file envs/conda-linux-64.lock
-conda activate five-populations-deseq2
+Rscript scripts/gene_counts.R
 ```
 
-The workflow requires R packages `DESeq2`, `ggplot2`, `pheatmap`, and
-`gprofiler2`. g:Profiler is an online service: enrichment and gene conversion
-require network access, and results may change as its database is updated.
-Every returned table and the query timestamp are saved under
-`results/02_go_enrichment/` or `results/03_heat_stress/`.
+Output: `data/processed/kallisto.merged.gene_counts.tsv`, with the columns
+`gene_id`, `gene_name` and one column per library (60), and 81,687 genes.
+The script also writes `data/processed/kallisto.merged.gene_tpm.tsv`, the
+same layout with TPM (transcripts per million, the sum of the kallisto TPM of
+each gene's transcripts), used for absolute expression levels in Part D.
 
-## Step-by-step analysis protocol
+### Step 5 — split by gene confidence
 
-Perform the upstream steps in order: run `fastp`, prepare the Morex V3
-transcript reference, run Kallisto, and combine gene counts.
-Then run the three R scripts and the two Python scripts below, one at a time.
-The commands use the project-relative paths shown in the repository structure.
+Plain `awk`; nothing is re-quantified.
 
-### Prepare the gene-count matrix
+1. **Label each gene high or low confidence.** Morex V3 classifies every
+   gene model as high (HC) or low (LC) confidence. A gene is labelled HC if
+   at least one of its transcripts is HC. This applies to 6 genes that have
+   both HC and LC transcripts: `HORVU.MOREX.r3.1HG0014570`, `2HG0208750`,
+   `3HG0285290`, `4HG0407700`, `6HG0587730`, `7HG0697810`. Result: 35,827 HC
+   and 45,860 LC genes.
 
-For each Kallisto `abundance.tsv`, use
-`references/MorexV3_tx2gene.tsv` to map transcript IDs to gene IDs. Sum
-`est_counts` for each gene and combine the samples listed in
-`data/metadata/samples.csv`. Write
-`data/input/kallisto.merged.gene_counts.tsv` with `gene_id`, `gene_name`, and
-one column per sample. Keep unrounded counts; Script 1 rounds them before
-model fitting. Verify the matrix checksum below.
+   ```bash
+   awk -F'\t' '$3=="transcript"' references/MorexV3.gtf \
+    | grep -o 'gene_id "[^"]*"\|confidence "[^"]*"' | paste - - \
+    | sed 's/gene_id "//; s/"\tconfidence "/\t/; s/"$//' | sort -u \
+    | awk 'BEGIN{OFS="\t"; print "gene_id","confidence"}
+           {if(!($1 in c) || $2=="high") c[$1]=$2}
+           END{for(g in c) print g,c[g]}' > references/MorexV3_gene_confidence.tsv
+   ```
 
-### Run the analysis scripts separately
+2. **Split the matrix.** Each gene row goes to the HC or LC file. Both files
+   keep the header and the same 60 columns. The split happens after
+   quantification, so reads were assigned with all HC and LC transcripts in
+   the index.
 
-Run each command from the repository root with the
-`five-populations-deseq2` environment active. There is no combined runner.
+   ```bash
+   M=data/processed/kallisto.merged.gene_counts.tsv
+   awk -F'\t' 'NR==FNR{c[$1]=$2; next} FNR==1 || c[$1]=="high"' \
+     references/MorexV3_gene_confidence.tsv $M > data/input/kallisto.merged.gene_counts.HC.tsv
+   awk -F'\t' 'NR==FNR{c[$1]=$2; next} FNR==1 || c[$1]=="low"' \
+     references/MorexV3_gene_confidence.tsv $M > data/input/kallisto.merged.gene_counts.LC.tsv
+   ```
 
-#### Script 1 — differential expression and exploratory plots
+   Expected: 35,827 + 45,860 = 81,687 genes, no gene in both files, and for
+   every library the HC and LC counts add up to the total in `$M`.
+
+3. **Verify** the matrices against the ones in this repository:
+
+   ```bash
+   cd data/input
+   md5sum -c MD5SUMS
+   ```
+
+The downstream analysis uses the **HC** matrix. The LC matrix is kept for
+reference.
+
+## Analysis
+
+### Part A — Genes differentially expressed between populations
+
+**Question.** Which high-confidence genes differ in expression between the
+five populations under heat stress at flowering? All 60 plants were
+heat-stressed and there is no control group, so these are differences between
+populations under heat, not heat responses.
+
+**How.** Environment `barley-deseq2`:
 
 ```bash
-Rscript scripts/01_deseq2_populations.R
+Rscript scripts/A_deg_populations.R
 ```
 
-Validates the sample sheet, population labels, count values, and exact match
-between the 60 declared sample IDs and matrix columns. It rounds the estimated
-counts, fits the population omnibus DESeq2 likelihood-ratio test and all ten
-pairwise Wald contrasts, calculates VST values, and produces PCA and heatmaps.
-Outputs are written to `results/01_deseq2/`. Check the analysis and pairwise
-summary tables and confirm that the significant-gene file exists before the
-GO step.
+1. **Input:** `data/input/kallisto.merged.gene_counts.HC.tsv`
+   (35,827 HC genes × 60 libraries). kallisto's estimated counts are rounded
+   to whole numbers, as DESeq2 requires.
+2. **One replicate per genotype.** The three plants of a genotype are not
+   independent observations of a population, so their counts are summed
+   (`collapseReplicates`). This gives 20 genotypes, 4 per population, which
+   act as the replicates of each population.
+3. **Model:** DESeq2 with design `~ population`.
+4. **Omnibus test** (likelihood-ratio test, `~ population` vs `~ 1`): does a
+   gene's expression differ anywhere among the five populations? A gene is a
+   DEG when its Benjamini–Hochberg adjusted p-value is < 0.05. No fold-change
+   filter is applied.
+5. **Pairwise tests** (Wald test, 10 population pairs): which populations
+   differ, and in which direction. Same criterion, adjusted p < 0.05.
 
-#### Script 2 — GO enrichment
+**Results.** 35,827 HC genes; 21,643 tested (the rest removed by DESeq2's
+independent filtering); **9,565 DEGs** in the omnibus test.
+
+| Pairwise contrast | DEGs | Up in first population | Up in second population |
+|---|---:|---:|---:|
+| k5 vs k1 | 612 | 286 | 326 |
+| k10 vs k1 | 5,678 | 3,473 | 2,205 |
+| k12 vs k1 | 758 | 452 | 306 |
+| k14 vs k1 | 4,464 | 2,302 | 2,162 |
+| k10 vs k5 | 6,817 | 4,065 | 2,752 |
+| k12 vs k5 | 660 | 369 | 291 |
+| k14 vs k5 | 4,205 | 2,137 | 2,068 |
+| k12 vs k10 | 3,450 | 1,409 | 2,041 |
+| k14 vs k10 | 3,225 | 1,331 | 1,894 |
+| k14 vs k12 | 1,745 | 652 | 1,093 |
+
+"Up in first population": higher expression in the first population named
+(e.g. k10 in "k10 vs k1").
+
+#### Figures
+
+**PCA of the 20 genotypes.**
+
+![PCA of the 20 genotypes](results/A_deg/pca_genotypes.png)
+
+PCA of all HC genes after DESeq2's variance-stabilising transformation
+(VST, blind to the design). Each dot is one genotype (3 plants summed),
+labelled T1–T20 and coloured by population. Axis labels give the percentage
+of variance explained. Nearby dots have similar expression profiles.
+
+**PCA of the 60 libraries.**
+
+![PCA of the 60 libraries](results/A_deg/pca_libraries.png)
+
+Same as above, with one dot per plant.
+
+**Distances between the 60 libraries.**
+
+![Sample-to-sample distances](results/A_deg/library_distances.png)
+
+Euclidean distance between libraries (VST, all HC genes): blue is similar, red
+is different. Libraries are ordered by population, genotype and plant, with no
+clustering. White gaps separate genotypes, so each 3 × 3 block on the
+diagonal holds the plants of one genotype. The side strip shows the
+population.
+
+**Distances between the 20 genotypes.**
+
+![Genotype-to-genotype distances](results/A_deg/genotype_distances.png)
+
+Same distance and colours, with the three biological replicates (plants) of
+each genotype collapsed into one column by summing their counts, as in the
+DEG tests. This removes plant-to-plant variation and compares genotypes
+only. Genotypes are clustered on these distances (hierarchical clustering,
+complete linkage), and the trees on the top and left show how they group:
+genotypes joined lower in the tree have more similar expression profiles. The
+colour strips show the population.
+
+**Overlap of the pairwise DEG sets (UpSet plot).**
+
+![UpSet plot of the pairwise DEG sets](results/A_deg/pairwise_upset.png)
+
+- **Dot matrix:** each column is a group of genes that are DEGs in exactly
+  the contrasts marked with black dots.
+- **Top bars:** number of genes in each group (the 30 largest groups).
+- **Right bars:** total DEGs per contrast. Orange: up in the first population
+  of the contrast. Blue: up in the second.
+
+#### Output files (`results/A_deg/`)
+
+| File | Content |
+|---|---|
+| `omnibus_LRT_all_genes.tsv` | omnibus test for every HC gene (`baseMean`, `stat`, `pvalue`, `padj`). The `log2FoldChange` column of this table is k14 vs k1 only, not a summary of the test. |
+| `omnibus_LRT_DEGs.tsv` | the 9,565 omnibus DEGs |
+| `omnibus_summary.tsv` | gene counts |
+| `pairwise_<A>_vs_<B>.tsv` | Wald test for each of the 10 contrasts; `log2FoldChange` > 0 means higher in A |
+| `pairwise_summary.tsv` | DEGs per contrast and direction |
+| `pairwise_DEGs_long.tsv` | every pairwise DEG with its contrast and direction |
+| `upset_top30_intersections.tsv` | the 30 intersections in the UpSet plot |
+| `library_table.tsv` | library → genotype → population |
+| `size_factors_genotypes.tsv` | DESeq2 size factors (sequencing depth correction) per genotype |
+| `R_sessionInfo.txt` | R and package versions of the run |
+
+### Part B — Functions of the genes that differ between populations
+
+**Question.** Which biological functions are over-represented among the genes
+that differ between populations?
+
+**Gene Ontology (GO)** is a standard vocabulary that describes what genes do,
+in three categories:
+
+- **Biological process (BP):** what the gene takes part in, e.g. "response
+  to heat".
+- **Molecular function (MF):** what the gene product does, e.g. "kinase
+  activity".
+- **Cellular component (CC):** where it acts, e.g. "chloroplast".
+
+A **GO enrichment test** takes a group of genes and asks, for every GO term,
+whether the term appears in the group more often than it would in a random
+group of the same size.
+
+**Why the DEGs are split into groups.** The 9,565 DEGs are 44 % of all
+tested genes, and they mix genes that behave in opposite ways (higher in some
+populations, lower in others). A list that large and that mixed looks almost
+like a random sample of all genes, which hides functions linked to one
+behaviour. The DEGs are therefore divided into smaller groups of genes that
+behave alike, and each group is tested on its own.
+
+The whole of Part B is one script (environment `barley-deseq2`):
 
 ```bash
-Rscript scripts/02_go_enrichment.R
+Rscript scripts/B_go_enrichment.R
 ```
 
-Uses the significant omnibus genes from Script 1 as the query to g:Profiler
-for barley (`hvulgare`). It saves the complete enrichment table, plot,
-GO:0009408 intersection, term summary, and query metadata under
-`results/02_go_enrichment/`. It requires an internet connection. Check the
-term summary and query metadata before running annotation; the online database
-can change over time.
+#### Step 1 — Gene-to-GO table
 
-#### Script 3 — heat-response gene annotation
+Each HC gene gets its GO terms from two public sources:
+
+- the Morex V3 annotation (`ontology` attribute of `references/MorexV3.gtf`);
+- Ensembl Plants release 63 (BioMart dataset `hvulgare_eg_gene`).
+
+Both are combined. Outdated GO terms are replaced by their current
+equivalent, or removed when there is none. A gene annotated to a specific
+term also counts for the broader terms above it (e.g. "response to heat" also
+counts for "response to stress").
+
+30,196 of the 35,827 HC genes have at least one GO term. Sources, versions and
+dates are in `references/annotation/SOURCES.tsv`, and checksums are in
+`references/MD5SUMS`. The table is `references/annotation/gene2go_HC.tsv`.
+
+#### Step 2 — Divide the DEGs into groups
+
+Two complementary ways.
+
+**a) By expression pattern (clusters).** Genes with a similar profile across
+the five populations are put in the same group, whatever their absolute
+expression level.
+
+1. For each DEG, the mean expression of each population (mean of its 4
+   genotypes; DESeq2 VST values).
+2. Each gene's five means are rescaled to mean 0 and standard deviation 1
+   (z-score), so only the shape of the profile counts.
+3. Genes are grouped by similarity of their profiles (hierarchical
+   clustering; Euclidean distance, Ward linkage).
+4. The number of groups is chosen with the silhouette width, tested for 2 to
+   10 groups. The silhouette measures how much more similar a gene is to its
+   own group than to the nearest other group. The number of groups with the
+   highest mean silhouette is used: **2 clusters**.
+
+![Mean silhouette width per number of clusters](results/B_go/clusters/silhouette.png)
+
+Mean silhouette for each number of clusters. The red dot is the number used.
+
+![Expression patterns of the clusters](results/B_go/clusters/cluster_patterns.png)
+
+Each grey line is one gene's rescaled expression across the five
+populations. The red line is the cluster average. Values above 0 mean higher
+than the gene's average across populations.
+
+**b) By pairwise comparison.** For each pair of populations (Part A), the
+DEGs (adjusted p < 0.05) that differ at least 2-fold (|log2FC| ≥ 1) are split
+into two groups: higher in the first population, and higher in the second.
+10 pairs × 2 directions gives 20 groups.
+
+#### Step 3 — GO enrichment test for each group
+
+For each group and each GO term, a hypergeometric test compares the number of
+group genes in the term with the number expected by chance.
+
+- **Background (the reference set of genes):** the 21,643 HC genes tested in
+  Part A, i.e. the genes that could have been found as DEGs. Genes not
+  expressed in the samples are left out, so they don't distort the
+  comparison.
+- **Multiple-testing correction:** Benjamini–Hochberg (false discovery rate),
+  separately for BP, MF and CC.
+- **Threshold:** adjusted p < 0.05.
+
+**How to read the GO plots** (same layout as g:Profiler): each dot is one
+significant GO term.
+
+- **Panels:** GO:MF, GO:BP and GO:CC. Each panel's width is proportional to
+  the number of terms tested.
+- **Height:** −log10(adjusted p); higher means stronger evidence. The axis is
+  capped at 16.
+- **Dot size:** the number of background genes in the term.
+
+![GO enrichment, cluster 1](results/B_go/clusters/cluster_1_GO.png)
+![GO enrichment, cluster 2](results/B_go/clusters/cluster_2_GO.png)
+
+The plots of the 20 pairwise groups are in `results/B_go/contrasts/`.
+
+#### Results
+
+Number of significant GO terms per group:
+
+| Group | Genes | MF | BP | CC |
+|---|---:|---:|---:|---:|
+| Cluster 1 | 6,229 | 17 | 69 | 5 |
+| Cluster 2 | 3,336 | 13 | 77 | 38 |
+| k5 vs k1, up in k5 | 219 | 0 | 0 | 0 |
+| k5 vs k1, up in k1 | 270 | 4 | 16 | 0 |
+| k10 vs k1, up in k10 | 2,120 | 14 | 42 | 4 |
+| k10 vs k1, up in k1 | 1,064 | 1 | 2 | 1 |
+| k12 vs k1, up in k12 | 341 | 0 | 0 | 0 |
+| k12 vs k1, up in k1 | 232 | 0 | 0 | 0 |
+| k14 vs k1, up in k14 | 1,451 | 0 | 10 | 0 |
+| k14 vs k1, up in k1 | 1,388 | 8 | 7 | 12 |
+| k10 vs k5, up in k10 | 2,587 | 44 | 65 | 4 |
+| k10 vs k5, up in k5 | 1,395 | 14 | 48 | 28 |
+| k12 vs k5, up in k12 | 289 | 0 | 16 | 0 |
+| k12 vs k5, up in k5 | 193 | 0 | 0 | 0 |
+| k14 vs k5, up in k14 | 1,392 | 20 | 18 | 3 |
+| k14 vs k5, up in k5 | 1,296 | 9 | 8 | 16 |
+| k12 vs k10, up in k12 | 741 | 0 | 0 | 5 |
+| k12 vs k10, up in k10 | 1,368 | 35 | 39 | 4 |
+| k14 vs k10, up in k14 | 673 | 0 | 1 | 0 |
+| k14 vs k10, up in k10 | 1,191 | 31 | 38 | 4 |
+| k14 vs k12, up in k14 | 395 | 0 | 3 | 1 |
+| k14 vs k12, up in k12 | 730 | 15 | 45 | 12 |
+
+#### Output files
+
+| File | Content |
+|---|---|
+| `results/B_go/go_coverage.tsv` | GO coverage of the HC genes |
+| `results/B_go/clusters/cluster_assignment.tsv` | cluster and z-scores of each DEG |
+| `results/B_go/clusters/silhouette.tsv` | mean silhouette for 2–10 clusters |
+| `results/B_go/clusters/`, `results/B_go/contrasts/` `<group>_GO_significant.tsv` | significant terms of each group: term size, group genes in term, p, adjusted p, and the gene IDs |
+| `results/B_go/summary_significant_terms.tsv` | the results table above |
+
+### Part C — Gene cherry-picking: response to heat
+
+**Question.** How do the DEGs annotated to heat response behave across
+populations and genotypes?
 
 ```bash
-Rscript scripts/03_heat_stress_and_annotation.R
+Rscript scripts/C_cherrypicking.R
 ```
 
-Uses the committed 46-gene GO:0009408 list and the top-12 variation ranking
-from Script 1. It retrieves barley ID conversions and descriptions from
-g:Profiler, joins BARLEX description/Pfam/InterPro by exact gene ID, and
-retains all 46 candidates. It requires internet access and
-`references/BARLEX_MorexV3_annotations.tsv`. Outputs and annotation coverage
-summaries are written to `results/03_heat_stress/`.
+**Gene selection.** Omnibus DEGs (Part A) annotated to GO:0009408 "response
+to heat", directly or through one of its more specific terms (heat
+acclimation, cellular response to heat): **67 genes**. They include heat
+shock proteins (HSP70/DnaK, HSP90, small HSPs), 10 heat shock transcription
+factors (HSFs), DnaJ and ClpB chaperones, and annexins. The list, with
+descriptions and omnibus adjusted p, is in
+`results/C_cherrypicking/heat_response_genes.tsv`.
 
-#### Script 4 — population TPM for the top 12 heat-response genes
+**Heatmap.**
+
+![Heatmap of the 67 heat-response DEGs](results/C_cherrypicking/heat_response_heatmap.png)
+
+One column per genotype: the 3 plants are summed and variance-stabilised, as
+in the DEG tests (`results/A_deg/vst_genotypes.tsv`). Each gene is scaled
+across the 20 genotypes (z-score): red is higher than the gene's average,
+blue is lower. Genotypes T1–T20 are in order, with white gaps between
+populations. Genes are clustered by similarity of their profiles.
+
+**Expression patterns.**
+
+![Expression patterns of the 67 heat-response DEGs](results/C_cherrypicking/heat_response_patterns.png)
+
+Each thin line is one gene: its mean expression per population, scaled as in
+Part B. The panels are the two Part B clusters, and the thick line is the
+cluster mean.
+
+**Overlap between pairwise comparisons.**
+
+![UpSet plot of the 67 heat-response DEGs](results/C_cherrypicking/heat_response_upset.png)
+
+Same layout as the Part A UpSet plot, restricted to these 67 genes (pairwise
+DEGs, adjusted p < 0.05). All non-empty intersections are shown. Right bars:
+orange is higher in the first population of the contrast, blue in the second.
+
+**Genes with published functional data in barley.** Pratx et al. (2025,
+*Nature Communications* 16, doi:10.1038/s41467-025-66651-6) studied barley
+HSFs in Golden Promise seedlings (Morex V3 gene IDs). Five of the HSFs here
+appear in that study:
+
+| Gene | Name in Pratx et al. 2025 | Reported role |
+|---|---|---|
+| HORVU.MOREX.r3.7HG0717290 | HvHSFA2 | required for heat stress memory; overexpression increases heat tolerance |
+| HORVU.MOREX.r3.2HG0134940 | HvHSFA3 | required for heat stress memory, additive to HvHSFA2 |
+| HORVU.MOREX.r3.5HG0519000 | HSFA6/7 group | little or moderate heat induction |
+| HORVU.MOREX.r3.5HG0509970 | HSFA6/7 group | little or moderate heat induction |
+| HORVU.MOREX.r3.4HG0402170 | putative HSFA6 | moderate heat induction |
+
+#### Output files
+
+| File | Content |
+|---|---|
+| `results/C_cherrypicking/heat_response_genes.tsv` | the 67 genes: ID, description, omnibus adjusted p |
+| `results/C_cherrypicking/heat_response_upset_intersections.tsv` | genes per intersection of the UpSet plot |
+
+### Part D — Treatment validation (in progress)
+
+**Question.** Are the heat-response genes expressed in our samples at levels
+typical of heat-stressed barley? All our plants were heat-stressed and there
+is no control group, so a public experiment with control and heat-stressed
+barley is used as an external reference.
+
+**Reference data.** Pratx, P. et al. (2025). Conserved heat shock factors
+HvHSFA2 and HvHSFA3 control barley heat stress memory through diverged
+mechanisms. *Nature Communications* 16.
+[doi:10.1038/s41467-025-66651-6](https://doi.org/10.1038/s41467-025-66651-6).
+Data: GEO [GSE307042](https://www.ncbi.nlm.nih.gov/geo/query/acc.cgi?acc=GSE307042),
+BioProject [PRJNA1314158](https://www.ebi.ac.uk/ena/browser/view/PRJNA1314158).
+Golden Promise wild type, second leaf of 7-day-old seedlings; no treatment
+(N) and heat shock at 44 °C for 3 h (T); 3 replicates each; Illumina NovaSeq
+X Plus, 2 × 150 bp.
+
+| Run | Sample (GEO) | Condition | Read pairs |
+|---|---|---|---:|
+| SRR35220185 | GSM9214647, GP_N_R1 | control | 44,983,798 |
+| SRR35220184 | GSM9214648, GP_N_R2 | control | 39,161,216 |
+| SRR35220183 | GSM9214649, GP_N_R3 | control | 50,191,821 |
+| SRR35220179 | GSM9214653, GP_T_R1 | heat shock | 29,981,724 |
+| SRR35220178 | GSM9214654, GP_T_R2 | heat shock | 47,169,258 |
+| SRR35220177 | GSM9214655, GP_T_R3 | heat shock | 34,739,108 |
+
+The reference reads are processed exactly like ours, so that expression
+values are comparable.
+
+**Step D1 — Download.** The 12 FASTQ files (about 29 GB) are downloaded from
+ENA over HTTPS, six at a time, into `data/external/pratx2025/` (not stored
+in this repository). `wget -c` resumes an interrupted file. Each file is then
+checked against the MD5 checksum published by ENA, kept in
+[`data/input/pratx2025_ENA_MD5SUMS`](data/input/pratx2025_ENA_MD5SUMS).
 
 ```bash
-python3 scripts/04_population_tpm_heat_response.py
+mkdir -p data/external/pratx2025
+cp data/input/pratx2025_ENA_MD5SUMS data/external/pratx2025/MD5SUMS_ENA
+cd data/external/pratx2025
+# ENA path: vol1/fastq/<first 6 characters>/0<last 2 digits>/<run>/<file>
+awk '{print $2}' MD5SUMS_ENA | xargs -P 6 -I{} sh -c '
+    f={}; run=${f%%_*}
+    d=$(echo $run | cut -c1-6); n=$(echo $run | rev | cut -c1-2 | rev)
+    wget -c -q "https://ftp.sra.ebi.ac.uk/vol1/fastq/$d/0$n/$run/$f" -O "$f"'
+md5sum -c MD5SUMS_ENA
+cd ../../..
 ```
 
-The script reads the top-12 gene list, sample sheet, transcript-to-gene map,
-and Kallisto `abundance.tsv` files. It sums transcript TPM values for each
-gene in each sample. It writes one row per gene and sample to
-`results/04_tpm_leaf_baseline/top12_gene_sample_tpm.csv`.
-
-It also summarizes each gene within each population. The summary contains the
-sample count, mean, standard deviation, and median TPM in
-`top12_gene_population_tpm_summary.csv`. The standard deviation is the sample
-standard deviation. It saves one plot per gene in `plots/`. The x-axis groups
-replicates by genotype (T1, T2, and so on); each dot is labeled with its M
-replicate. Background bands and point colors show populations. The horizontal
-line marks the population median. The y-axis is linear TPM with zero at the
-bottom. Python and Matplotlib are required.
-
-#### Script 5 — Morex Gene Atlas leaf baseline
+**Step D2 — Cleaning and quantification.** Same fastp (1.3.6) and kallisto
+(0.52.0, unstranded mode) commands and settings as Steps 2–3:
 
 ```bash
-python3 scripts/05_morex_gene_atlas_baseline.py
+bash scripts/D_reference_upstream.sh
 ```
 
-Run this after Script 4 with the `barley-rnaseq-upstream` environment active
-and an internet connection. If needed, the script downloads the Morex Gene
-Atlas TPM archive and experiment-ID table into
-`data/external/morex_gene_atlas/`. The large archive is excluded from Git. The
-official [Morex Gene Atlas download page](https://ics.hutton.ac.uk/morexgeneatlas/download.html)
-provides the [TPM archive](https://ics.hutton.ac.uk/morexgeneatlas/downloads/hvmxrtd_all_tpm_files.zip),
-the [experiment-ID table](https://ics.hutton.ac.uk/morexgeneatlas/downloads/MorexAtlas_allProjects_paper_23Aug23_exp_ids.txt),
-and a supplementary [experiment metadata workbook](https://ics.hutton.ac.uk/morexgeneatlas/downloads/MorexAtlas_allProjects_paper_23Aug23.xlsx).
+Clean reads go to `data/processed/pratx2025/` (local only), and fastp and
+kallisto outputs to `results/D_validation/upstream/`.
 
-The script sends the 12 Morex V3 IDs to the
-[Morex Gene Atlas relator](https://ics.hutton.ac.uk/morexgeneatlas/relator.html)
-and uses its `HvMxRTD` relationships to join into the Atlas TPM files. It
-prioritizes exact intron-chain matches (`=`). If there is no exact match, it
-uses same-strand relationships as a flagged non-exact fallback; opposite-
-strand (`x`) relationships are excluded. The complete returned relationship
-table, including MorexGS and PanBaRT20 IDs, is retained in the mapping audit.
-The Atlas archive is quantified on HvMxRTD IDs, so the expression join uses
-the direct V3-to-HvMxRTD relator relationship rather than the alternative
-MorexGS-to-PanBaRT20 route. Unmatched genes stay missing, not zero.
+**Planned next steps.**
 
-The TPM archive contains transcript-level records. The script sums transcript
-TPM within each matched `HvMxRTD` gene ID. The sample-level output retains
-experiment IDs, study, condition, tissue, developmental stage, biological
-replicate, and technical replicate. It includes the three untreated
-one-week-old first-leaf replicates (experiment IDs 1–3, PRJEB29972), the
-two-month senescing-leaf samples (IDs 238–243, PRJEB14349), and four
-uninfested 5th-leaf controls from 30-day-old plants collected at 2 hours
-(experiment IDs 41–44, PRJNA326683). The two-week brushing study is excluded
-entirely, including its untreated controls. Other control seedling-leaf
-experiments, including no-DNase and mock controls, are retained in the sample
-table but not pooled into these comparison groups.
+1. Gene-level TPM (transcripts per million) with tximport, for the 6
+   reference libraries and our 60 libraries (from the existing
+   `abundance.h5` files).
+2. Plot the TPM of the 5 HSFs above: reference control and heat shock next
+   to our 20 genotypes, grouped by population.
 
-The two-month senescing-leaf data have three biological replicates and two
-technical batches per replicate. The script averages each matched gene's TPM
-across the two batches, then summarizes across the three biological
-replicates; technical batches are not treated as independent samples. This is
-an age-context reference, but senescence makes it physiologically different
-from non-senescing leaves. The 30-day reference has four biological
-replicates and is explicitly an uninfested control from a spider-mite study.
-It is a separate developmental and experimental context, not a heat-stress
-control matched to the population samples.
+The two experiments differ in genotype, tissue, developmental stage and heat
+treatment, so the comparison is an external reference, not a test.
 
-The archive text files have six tab-separated fields and no header. Script 5
-checks the experiment ID in column 1, reads transcript IDs from column 2,
-HvMxRTD gene IDs from column 4, and transcript TPM from column 5. Columns 3
-and 6 are retained in the source files but are not used in the TPM
-aggregation.
+### Part E — Control validation (in progress)
 
-The script writes the relator audit, sample-level and biological-replicate
-Atlas TPMs, three-group comparison summary, population comparison tables, and
-12 plots under `results/04_tpm_leaf_baseline/morex_gene_atlas/`. The plots
-preserve the population genotype grouping and replicate labels from Script 4
-and show the three Atlas groups separately. All TPM axes are linear.
+**Question.** Does the heat treatment change expression in our own growing
+conditions, compared with unstressed plants? Two genotypes were grown with
+and without heat, as a separate experiment from the 20 study genotypes:
+genotype 21 (heat-resistant) and genotype 22 (heat-susceptible).
 
-## Analysis logic and why each step is used
+**Libraries.** `C` = control (no heat), `T` = heat; `M` = plant. T21M1 is
+excluded (failed library). 15 libraries, listed in
+[`data/input/samplesheet_E.tsv`](data/input/samplesheet_E.tsv):
 
-1. **Model population-level expression differences.** Round Kallisto estimated
-   counts to integers and fit a DESeq2 negative-binomial model with design
-   `~ subpopulation`. The likelihood-ratio test compares that model with
-   `~ 1`, testing whether expression differs anywhere among the five
-   populations; it does not answer which pair differs. Benjamini–Hochberg
-   adjusted p-values control the false discovery rate. A separate Wald model
-   supplies all ten population-pair contrasts for follow-up.
-2. **Visualize global expression.** Apply DESeq2's variance-stabilizing
-   transformation to make expression patterns more comparable across the
-   count range. Use those transformed values for PCA and heatmaps. The top-gene
-   heatmap uses the most significant omnibus genes and centers each gene across
-   samples to emphasize relative patterns, not absolute expression.
-3. **Perform functional enrichment on the population-associated genes.**
-   Query the omnibus significant-gene IDs against g:Profiler's barley
-   (`hvulgare`) annotations. Enrichment asks whether a biological annotation
-   appears more often in the significant set than expected; it does not show
-   that a treatment caused the expression change.
-4. **Focus interpretation on heat response after enrichment.** GO:0009408,
-   “response to heat,” was significant in the barley enrichment result
-   (adjusted p-value 0.02735), with 46 intersecting genes. Those 46 IDs are
-   recorded in `data/metadata/heat_stress_gene_ids.csv`. This is a
-   post-enrichment biological focus, not a filter applied to reads or to the
-   initial DESeq2 test. It narrows interpretation to a relevant
-   process while preserving the all-gene differential-expression and
-   enrichment results. The 12 focused genes are ranked reproducibly by the
-   standard deviation of each gene's five population-mean VST expression
-   values; they are not selected by subjective inspection of the heatmap.
-5. **Use two complementary annotation resources.** g:Profiler is the source
-   of GO enrichment and provides barley ID conversion and descriptions.
-   BARLEX provides Morex V3 descriptions, Pfam, and InterPro. The script uses
-   BARLEX when g:Profiler has no description.
-6. **Retain and report all candidates.** Join annotations by exact gene ID,
-   preserve all 46 genes, and record genes without a description rather than
-   silently dropping them. Save the focused top-12 table, figures, complete
-   statistical/enrichment outputs, summaries, session information, and logs
-   under their result folders.
-7. **Summarize expression of the top 12 genes.** Sum transcript TPM values by
-   gene for every sample, then calculate mean, standard deviation, and median
-   within each population. Keep the sample-level table so the summary can be
-   checked and replotted.
-8. **Compare with a Morex leaf reference.** Use the Morex Gene Atlas rather
-   than treating the external reference as another population. Query the
-   relator for the V3-to-HvMxRTD mapping, retain the mapping evidence, and
-   aggregate transcript TPM by matched Atlas gene. Use the three untreated,
-   one-week first-leaf Morex controls as the primary baseline. Show
-   two-month senescing leaves and 30-day uninfested 5th leaves collected at
-   2 hours as separate contextual groups. Average technical batches within
-   biological replicate. Preserve missing mappings and do not perform a
-   population-versus-reference significance test.
+| Genotype | Control | Heat |
+|---|---|---|
+| 21 (resistant) | C21M1, C21M2, C21M3, C21M4 | T21M2, T21M3, T21M4 |
+| 22 (susceptible) | C22M1, C22M2, C22M3, C22M4 | T22M1, T22M2, T22M3, T22M4 |
 
-## Reported analysis results
+**Processing.** Same Steps 2–4 as the study libraries (FastQC, fastp,
+kallisto in unstranded mode, tximport), run with `samplesheet_E.tsv` instead
+of `samplesheet.tsv`. Gene counts are split into HC and LC as in Step 5; the
+analysis uses HC genes.
 
-The DESeq2 LRT identified 20,306 genes with adjusted p-value < 0.05 from
-53,244 genes with testable p-values; 34,175 genes had a non-missing adjusted
-p-value after independent filtering. The input matrix contained 81,687 gene
-rows. Pairwise Wald contrasts produced the following significant-gene counts:
+**Planned analysis.**
 
-| Contrast | Significant genes |
-|---|---:|
-| k5 vs k1 | 2,830 |
-| k10 vs k1 | 11,351 |
-| k12 vs k1 | 4,016 |
-| k14 vs k1 | 9,754 |
-| k10 vs k5 | 12,963 |
-| k12 vs k5 | 3,504 |
-| k14 vs k5 | 9,407 |
-| k12 vs k10 | 9,102 |
-| k14 vs k10 | 7,976 |
-| k14 vs k12 | 5,343 |
-
-These are DESeq2 results from the population model, not claims of heat
-treatment effects. The live barley g:Profiler query returned 207 significant
-terms; GO:0009408 (“response to heat”) had an adjusted p-value of 0.02735 and
-an intersection of 46 genes. All 46 exactly match the versioned gene set. The
-service reported 7,327 mapped query genes for enrichment from the 20,306 DESeq2
-IDs. The query timestamp and full response are saved with the run; the full
-response is Git-ignored because of its size.
-
-## Results and figures
-
-Results are grouped by analysis step:
-
-- `results/01_deseq2/`: omnibus and pairwise DESeq2 tables, contrast summary,
-  PCA, heat-response and top-gene heatmaps, the reproducible top-12 ranking,
-  model diagnostics, and R session details.
-- `results/02_go_enrichment/`: complete barley GO enrichment, highlighted
-  response-to-heat term, query details, and heat-gene intersection.
-- `results/03_heat_stress/`: 46- and 12-gene annotation tables, annotation
-  coverage summaries, and a record of genes without descriptions.
-- `results/04_tpm_leaf_baseline/`: sample-level gene TPMs and population
-  summaries and one plot per gene for the top 12 heat-response genes.
-- `results/04_tpm_leaf_baseline/morex_gene_atlas/`: relator audit,
-  sample-level and biological-replicate Atlas TPMs, primary-baseline and
-  three-group summaries, comparison tables, and one plot per gene.
-- `docs/figures/`: small PNG report figures embedded in this README.
-
-Large result tables are local and ignored by Git. Compact summaries, scripts,
-and report images are tracked. Key result tables are
-[`analysis_summary.csv`](results/01_deseq2/analysis_summary.csv),
-[`pairwise_contrast_summary.csv`](results/01_deseq2/pairwise_contrast_summary.csv),
-[`heat_response_top12_gene_ids.csv`](results/01_deseq2/heat_response_top12_gene_ids.csv),
-[`heat_response_46_annotations.csv`](results/03_heat_stress/heat_response_46_annotations.csv),
-[`heat_response_top12_annotations.csv`](results/03_heat_stress/heat_response_top12_annotations.csv),
-[`top12_gene_sample_tpm.csv`](results/04_tpm_leaf_baseline/top12_gene_sample_tpm.csv),
-[`top12_gene_population_tpm_summary.csv`](results/04_tpm_leaf_baseline/top12_gene_population_tpm_summary.csv),
-[`top12_morex_gene_atlas_relator_mapping.csv`](results/04_tpm_leaf_baseline/morex_gene_atlas/top12_morex_gene_atlas_relator_mapping.csv),
-[`top12_morex_leaf_tpm_by_sample.csv`](results/04_tpm_leaf_baseline/morex_gene_atlas/top12_morex_leaf_tpm_by_sample.csv),
-[`top12_morex_biological_replicate_tpm.csv`](results/04_tpm_leaf_baseline/morex_gene_atlas/top12_morex_biological_replicate_tpm.csv),
-[`top12_morex_primary_leaf_baseline_summary.csv`](results/04_tpm_leaf_baseline/morex_gene_atlas/top12_morex_primary_leaf_baseline_summary.csv),
-[`top12_morex_comparison_group_summary.csv`](results/04_tpm_leaf_baseline/morex_gene_atlas/top12_morex_comparison_group_summary.csv),
-[`top12_population_vs_morex_context_groups.csv`](results/04_tpm_leaf_baseline/morex_gene_atlas/top12_population_vs_morex_context_groups.csv),
-and [`top12_population_vs_morex_baseline.csv`](results/04_tpm_leaf_baseline/morex_gene_atlas/top12_population_vs_morex_baseline.csv).
-g:Profiler and BARLEX supplied descriptions for all 46 genes.
-The top-12 TPM output contains 720 gene-sample values and 60 gene-population
-summaries. The Morex Gene Atlas outputs contain 300 gene-experiment rows from 25
-retained leaf experiments. There are three comparison groups: the one-week
-control, the two-month senescing leaf, and the 30-day uninfested 5th leaf
-collected at 2 hours. The senescing-leaf samples have 6 experiment rows but only 3
-biological replicates because each biological replicate was measured in two
-technical batches. Eleven genes have a usable HvMxRTD mapping; the
-first-ranked gene has no relator match and remains missing. Three mapped
-genes use a flagged same-strand non-exact fallback; eight use an exact
-intron-chain match. The outputs include a 120-row biological-replicate
-table, 36 gene-by-reference-group summaries, a 60-row primary-baseline
-comparison, a 96-row combined population/reference summary, the full relator
-audit, and 12 plots.
-
-### Expression heatmap: 46 heat-response genes
-
-![Heat-response gene expression across the five populations](docs/figures/heat_response_46_populations.png)
-
-Columns are samples ordered by population; rows are hierarchically clustered
-genes. Color represents per-gene centered DESeq2 VST expression.
-
-### Expression heatmap: 12 reproducibly ranked candidates
-
-![Top 12 heat-response genes ranked by population-mean variation](docs/figures/heat_response_top12_populations.png)
-
-The focused set is selected by descending variation among the five population
-mean expression values.
-
-### Principal component analysis
-
-![PCA of the 60 samples](docs/figures/pca_five_populations.png)
-
-The figure is regenerated from the VST matrix by
-`scripts/01_deseq2_populations.R`.
-
-### Barley GO enrichment
-
-![Barley GO enrichment of population-variable genes](docs/figures/go_enrichment.png)
-
-The full g:Profiler response and a second plot highlighting GO:0009408 are
-written under `results/02_go_enrichment/`.
-
-### Population TPM and Morex leaf comparisons
-
-![Top-12 population TPMs compared with Morex Gene Atlas leaf samples](results/04_tpm_leaf_baseline/morex_gene_atlas/plots/top12_rank_03_HORVU.MOREX.r3.1HG0077030.png)
-
-The population samples remain grouped by genotype and colored by population.
-Labels identify each sample replicate. The three Morex groups are shown
-separately: the one-week control, two-month senescing leaf, and 30-day
-uninfested 5th-leaf control collected at 2 hours. The labeled dots show Atlas
-biological replicates;
-the black diamond and vertical error bar show each reference group's mean and
-sample standard deviation. The y-axis is linear TPM. Atlas samples are
-external context, not another population. A plot is saved for each top-12
-gene under
-`results/04_tpm_leaf_baseline/morex_gene_atlas/plots/`.
-
-The primary Morex baseline means and sample standard deviations are:
-
-| Rank | Morex V3 gene | HvMxRTD ID | Mapping | Morex leaf TPM, mean ± SD |
-|---:|---|---|---|---:|
-| 1 | HORVU.MOREX.r3.6HG0621200 | — | Unmapped | Missing |
-| 2 | HORVU.MOREX.r3.4HG0389370 | Hv_Mx_chr4HG26458 | Non-exact fallback | 0.015262 ± 0.026435 |
-| 3 | HORVU.MOREX.r3.1HG0077030 | Hv_Mx_chr1HG06602 | Exact | 7.365151 ± 9.801184 |
-| 4 | HORVU.MOREX.r3.4HG0389360 | Hv_Mx_chr4HG26457 | Non-exact fallback | 4.599486 ± 4.275193 |
-| 5 | HORVU.MOREX.r3.3HG0288370 | Hv_Mx_chr3HG19892 | Exact | 5.871307 ± 9.745157 |
-| 6 | HORVU.MOREX.r3.4HG0392240 | Hv_Mx_chr4HG26666 | Exact | 0.009761 ± 0.016907 |
-| 7 | HORVU.MOREX.r3.6HG0616950 | Hv_Mx_chr6HG40381 | Exact | 26.877209 ± 44.636210 |
-| 8 | HORVU.MOREX.r3.4HG0396100 | Hv_Mx_chr4HG26946 | Non-exact fallback | 0.049016 ± 0.044339 |
-| 9 | HORVU.MOREX.r3.7HG0714970 | Hv_Mx_chr7HG46171 | Exact | 24.950154 ± 38.055754 |
-| 10 | HORVU.MOREX.r3.7HG0732330 | Hv_Mx_chr7HG47518 | Exact | 6.667692 ± 7.650033 |
-| 11 | HORVU.MOREX.r3.7HG0721780 | Hv_Mx_chr7HG46708 | Exact | 374.312603 ± 109.538370 |
-| 12 | HORVU.MOREX.r3.5HG0489830 | Hv_Mx_chr5HG32508 | Exact | 16.849496 ± 26.847376 |
-
-Each mapped baseline uses three Morex biological replicates. The values are
-descriptive and are not used in significance tests.
-
-For rank 3 (`HORVU.MOREX.r3.1HG0077030`), the additional Atlas comparisons
-are:
-
-| Morex Atlas group | Biological replicates | Mean TPM ± sample SD |
-|---|---:|---:|
-| 2-month senescing leaf | 3 | 0.437174 ± 0.467466 |
-| 30-day uninfested 5th leaf, 2 hr | 4 | 0.694154 ± 0.256323 |
-
-The 2-month measurement is the closest available age comparison, but its
-samples are explicitly labeled senescing leaves. It should not be read as a
-physiologically matched untreated 2-month control.
-
-## Output interpretation and limitations
-
-The analysis measures association with population; it does not show that heat
-stress caused expression differences. g:Profiler annotations can change over
-time. BARLEX annotations depend on the supplied reference release. The Morex Gene Atlas comparisons are contextual: they come from external
-studies and are not another population or matched statistical groups.
-Non-exact relator matches are explicitly identified in the mapping audit.
+1. Quality control: PCA and sample-to-sample distances of the 15 libraries.
+2. Differential expression with DESeq2, heat vs control within each
+   genotype (21 and 22 separately); each plant is one replicate; DEG:
+   adjusted p < 0.05, as in Part A.
+3. Expression of the 5 HSFs and the 67 heat-response genes (Part C) in
+   control and heat plants of both genotypes.

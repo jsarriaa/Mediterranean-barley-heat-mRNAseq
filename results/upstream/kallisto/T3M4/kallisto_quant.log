@@ -1,0 +1,14 @@
+
+[quant] fragment length distribution will be estimated from the data
+[index] k-mer length: 31
+[index] number of targets: 83,990
+[index] number of k-mers: 60,170,563
+[quant] running in paired-end mode
+[quant] will process pair 1: T3M4_R1.fastp.fastq.gz
+                             T3M4_R2.fastp.fastq.gz
+[quant] finding pseudoalignments for the reads ...[progress] 1M reads processed (45.9% mapped)             [progress] 2M reads processed (45.8% mapped)             [progress] 3M reads processed (45.8% mapped)             [progress] 4M reads processed (45.8% mapped)             [progress] 5M reads processed (45.8% mapped)             [progress] 6M reads processed (45.8% mapped)             [progress] 7M reads processed (45.8% mapped)             [progress] 8M reads processed (45.8% mapped)             [progress] 9M reads processed (45.8% mapped)             [progress] 10M reads processed (45.8% mapped)             [progress] 11M reads processed (45.8% mapped)             [progress] 12M reads processed (45.8% mapped)             [progress] 13M reads processed (45.8% mapped)             [progress] 14M reads processed (45.8% mapped)             [progress] 15M reads processed (45.8% mapped)             [progress] 16M reads processed (45.8% mapped)             [progress] 17M reads processed (45.8% mapped)             [progress] 18M reads processed (45.8% mapped)             [progress] 19M reads processed (45.8% mapped)             [progress] 20M reads processed (45.8% mapped)             [progress] 21M reads processed (45.8% mapped)             [progress] 22M reads processed (45.8% mapped)             [progress] 23M reads processed (45.8% mapped)             [progress] 24M reads processed (45.8% mapped)             [progress] 25M reads processed (45.8% mapped)             [progress] 26M reads processed (45.8% mapped)             [progress] 27M reads processed (45.8% mapped)              done
+[quant] processed 28,136,613 reads, 12,886,511 reads pseudoaligned
+[quant] estimated average fragment length: 286.1
+[   em] quantifying the abundances ... done
+[   em] the Expectation-Maximization algorithm ran for 867 rounds
+

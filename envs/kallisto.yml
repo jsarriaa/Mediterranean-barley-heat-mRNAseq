@@ -1,0 +1,8 @@
+# Transcript index and pseudoalignment quantification (README, steps 1 and 3).
+# Version used by nf-core/rnaseq 3.27.0.
+name: barley-kallisto
+channels:
+  - conda-forge
+  - bioconda
+dependencies:
+  - kallisto=0.52.0

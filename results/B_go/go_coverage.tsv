@@ -1,0 +1,7 @@
+metric	value
+HC genes	35827
+HC genes with any GO	30196
+HC genes without GO	5631
+obsolete GO assignments replaced	2348
+obsolete GO assignments dropped (no replacement)	4080
+gene-GO pairs (union)	191203

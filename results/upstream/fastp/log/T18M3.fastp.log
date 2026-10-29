@@ -1,0 +1,55 @@
+Detecting adapter sequence for read1...
+>Illumina TruSeq Adapter Read 1
+AGATCGGAAGAGCACACGTCTGAACTCCAGTCA
+
+Detecting adapter sequence for read2...
+>Illumina TruSeq Adapter Read 2
+AGATCGGAAGAGCGTCGTGTAGGGAAAGAGTGT
+
+Read1 before filtering:
+total reads: 30410487
+total bases: 4561573050
+Q20 bases: 4500520229(98.6616%)
+Q30 bases: 4343252515(95.2139%)
+Q40 bases: 4343252515(95.2139%)
+
+Read2 before filtering:
+total reads: 30410487
+total bases: 4561573050
+Q20 bases: 4474083589(98.082%)
+Q30 bases: 4285102159(93.9391%)
+Q40 bases: 4285102159(93.9391%)
+
+Read1 after filtering:
+total reads: 25779541
+total bases: 3823479462
+Q20 bases: 3817196528(99.8357%)
+Q30 bases: 3775477832(98.7446%)
+Q40 bases: 3775477832(98.7446%)
+
+Read2 after filtering:
+total reads: 25779541
+total bases: 3823477174
+Q20 bases: 3815600432(99.794%)
+Q30 bases: 3766567051(98.5116%)
+Q40 bases: 3766567051(98.5116%)
+
+Filtering result:
+reads passed filter: 51559082
+reads failed due to low quality: 6859564
+reads failed due to too many N: 3992
+reads failed due to too short: 2340732
+reads failed due to low complexity: 388
+reads failed due to adapter dimer: 57216
+reads with adapter trimmed: 6761592
+bases trimmed due to adapters: 260365404
+
+Duplication rate: 15.0728%
+
+Insert size peak (evaluated by paired-end reads): 0
+
+JSON report: T18M3.fastp.json
+HTML report: T18M3.fastp.html
+
+fastp --in1 T18M3_R1.fastq.gz --in2 T18M3_R2.fastq.gz --out1 T18M3_R1.fastp.fastq.gz --out2 T18M3_R2.fastp.fastq.gz --json T18M3.fastp.json --html T18M3.fastp.html --thread 6 --detect_adapter_for_pe -q 30 -u 15 -y -g -Y 10 -l 100 -b 150 -B 150 
+fastp v1.3.6, time used: 369 seconds

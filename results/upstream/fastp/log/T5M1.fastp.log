@@ -1,0 +1,55 @@
+Detecting adapter sequence for read1...
+>Nextera_LMP_Read1_External_Adapter | >Illumina Multiplexing Index Sequencing Primer
+GATCGGAAGAGCACACGTCTGAACTCCAGTCAC
+
+Detecting adapter sequence for read2...
+>Illumina TruSeq Adapter Read 2
+AGATCGGAAGAGCGTCGTGTAGGGAAAGAGTGT
+
+Read1 before filtering:
+total reads: 30415271
+total bases: 4562290650
+Q20 bases: 4502706142(98.694%)
+Q30 bases: 4342359601(95.1794%)
+Q40 bases: 4342359601(95.1794%)
+
+Read2 before filtering:
+total reads: 30415271
+total bases: 4562290650
+Q20 bases: 4463113292(97.8261%)
+Q30 bases: 4254425747(93.252%)
+Q40 bases: 4254425747(93.252%)
+
+Read1 after filtering:
+total reads: 25412433
+total bases: 3784304266
+Q20 bases: 3777627712(99.8236%)
+Q30 bases: 3733224973(98.6502%)
+Q40 bases: 3733224973(98.6502%)
+
+Read2 after filtering:
+total reads: 25412433
+total bases: 3784264690
+Q20 bases: 3775016949(99.7556%)
+Q30 bases: 3719106508(98.2782%)
+Q40 bases: 3719106508(98.2782%)
+
+Filtering result:
+reads passed filter: 50824866
+reads failed due to low quality: 7109504
+reads failed due to too many N: 3422
+reads failed due to too short: 2597506
+reads failed due to low complexity: 912
+reads failed due to adapter dimer: 294332
+reads with adapter trimmed: 5332788
+bases trimmed due to adapters: 252251380
+
+Duplication rate: 26.6777%
+
+Insert size peak (evaluated by paired-end reads): 0
+
+JSON report: T5M1.fastp.json
+HTML report: T5M1.fastp.html
+
+fastp --in1 T5M1_R1.fastq.gz --in2 T5M1_R2.fastq.gz --out1 T5M1_R1.fastp.fastq.gz --out2 T5M1_R2.fastp.fastq.gz --json T5M1.fastp.json --html T5M1.fastp.html --thread 6 --detect_adapter_for_pe -q 30 -u 15 -y -g -Y 10 -l 100 -b 150 -B 150 
+fastp v1.3.6, time used: 369 seconds
