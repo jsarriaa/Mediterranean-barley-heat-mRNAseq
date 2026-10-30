@@ -10,7 +10,7 @@ analyses done on them (see [Analysis](#analysis)).
 
 The study includes 20 six-rowed landraces (GDB accessions) from around the
 Mediterranean basin. They belong to five ancestral populations (`k1`, `k5`,
-`k10`, `k12`, `k14`), with four genotypes per population.
+`k10`, `k12`, `k14`), with four genotypes per population. [Here I should add Chesco's paper reference].
 
 ![Geographic distribution of the 20 landrace genotypes, coloured by ancestral population](docs/figures/Mapa_genotipos_k17.png)
 
@@ -755,8 +755,8 @@ The reference reads are processed exactly like ours, so that expression
 values are comparable.
 
 **Step D1 — Download.** The 12 FASTQ files (about 29 GB) are downloaded from
-ENA over HTTPS, six at a time, into `data/external/pratx2025/` (not stored
-in this repository). `wget -c` resumes an interrupted file. Each file is then
+ENA into `data/external/pratx2025/` (not stored
+in this repository). Each file is then
 checked against the MD5 checksum published by ENA, kept in
 [`data/input/pratx2025_ENA_MD5SUMS`](data/input/pratx2025_ENA_MD5SUMS).
 
