@@ -998,3 +998,10 @@ normalised count + 1).
 - **Candidate gene characterisation.** Investigate in detail the genes of
   interest identified in this study, prioritising heat shock factors and
   other heat-responsive candidates.
+
+> **Note.** A first round of this analysis was done with the
+> [nf-core/rnaseq](https://nf-co.re/rnaseq/3.27.0/) pipeline, version
+> [3.27.0 on GitHub](https://github.com/nf-core/rnaseq/tree/3.27.0)
+> (Nextflow 26.04.6), [doi:10.5281/zenodo.1400710](https://doi.org/10.5281/zenodo.1400710).
+> The results in this repository come from the steps described above. Credit
+> to the nf-core community and to its authors.
