@@ -8,4 +8,4 @@ channels:
 dependencies:
   - r-base=4.3.3
   - bioconductor-tximport=1.30.0
-  - bioconductor-rhdf5=2.46.1
+  - bioconductor-rhdf5=2.44.0

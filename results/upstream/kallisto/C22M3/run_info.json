@@ -1,0 +1,14 @@
+{
+	"n_targets": 83990,
+	"n_bootstraps": 0,
+	"n_processed": 36475589,
+	"n_pseudoaligned": 32265310,
+	"n_unique": 27396820,
+	"p_pseudoaligned": 88.5,
+	"p_unique": 75.1,
+	"kallisto_version": "0.52.0",
+	"index_version": 13,
+	"k-mer length": 31,
+	"start_time": "Thu Oct 29 16:47:54 2026",
+	"call": "/scratch/software-phgv2/miniconda3/envs/mrna_seq/bin/kallisto quant --threads 12 --index /scratch/mRNA-Heat_stress/transcriptomic-fingerprints-five-mediterranean-populations/references/MorexV3.idx --gtf /scratch/mRNA-Heat_stress/transcriptomic-fingerprints-five-mediterranean-populations/references/MorexV3.gtf -o results/upstream/kallisto/C22M3 data/processed/fastp/C22M3_R1.fastp.fastq.gz data/processed/fastp/C22M3_R2.fastp.fastq.gz"
+}

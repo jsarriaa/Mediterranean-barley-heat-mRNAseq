@@ -414,5 +414,5 @@
 		"overrepresented_sequences": {
 		}
 	},
-	"command": "fastp --in1 T13M4_R1.fastq.gz --in2 T13M4_R2.fastq.gz --out1 T13M4_R1.fastp.fastq.gz --out2 T13M4_R2.fastp.fastq.gz --json T13M4.fastp.json --html T13M4.fastp.html --thread 6 --detect_adapter_for_pe -q 30 -u 15 -y -g -Y 10 -l 100 -b 150 -B 150 "
+	"command": "/opt/wave/.pixi/envs/default/bin/fastp --in1 data/raw/Unknown_CU317-001T0039_1.fq.gz --in2 data/raw/Unknown_CU317-001T0039_2.fq.gz --out1 data/processed/fastp/T13M4_R1.fastp.fastq.gz --out2 data/processed/fastp/T13M4_R2.fastp.fastq.gz --json results/upstream/fastp/T13M4.fastp.json --html results/upstream/fastp/T13M4.fastp.html --thread 6 --detect_adapter_for_pe -q 30 -u 15 -y -g -Y 10 -l 100 -b 150 -B 150 "
 }

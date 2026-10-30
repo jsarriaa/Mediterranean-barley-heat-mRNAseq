@@ -1,29 +1,33 @@
 id	pattern	genes
-1	k10_vs_k1 & k14_vs_k1 & k10_vs_k5 & k14_vs_k5	8
-2	k10_vs_k1 & k10_vs_k5	7
-3	k10_vs_k1 & k10_vs_k5 & k12_vs_k10 & k14_vs_k10	6
-4	k10_vs_k1 & k10_vs_k5 & k12_vs_k10	5
-5	k10_vs_k1 & k14_vs_k1	5
-6	k10_vs_k1 & k14_vs_k1 & k10_vs_k5 & k14_vs_k5 & k12_vs_k10	4
+1	k10_vs_k1 & k10_vs_k5	8
+2	k10_vs_k1 & k14_vs_k1	8
+3	k10_vs_k1 & k10_vs_k5 & k12_vs_k10 & k14_vs_k10	7
+4	k10_vs_k1 & k14_vs_k1 & k10_vs_k5 & k14_vs_k5	7
+5	k10_vs_k1 & k14_vs_k1 & k10_vs_k5	5
+6	k10_vs_k1 & k14_vs_k1 & k10_vs_k5 & k14_vs_k5 & k12_vs_k10	5
 7	k10_vs_k1	3
-8	k10_vs_k1 & k14_vs_k1 & k10_vs_k5	3
+8	k10_vs_k1 & k10_vs_k5 & k12_vs_k10	3
 9	k10_vs_k1 & k14_vs_k1 & k10_vs_k5 & k14_vs_k5 & k12_vs_k10 & k14_vs_k12	3
-10	k10_vs_k1 & k12_vs_k1 & k14_vs_k1	2
-11	k10_vs_k1 & k12_vs_k1 & k14_vs_k1 & k10_vs_k5	2
-12	k14_vs_k1 & k14_vs_k5 & k14_vs_k10 & k14_vs_k12	2
-13	k10_vs_k1 & k12_vs_k1	1
-14	k10_vs_k1 & k12_vs_k1 & k10_vs_k5 & k12_vs_k5 & k14_vs_k5	1
-15	k10_vs_k1 & k12_vs_k1 & k14_vs_k1 & k10_vs_k5 & k14_vs_k5	1
-16	k10_vs_k1 & k14_vs_k1 & k10_vs_k5 & k12_vs_k10	1
-17	k10_vs_k5 & k14_vs_k10	1
-18	k10_vs_k5 & k14_vs_k5	1
-19	k10_vs_k5 & k14_vs_k5 & k12_vs_k10	1
-20	k12_vs_k1 & k12_vs_k5 & k12_vs_k10	1
-21	k14_vs_k1 & k10_vs_k5 & k14_vs_k5	1
-22	k14_vs_k1 & k10_vs_k5 & k14_vs_k5 & k14_vs_k10 & k14_vs_k12	1
-23	k14_vs_k1 & k14_vs_k10	1
-24	k14_vs_k1 & k14_vs_k5 & k12_vs_k10 & k14_vs_k10	1
-25	k5_vs_k1 & k10_vs_k1	1
-26	k5_vs_k1 & k10_vs_k1 & k14_vs_k1	1
-27	k5_vs_k1 & k10_vs_k5	1
-28	k5_vs_k1 & k12_vs_k1 & k10_vs_k5 & k14_vs_k5 & k12_vs_k10 & k14_vs_k12	1
+10	k10_vs_k1 & k12_vs_k1 & k14_vs_k1 & k10_vs_k5	2
+11	k14_vs_k1 & k14_vs_k5 & k14_vs_k10 & k14_vs_k12	2
+12	k10_vs_k1 & k12_vs_k1	1
+13	k10_vs_k1 & k12_vs_k1 & k10_vs_k5 & k12_vs_k5 & k14_vs_k5	1
+14	k10_vs_k1 & k12_vs_k1 & k14_vs_k1	1
+15	k10_vs_k1 & k12_vs_k1 & k14_vs_k1 & k10_vs_k5 & k12_vs_k5 & k14_vs_k5	1
+16	k10_vs_k1 & k12_vs_k1 & k14_vs_k1 & k10_vs_k5 & k14_vs_k5	1
+17	k10_vs_k1 & k14_vs_k1 & k10_vs_k5 & k12_vs_k10	1
+18	k10_vs_k5 & k12_vs_k10	1
+19	k10_vs_k5 & k14_vs_k10	1
+20	k10_vs_k5 & k14_vs_k5	1
+21	k10_vs_k5 & k14_vs_k5 & k12_vs_k10	1
+22	k12_vs_k1 & k12_vs_k5 & k12_vs_k10	1
+23	k12_vs_k1 & k14_vs_k1	1
+24	k14_vs_k1 & k10_vs_k5 & k14_vs_k10 & k14_vs_k12	1
+25	k14_vs_k1 & k14_vs_k10	1
+26	k14_vs_k1 & k14_vs_k5	1
+27	k14_vs_k1 & k14_vs_k5 & k12_vs_k10 & k14_vs_k10	1
+28	k14_vs_k5 & k14_vs_k10	1
+29	k5_vs_k1 & k10_vs_k1	1
+30	k5_vs_k1 & k10_vs_k1 & k12_vs_k1 & k14_vs_k1	1
+31	k5_vs_k1 & k10_vs_k5	1
+32	k5_vs_k1 & k12_vs_k1 & k10_vs_k5 & k14_vs_k5 & k12_vs_k10 & k14_vs_k12	1

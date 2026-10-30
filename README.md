@@ -93,10 +93,13 @@ transcriptomic-fingerprints-five-mediterranean-populations/
 │   └── input/
 │       ├── samples_metadata.tsv
 │       ├── samplesheet.tsv                     # library ID -> raw FASTQ files
+│       ├── samplesheet_D.tsv                   # Part D reference libraries (6 runs, condition)
 │       ├── samplesheet_E.tsv                   # same, Part E control experiment (15 libraries)
 │       ├── raw_MD5SUMS                         # provider checksums of the raw FASTQ
 │       ├── kallisto.merged.gene_counts.HC.tsv  # high-confidence genes
 │       ├── kallisto.merged.gene_counts.LC.tsv  # low-confidence genes
+│       ├── kallisto.E.gene_counts.HC.tsv       # Part E, high-confidence genes
+│       ├── kallisto.E.gene_counts.LC.tsv       # Part E, low-confidence genes
 │       ├── pratx2025_ENA_MD5SUMS               # ENA checksums of the Part D reference FASTQ
 │       └── MD5SUMS
 ├── results/
@@ -113,7 +116,9 @@ transcriptomic-fingerprints-five-mediterranean-populations/
     ├── A_deg_populations.R                     # Part A
     ├── B_go_enrichment.R                       # Part B
     ├── C_cherrypicking.R                       # Part C
-    └── D_reference_upstream.sh                 # Part D, Step D2
+    ├── D_reference_upstream.sh                 # Part D, Step D2
+    ├── D_treatment_validation.R                # Part D, Step D4
+    └── E_control_validation.R                  # Part E
 ```
 
 ## Software and environments
@@ -127,7 +132,7 @@ transcriptomic-fingerprints-five-mediterranean-populations/
 | kallisto | 0.52.0 | index and quantification | `envs/kallisto.yml` |
 | R | 4.3.3 | transcript → gene summarisation | `envs/tximport.yml` |
 | tximport | 1.30.0 | transcript → gene summarisation | `envs/tximport.yml` |
-| rhdf5 | 2.46.1 | lets tximport read `abundance.h5` | `envs/tximport.yml` |
+| rhdf5 | 2.44.0 | lets tximport read `abundance.h5` | `envs/tximport.yml` |
 | R | 4.5.3 | analysis (Parts A, B) | `envs/deseq2.yml` |
 | DESeq2 | 1.50.2 | differential expression | `envs/deseq2.yml` |
 | ggplot2 | 4.0.3 | plots | `envs/deseq2.yml` |
@@ -427,21 +432,21 @@ Rscript scripts/A_deg_populations.R
 5. **Pairwise tests** (Wald test, 10 population pairs): which populations
    differ, and in which direction. Same criterion, adjusted p < 0.05.
 
-**Results.** 35,827 HC genes; 21,643 tested (the rest removed by DESeq2's
-independent filtering); **9,565 DEGs** in the omnibus test.
+**Results.** 35,827 HC genes; 22,304 tested (the rest removed by DESeq2's
+independent filtering); **10,497 DEGs** in the omnibus test.
 
 | Pairwise contrast | DEGs | Up in first population | Up in second population |
 |---|---:|---:|---:|
-| k5 vs k1 | 612 | 286 | 326 |
-| k10 vs k1 | 5,678 | 3,473 | 2,205 |
-| k12 vs k1 | 758 | 452 | 306 |
-| k14 vs k1 | 4,464 | 2,302 | 2,162 |
-| k10 vs k5 | 6,817 | 4,065 | 2,752 |
-| k12 vs k5 | 660 | 369 | 291 |
-| k14 vs k5 | 4,205 | 2,137 | 2,068 |
-| k12 vs k10 | 3,450 | 1,409 | 2,041 |
-| k14 vs k10 | 3,225 | 1,331 | 1,894 |
-| k14 vs k12 | 1,745 | 652 | 1,093 |
+| k5 vs k1 | 730 | 323 | 407 |
+| k10 vs k1 | 6,114 | 3,742 | 2,372 |
+| k12 vs k1 | 950 | 579 | 371 |
+| k14 vs k1 | 4,878 | 2,532 | 2,346 |
+| k10 vs k5 | 7,441 | 4,410 | 3,031 |
+| k12 vs k5 | 824 | 484 | 340 |
+| k14 vs k5 | 4,530 | 2,317 | 2,213 |
+| k12 vs k10 | 3,845 | 1,605 | 2,240 |
+| k14 vs k10 | 3,557 | 1,457 | 2,100 |
+| k14 vs k12 | 2,008 | 751 | 1,257 |
 
 "Up in first population": higher expression in the first population named
 (e.g. k10 in "k10 vs k1").
@@ -500,7 +505,7 @@ colour strips show the population.
 | File | Content |
 |---|---|
 | `omnibus_LRT_all_genes.tsv` | omnibus test for every HC gene (`baseMean`, `stat`, `pvalue`, `padj`). The `log2FoldChange` column of this table is k14 vs k1 only, not a summary of the test. |
-| `omnibus_LRT_DEGs.tsv` | the 9,565 omnibus DEGs |
+| `omnibus_LRT_DEGs.tsv` | the 10,497 omnibus DEGs |
 | `omnibus_summary.tsv` | gene counts |
 | `pairwise_<A>_vs_<B>.tsv` | Wald test for each of the 10 contrasts; `log2FoldChange` > 0 means higher in A |
 | `pairwise_summary.tsv` | DEGs per contrast and direction |
@@ -528,7 +533,7 @@ A **GO enrichment test** takes a group of genes and asks, for every GO term,
 whether the term appears in the group more often than it would in a random
 group of the same size.
 
-**Why the DEGs are split into groups.** The 9,565 DEGs are 44 % of all
+**Why the DEGs are split into groups.** The 10,497 DEGs are 47 % of all
 tested genes, and they mix genes that behave in opposite ways (higher in some
 populations, lower in others). A list that large and that mixed looks almost
 like a random sample of all genes, which hides functions linked to one
@@ -596,7 +601,7 @@ into two groups: higher in the first population, and higher in the second.
 For each group and each GO term, a hypergeometric test compares the number of
 group genes in the term with the number expected by chance.
 
-- **Background (the reference set of genes):** the 21,643 HC genes tested in
+- **Background (the reference set of genes):** the 22,304 HC genes tested in
   Part A, i.e. the genes that could have been found as DEGs. Genes not
   expressed in the samples are left out, so they don't distort the
   comparison.
@@ -624,28 +629,28 @@ Number of significant GO terms per group:
 
 | Group | Genes | MF | BP | CC |
 |---|---:|---:|---:|---:|
-| Cluster 1 | 6,229 | 17 | 69 | 5 |
-| Cluster 2 | 3,336 | 13 | 77 | 38 |
-| k5 vs k1, up in k5 | 219 | 0 | 0 | 0 |
-| k5 vs k1, up in k1 | 270 | 4 | 16 | 0 |
-| k10 vs k1, up in k10 | 2,120 | 14 | 42 | 4 |
-| k10 vs k1, up in k1 | 1,064 | 1 | 2 | 1 |
-| k12 vs k1, up in k12 | 341 | 0 | 0 | 0 |
-| k12 vs k1, up in k1 | 232 | 0 | 0 | 0 |
-| k14 vs k1, up in k14 | 1,451 | 0 | 10 | 0 |
-| k14 vs k1, up in k1 | 1,388 | 8 | 7 | 12 |
-| k10 vs k5, up in k10 | 2,587 | 44 | 65 | 4 |
-| k10 vs k5, up in k5 | 1,395 | 14 | 48 | 28 |
-| k12 vs k5, up in k12 | 289 | 0 | 16 | 0 |
-| k12 vs k5, up in k5 | 193 | 0 | 0 | 0 |
-| k14 vs k5, up in k14 | 1,392 | 20 | 18 | 3 |
-| k14 vs k5, up in k5 | 1,296 | 9 | 8 | 16 |
-| k12 vs k10, up in k12 | 741 | 0 | 0 | 5 |
-| k12 vs k10, up in k10 | 1,368 | 35 | 39 | 4 |
-| k14 vs k10, up in k14 | 673 | 0 | 1 | 0 |
-| k14 vs k10, up in k10 | 1,191 | 31 | 38 | 4 |
-| k14 vs k12, up in k14 | 395 | 0 | 3 | 1 |
-| k14 vs k12, up in k12 | 730 | 15 | 45 | 12 |
+| Cluster 1 | 6,058 | 11 | 51 | 16 |
+| Cluster 2 | 4,439 | 9 | 71 | 21 |
+| k5 vs k1, up in k5 | 245 | 0 | 0 | 0 |
+| k5 vs k1, up in k1 | 348 | 4 | 14 | 2 |
+| k10 vs k1, up in k10 | 2,304 | 11 | 31 | 5 |
+| k10 vs k1, up in k1 | 1,183 | 4 | 4 | 3 |
+| k12 vs k1, up in k12 | 438 | 0 | 0 | 0 |
+| k12 vs k1, up in k1 | 273 | 0 | 0 | 0 |
+| k14 vs k1, up in k14 | 1,618 | 7 | 9 | 0 |
+| k14 vs k1, up in k1 | 1,527 | 9 | 7 | 10 |
+| k10 vs k5, up in k10 | 2,858 | 39 | 65 | 3 |
+| k10 vs k5, up in k5 | 1,575 | 13 | 45 | 28 |
+| k12 vs k5, up in k12 | 377 | 14 | 13 | 2 |
+| k12 vs k5, up in k5 | 224 | 0 | 0 | 0 |
+| k14 vs k5, up in k14 | 1,525 | 22 | 19 | 5 |
+| k14 vs k5, up in k5 | 1,385 | 9 | 8 | 16 |
+| k12 vs k10, up in k12 | 873 | 0 | 0 | 7 |
+| k12 vs k10, up in k10 | 1,524 | 34 | 38 | 5 |
+| k14 vs k10, up in k14 | 742 | 0 | 0 | 1 |
+| k14 vs k10, up in k10 | 1,330 | 34 | 34 | 4 |
+| k14 vs k12, up in k14 | 457 | 0 | 0 | 0 |
+| k14 vs k12, up in k12 | 843 | 14 | 13 | 16 |
 
 #### Output files
 
@@ -668,15 +673,15 @@ Rscript scripts/C_cherrypicking.R
 
 **Gene selection.** Omnibus DEGs (Part A) annotated to GO:0009408 "response
 to heat", directly or through one of its more specific terms (heat
-acclimation, cellular response to heat): **67 genes**. They include heat
-shock proteins (HSP70/DnaK, HSP90, small HSPs), 10 heat shock transcription
+acclimation, cellular response to heat): **76 genes**. They include heat
+shock proteins (HSP70/DnaK, HSP90, small HSPs), 12 heat shock transcription
 factors (HSFs), DnaJ and ClpB chaperones, and annexins. The list, with
 descriptions and omnibus adjusted p, is in
 `results/C_cherrypicking/heat_response_genes.tsv`.
 
 **Heatmap.**
 
-![Heatmap of the 67 heat-response DEGs](results/C_cherrypicking/heat_response_heatmap.png)
+![Heatmap of the 76 heat-response DEGs](results/C_cherrypicking/heat_response_heatmap.png)
 
 One column per genotype: the 3 plants are summed and variance-stabilised, as
 in the DEG tests (`results/A_deg/vst_genotypes.tsv`). Each gene is scaled
@@ -686,7 +691,7 @@ populations. Genes are clustered by similarity of their profiles.
 
 **Expression patterns.**
 
-![Expression patterns of the 67 heat-response DEGs](results/C_cherrypicking/heat_response_patterns.png)
+![Expression patterns of the 76 heat-response DEGs](results/C_cherrypicking/heat_response_patterns.png)
 
 Each thin line is one gene: its mean expression per population, scaled as in
 Part B. The panels are the two Part B clusters, and the thick line is the
@@ -694,9 +699,9 @@ cluster mean.
 
 **Overlap between pairwise comparisons.**
 
-![UpSet plot of the 67 heat-response DEGs](results/C_cherrypicking/heat_response_upset.png)
+![UpSet plot of the 76 heat-response DEGs](results/C_cherrypicking/heat_response_upset.png)
 
-Same layout as the Part A UpSet plot, restricted to these 67 genes (pairwise
+Same layout as the Part A UpSet plot, restricted to these 76 genes (pairwise
 DEGs, adjusted p < 0.05). All non-empty intersections are shown. Right bars:
 orange is higher in the first population of the contrast, blue in the second.
 
@@ -717,10 +722,10 @@ appear in that study:
 
 | File | Content |
 |---|---|
-| `results/C_cherrypicking/heat_response_genes.tsv` | the 67 genes: ID, description, omnibus adjusted p |
+| `results/C_cherrypicking/heat_response_genes.tsv` | the 76 genes: ID, description, omnibus adjusted p |
 | `results/C_cherrypicking/heat_response_upset_intersections.tsv` | genes per intersection of the UpSet plot |
 
-### Part D — Treatment validation (in progress)
+### Part D — Treatment validation
 
 **Question.** Are the heat-response genes expressed in our samples at levels
 typical of heat-stressed barley? All our plants were heat-stressed and there
@@ -778,43 +783,220 @@ bash scripts/D_reference_upstream.sh
 Clean reads go to `data/processed/pratx2025/` (local only), and fastp and
 kallisto outputs to `results/D_validation/upstream/`.
 
-**Planned next steps.**
+kallisto assigned 86.6–90.3% of the reads of each library
+(`results/D_validation/upstream/kallisto/<run>/run_info.json`).
 
-1. Gene-level TPM (transcripts per million) with tximport, for the 6
-   reference libraries and our 60 libraries (from the existing
-   `abundance.h5` files).
-2. Plot the TPM of the 5 HSFs above: reference control and heat shock next
-   to our 20 genotypes, grouped by population.
+**Step D3 — Gene-level TPM.** The Step 4 script (tximport), with the Part D
+samplesheet and kallisto folder. Our 60 libraries use the TPM matrix already
+written in Step 4.
+
+```bash
+Rscript scripts/gene_counts.R data/input/samplesheet_D.tsv kallisto.pratx2025 \
+  results/D_validation/upstream/kallisto
+```
+
+Output: `data/processed/kallisto.pratx2025.gene_tpm.tsv` (local only), with 6
+libraries and 81,687 genes.
+
+**Step D4 — Comparison of the 5 HSFs.** TPM (transcripts per million) of the
+5 HSFs of the Part C table, in the 6 reference libraries and our 60 libraries.
+
+```bash
+Rscript scripts/D_treatment_validation.R
+```
 
 The two experiments differ in genotype, tissue, developmental stage and heat
 treatment, so the comparison is an external reference, not a test.
 
-### Part E — Control validation (in progress)
+#### Results
+
+![TPM of the 5 HSFs in the reference libraries and our genotypes](results/D_validation/hsf_tpm.png)
+
+One row per HSF; each row has its own y axis. Columns: the reference
+experiment (`Pratx 2025`) and our 5 populations. Each dot is one library: in
+the reference, one replicate; in ours, one plant of the genotype on the x
+axis. y: TPM + 1 on a log scale. The horizontal bar is the mean on that log
+scale (geometric mean of TPM + 1).
+
+Mean TPM per group (arithmetic mean of the libraries of each group):
+
+| Gene | Name | Reference control | Reference heat shock | k1 | k5 | k10 | k12 | k14 |
+|---|---|---:|---:|---:|---:|---:|---:|---:|
+| HORVU.MOREX.r3.7HG0717290 | HvHSFA2 | 0.05 | 721.32 | 6.56 | 8.14 | 110.96 | 7.89 | 18.55 |
+| HORVU.MOREX.r3.2HG0134940 | HvHSFA3 | 0.54 | 2.79 | 1.08 | 0.46 | 1.46 | 0.59 | 0.20 |
+| HORVU.MOREX.r3.5HG0519000 | HSFA6/7 group | 7.99 | 37.22 | 15.16 | 17.21 | 39.23 | 21.07 | 29.09 |
+| HORVU.MOREX.r3.5HG0509970 | HSFA6/7 group | 1.27 | 354.24 | 1.59 | 4.47 | 32.14 | 16.96 | 46.21 |
+| HORVU.MOREX.r3.4HG0402170 | putative HSFA6 | 14.09 | 175.20 | 218.32 | 209.51 | 193.75 | 254.30 | 568.05 |
+
+**Output files.**
+
+| File | Content |
+|---|---|
+| `results/D_validation/hsf_tpm.png` | plot above |
+| `results/D_validation/hsf_tpm.tsv` | TPM of the 5 HSFs per library |
+| `results/D_validation/hsf_tpm_means.tsv` | mean TPM per group (table above) |
+
+### Part E — Control validation
 
 **Question.** Does the heat treatment change expression in our own growing
 conditions, compared with unstressed plants? Two genotypes were grown with
 and without heat, as a separate experiment from the 20 study genotypes:
 genotype 21 (heat-resistant) and genotype 22 (heat-susceptible).
 
-**Libraries.** `C` = control (no heat), `T` = heat; `M` = plant. T21M1 is
-excluded (failed library). 15 libraries, listed in
-[`data/input/samplesheet_E.tsv`](data/input/samplesheet_E.tsv):
+**Libraries.** `C` = control (no heat), `T` = heat; `M` = plant.
+
+**Relabelling of genotype 21.** During the analysis we realised that the
+labelling of plants M1 and M2 of genotype 21 was wrong, with C and T swapped,
+so we changed it. Everything in this part uses the corrected names. The
+original labels are kept in the `original_label` column of
+[`data/input/samplesheet_E.tsv`](data/input/samplesheet_E.tsv).
+
+Run records written before the renaming (fastp JSON and logs, kallisto
+`run_info.json` and logs, FastQC reports) still show the original names in
+their contents.
+
+15 libraries, with the corrected names:
 
 | Genotype | Control | Heat |
 |---|---|---|
-| 21 (resistant) | C21M1, C21M2, C21M3, C21M4 | T21M2, T21M3, T21M4 |
+| 21 (resistant) | C21M2, C21M3, C21M4 | T21M1, T21M2, T21M3, T21M4 |
 | 22 (susceptible) | C22M1, C22M2, C22M3, C22M4 | T22M1, T22M2, T22M3, T22M4 |
 
-**Processing.** Same Steps 2–4 as the study libraries (FastQC, fastp,
-kallisto in unstranded mode, tximport), run with `samplesheet_E.tsv` instead
-of `samplesheet.tsv`. Gene counts are split into HC and LC as in Step 5; the
-analysis uses HC genes.
+**Processing.** The same Steps 2–5 as the study libraries. Step 2 runs
+FastQC and fastp, Step 3 kallisto in unstranded mode, and Steps 4–5
+tximport and the HC/LC split. Steps 2–3 use the loop over
+`samplesheet_E.tsv` instead of `samplesheet.tsv`. Outputs go to the same
+folders (`results/upstream/`, `data/processed/fastp/`). Steps 4–5:
 
-**Planned analysis.**
+```bash
+Rscript scripts/gene_counts.R data/input/samplesheet_E.tsv kallisto.E
+M=data/processed/kallisto.E.gene_counts.tsv
+awk -F'\t' 'NR==FNR{c[$1]=$2; next} FNR==1 || c[$1]=="high"' \
+  references/MorexV3_gene_confidence.tsv $M > data/input/kallisto.E.gene_counts.HC.tsv
+awk -F'\t' 'NR==FNR{c[$1]=$2; next} FNR==1 || c[$1]=="low"' \
+  references/MorexV3_gene_confidence.tsv $M > data/input/kallisto.E.gene_counts.LC.tsv
+```
 
-1. Quality control: PCA and sample-to-sample distances of the 15 libraries.
-2. Differential expression with DESeq2, heat vs control within each
-   genotype (21 and 22 separately); each plant is one replicate; DEG:
-   adjusted p < 0.05, as in Part A.
-3. Expression of the 5 HSFs and the 67 heat-response genes (Part C) in
-   control and heat plants of both genotypes.
+Output: 15 libraries, 35,827 HC and 45,860 LC genes; checksums in
+`data/input/MD5SUMS`. kallisto assigned 88.5–91.5% of the reads of each
+library (`results/upstream/kallisto/<library>/run_info.json`). The analysis
+uses the HC matrix.
+
+**Analysis.**
+
+```bash
+Rscript scripts/E_control_validation.R
+```
+
+1. **Quality control.** Variance-stabilised expression (DESeq2 `vst`, blind
+   to the design) of the 15 libraries.
+2. **Heat vs control within each genotype.** A separate DESeq2 model per
+   genotype, design `~ treatment` (control as reference), Wald test. Each
+   plant is one replicate: 3 control and 4 heat plants for genotype 21, 4
+   control and 4 heat plants for genotype 22. DEG: adjusted p < 0.05, as in
+   Part A. A positive log2 fold change means higher in heat.
+3. **Heat-response genes.** The 76 Part C genes (GO:0009408) and the 5 HSFs
+   of Pratx et al. (2025), in control and heat plants of both genotypes.
+
+#### Results
+
+| Genotype | Control plants | Heat plants | Genes tested | DEGs | Up in heat | Down in heat |
+|---|---:|---:|---:|---:|---:|---:|
+| 21 (resistant) | 3 | 4 | 17,674 | 1,929 | 897 | 1,032 |
+| 22 (susceptible) | 4 | 4 | 20,316 | 8,213 | 4,110 | 4,103 |
+
+"Genes tested" are the genes with an adjusted p-value after DESeq2's
+automatic filtering of low counts.
+
+Among the 76 Part C genes: genotype 21, 21 DEGs (18 up and 3 down in heat);
+genotype 22, 43 DEGs (37 up and 6 down in heat).
+
+**PCA.**
+
+![PCA of the 15 libraries](results/E_control/pca_libraries.png)
+
+Each dot is one library (plant). Colour: treatment. Shape: genotype. The
+axes are the first two principal components, with the percentage of variance
+each explains.
+
+**Distances between libraries.**
+
+![Distances between the 15 libraries](results/E_control/library_distances.png)
+
+Euclidean distance between libraries on variance-stabilised expression.
+Blue: similar; red: different. Libraries are clustered on these distances
+(complete linkage); the bars show treatment and genotype.
+
+**Volcano plots.**
+
+![Volcano plots, heat vs control](results/E_control/volcano.png)
+
+One panel per genotype; each dot is a gene. x: log2 fold change (heat /
+control). y: −log10 adjusted p. Dashed line: adjusted p = 0.05. Orange: DEG
+higher in heat; blue: DEG lower in heat; grey: not DEG.
+
+**Heat-response genes.**
+
+![Heatmap of the 76 Part C genes in the control experiment](results/E_control/heat_response_heatmap.png)
+
+One column per library, grouped as genotype 21 control, 21 heat, 22
+control, 22 heat (white gaps). Values: variance-stabilised expression,
+scaled per gene across the 15 libraries (z-score). Red is higher than the
+gene's average, blue is lower. Genes are clustered by similarity of their
+profiles. The left bars mark whether each gene is a DEG in each genotype
+(orange: up in heat; blue: down in heat; grey: not DEG).
+
+**HSFs from Pratx et al. (2025).**
+
+![Expression of the 5 HSFs](results/E_control/hsf_expression.png)
+
+One panel per HSF. Each dot is one plant: DESeq2-normalised count (size
+factors over the 15 libraries) + 1, on a log scale. Blue: control; orange:
+heat. The horizontal bar is the mean on the log scale (geometric mean of
+normalised count + 1).
+
+| Gene | Name | log2FC G21 | padj G21 | log2FC G22 | padj G22 |
+|---|---|---:|---:|---:|---:|
+| HORVU.MOREX.r3.7HG0717290 | HvHSFA2 | 2.87 | 2.0e-08 | 5.47 | 0.004 |
+| HORVU.MOREX.r3.2HG0134940 | HvHSFA3 | −1.56 | 0.006 | 0.25 | 0.82 |
+| HORVU.MOREX.r3.5HG0519000 | HSFA6/7 group | 1.03 | 1.0e-04 | −0.34 | 0.32 |
+| HORVU.MOREX.r3.5HG0509970 | HSFA6/7 group | 1.23 | 0.21 | 2.91 | 0.005 |
+| HORVU.MOREX.r3.4HG0402170 | putative HSFA6 | 1.20 | 1.3e-09 | −1.16 | 0.010 |
+
+#### Output files (`results/E_control/`)
+
+| File | Content |
+|---|---|
+| `library_table.tsv` | library, treatment, genotype, plant |
+| `heat_vs_control_G21.tsv`, `heat_vs_control_G22.tsv` | DESeq2 results for all genes, per genotype |
+| `heat_vs_control_summary.tsv` | DEG counts per genotype |
+| `heat_response_genes_E.tsv` | the 76 Part C genes: log2 fold change and adjusted p in each genotype |
+| `hsf_normalised_counts.tsv` | normalised counts of the 5 HSFs per library |
+| `size_factors.tsv` | DESeq2 size factors of the 15 libraries |
+| `R_sessionInfo.txt` | R and package versions |
+
+## Conclusions
+
+- **Distinct transcriptomic signatures.** Mediterranean barley landraces
+  show transcriptomic differences at both the genotype and the population
+  level under heat stress: 10,497 of the 22,304 high-confidence genes tested
+  differ between the five genomic populations.
+- **A resource for heat-response research.** This study provides a
+  reproducible transcriptomic framework for the molecular analysis of heat
+  response in barley, including a set of 76 differentially expressed genes
+  annotated to the response to heat (GO:0009408).
+- **Scope of the current data.** The 20 landraces were profiled under heat
+  stress only, so the differences reported here cannot yet be separated into
+  heat-induced and constitutive components. The data will be reanalysed once
+  matching control samples are available.
+
+## Next steps
+
+- **Control transcriptomes.** Generate mRNA-seq data from control plants of
+  the same landraces, to resolve the heat-specific response of each genotype
+  and population from constitutive expression differences.
+- **Phenotypic integration.** Incorporate phenotypic data to test the
+  association between expression patterns and heat-related traits.
+- **Candidate gene characterisation.** Investigate in detail the genes of
+  interest identified in this study, prioritising heat shock factors and
+  other heat-responsive candidates.

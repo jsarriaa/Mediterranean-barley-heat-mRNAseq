@@ -1,0 +1,7 @@
+library_id	sample	condition
+SRR35220185	GP_N_R1	control
+SRR35220184	GP_N_R2	control
+SRR35220183	GP_N_R3	control
+SRR35220179	GP_T_R1	heat shock
+SRR35220178	GP_T_R2	heat shock
+SRR35220177	GP_T_R3	heat shock

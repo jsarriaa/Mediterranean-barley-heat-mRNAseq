@@ -1,0 +1,56 @@
+INFO:    fuse2fs not found, will not be able to mount EXT3 filesystems
+Detecting adapter sequence for read1...
+>Nextera_LMP_Read1_External_Adapter | >Illumina Multiplexing Index Sequencing Primer
+GATCGGAAGAGCACACGTCTGAACTCCAGTCAC
+
+Detecting adapter sequence for read2...
+>Illumina TruSeq Adapter Read 2
+AGATCGGAAGAGCGTCGTGTAGGGAAAGAGTGT
+
+Read1 before filtering:
+total reads: 43397853
+total bases: 6509677950
+Q20 bases: 6408077961(98.4392%)
+Q30 bases: 6181252509(94.9548%)
+Q40 bases: 6181252509(94.9548%)
+
+Read2 before filtering:
+total reads: 43397853
+total bases: 6509677950
+Q20 bases: 6394786329(98.2351%)
+Q30 bases: 6147494080(94.4362%)
+Q40 bases: 6147494080(94.4362%)
+
+Read1 after filtering:
+total reads: 36475589
+total bases: 5382492491
+Q20 bases: 5374741484(99.856%)
+Q30 bases: 5321233664(98.8619%)
+Q40 bases: 5321233664(98.8619%)
+
+Read2 after filtering:
+total reads: 36475589
+total bases: 5382427243
+Q20 bases: 5374186836(99.8469%)
+Q30 bases: 5321356676(98.8654%)
+Q40 bases: 5321356676(98.8654%)
+
+Filtering result:
+reads passed filter: 72951178
+reads failed due to low quality: 8269170
+reads failed due to too many N: 6646
+reads failed due to too short: 4543090
+reads failed due to low complexity: 578
+reads failed due to adapter dimer: 1025044
+reads with adapter trimmed: 14096293
+bases trimmed due to adapters: 559989943
+
+Duplication rate: 27.767%
+
+Insert size peak (evaluated by paired-end reads): 0
+
+JSON report: results/upstream/fastp/C22M3.fastp.json
+HTML report: results/upstream/fastp/C22M3.fastp.html
+
+/opt/wave/.pixi/envs/default/bin/fastp --in1 data/raw/Unknown_CU317-001T0073_1.fq.gz --in2 data/raw/Unknown_CU317-001T0073_2.fq.gz --out1 data/processed/fastp/C22M3_R1.fastp.fastq.gz --out2 data/processed/fastp/C22M3_R2.fastp.fastq.gz --json results/upstream/fastp/C22M3.fastp.json --html results/upstream/fastp/C22M3.fastp.html --thread 6 --detect_adapter_for_pe -q 30 -u 15 -y -g -Y 10 -l 100 -b 150 -B 150 
+fastp v1.3.6, time used: 164 seconds

@@ -55,7 +55,7 @@ pheatmap(z, cluster_cols = FALSE, cluster_rows = TRUE, gaps_col = gaps,
          annotation_col = annotation_col,
          color = colorRampPalette(c("#2166AC", "white", "#B2182B"))(100),
          breaks = seq(-3, 3, length.out = 101),
-         main = paste0("Response to heat (", go_term, "): ", length(genes), " omnibus DEGs, z-score of genotype VST"),
+         main = paste0("Response to heat (", go_term, "): ", length(genes), " DEGs"),
          fontsize_row = 6, fontsize_col = 8, angle_col = 0,
          filename = file.path(out, "heat_response_heatmap.png"), width = 10, height = 12)
 

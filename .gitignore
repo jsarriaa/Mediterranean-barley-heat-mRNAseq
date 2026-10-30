@@ -1,6 +1,8 @@
 # Large local inputs (checksums tracked in data/input/MD5SUMS and references/MD5SUMS)
 data/input/kallisto.merged.gene_counts.HC.tsv
 data/input/kallisto.merged.gene_counts.LC.tsv
+data/input/kallisto.E.gene_counts.HC.tsv
+data/input/kallisto.E.gene_counts.LC.tsv
 references/MorexV3_tx2gene.tsv
 references/MorexV3_gene_confidence.tsv
 

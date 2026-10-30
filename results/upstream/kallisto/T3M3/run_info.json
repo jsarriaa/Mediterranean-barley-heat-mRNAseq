@@ -2,13 +2,13 @@
 	"n_targets": 83990,
 	"n_bootstraps": 0,
 	"n_processed": 26534170,
-	"n_pseudoaligned": 12223767,
-	"n_unique": 10270195,
-	"p_pseudoaligned": 46.1,
-	"p_unique": 38.7,
+	"n_pseudoaligned": 24612170,
+	"n_unique": 20619969,
+	"p_pseudoaligned": 92.8,
+	"p_unique": 77.7,
 	"kallisto_version": "0.52.0",
 	"index_version": 13,
 	"k-mer length": 31,
-	"start_time": "Fri Oct 16 15:19:52 2026",
-	"call": "kallisto quant --threads 6 --index kallisto --gtf MorexV3.filtered.gtf --rf-stranded -o T3M3 T3M3_R1.fastp.fastq.gz T3M3_R2.fastp.fastq.gz"
+	"start_time": "Thu Oct 29 09:05:52 2026",
+	"call": "/scratch/software-phgv2/miniconda3/envs/mrna_seq/bin/kallisto quant --threads 12 --index references/MorexV3.idx --gtf references/MorexV3.gtf -o results/upstream/kallisto/T3M3 data/processed/fastp/T3M3_R1.fastp.fastq.gz data/processed/fastp/T3M3_R2.fastp.fastq.gz"
 }

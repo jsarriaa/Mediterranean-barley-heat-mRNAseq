@@ -1,0 +1,56 @@
+INFO:    fuse2fs not found, will not be able to mount EXT3 filesystems
+Detecting adapter sequence for read1...
+>Illumina TruSeq Adapter Read 1
+AGATCGGAAGAGCACACGTCTGAACTCCAGTCA
+
+Detecting adapter sequence for read2...
+>Illumina TruSeq Adapter Read 2
+AGATCGGAAGAGCGTCGTGTAGGGAAAGAGTGT
+
+Read1 before filtering:
+total reads: 29917603
+total bases: 4487640450
+Q20 bases: 4447479625(99.1051%)
+Q30 bases: 4317719685(96.2136%)
+Q40 bases: 4317719685(96.2136%)
+
+Read2 before filtering:
+total reads: 29917603
+total bases: 4487640450
+Q20 bases: 4417241688(98.4313%)
+Q30 bases: 4262544705(94.9841%)
+Q40 bases: 4262544705(94.9841%)
+
+Read1 after filtering:
+total reads: 26413766
+total bases: 3946464948
+Q20 bases: 3939617251(99.8265%)
+Q30 bases: 3893417501(98.6558%)
+Q40 bases: 3893417501(98.6558%)
+
+Read2 after filtering:
+total reads: 26413766
+total bases: 3946468686
+Q20 bases: 3938296403(99.7929%)
+Q30 bases: 3887983683(98.518%)
+Q40 bases: 3887983683(98.518%)
+
+Filtering result:
+reads passed filter: 52827532
+reads failed due to low quality: 5692564
+reads failed due to too many N: 4330
+reads failed due to too short: 1262584
+reads failed due to low complexity: 302
+reads failed due to adapter dimer: 47894
+reads with adapter trimmed: 2689347
+bases trimmed due to adapters: 115064938
+
+Duplication rate: 24.1721%
+
+Insert size peak (evaluated by paired-end reads): 0
+
+JSON report: results/upstream/fastp/C21M2.fastp.json
+HTML report: results/upstream/fastp/C21M2.fastp.html
+
+/opt/wave/.pixi/envs/default/bin/fastp --in1 data/raw/Unknown_CU317-001T0062_1.fq.gz --in2 data/raw/Unknown_CU317-001T0062_2.fq.gz --out1 data/processed/fastp/C21M2_R1.fastp.fastq.gz --out2 data/processed/fastp/C21M2_R2.fastp.fastq.gz --json results/upstream/fastp/C21M2.fastp.json --html results/upstream/fastp/C21M2.fastp.html --thread 6 --detect_adapter_for_pe -q 30 -u 15 -y -g -Y 10 -l 100 -b 150 -B 150 
+fastp v1.3.6, time used: 121 seconds

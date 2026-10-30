@@ -1,2 +1,4 @@
-57f8f97ceaf5b40f8dd55c0eac733697  kallisto.merged.gene_counts.HC.tsv
-071c88925270ae5a6dd87cdc8a71b47d  kallisto.merged.gene_counts.LC.tsv
+76702a4cec629086ab442affa85253da  kallisto.merged.gene_counts.HC.tsv
+dbbcb58aba6d426130f0e828e9f77bf1  kallisto.merged.gene_counts.LC.tsv
+bb86239e7728c6ed52e410239ec2f639  kallisto.E.gene_counts.HC.tsv
+9f13aa4065c57a806b15f3e22ebbf250  kallisto.E.gene_counts.LC.tsv

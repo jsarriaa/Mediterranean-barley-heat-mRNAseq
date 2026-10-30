@@ -1,0 +1,14 @@
+{
+	"n_targets": 83990,
+	"n_bootstraps": 0,
+	"n_processed": 27232508,
+	"n_pseudoaligned": 24885146,
+	"n_unique": 21208806,
+	"p_pseudoaligned": 91.4,
+	"p_unique": 77.9,
+	"kallisto_version": "0.52.0",
+	"index_version": 13,
+	"k-mer length": 31,
+	"start_time": "Thu Oct 29 09:58:34 2026",
+	"call": "/scratch/software-phgv2/miniconda3/envs/mrna_seq/bin/kallisto quant --threads 12 --index references/MorexV3.idx --gtf references/MorexV3.gtf -o results/upstream/kallisto/C21M1 data/processed/fastp/C21M1_R1.fastp.fastq.gz data/processed/fastp/C21M1_R2.fastp.fastq.gz"
+}

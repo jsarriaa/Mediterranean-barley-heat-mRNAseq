@@ -1,3 +1,4 @@
+INFO:    fuse2fs not found, will not be able to mount EXT3 filesystems
 Detecting adapter sequence for read1...
 >Nextera_LMP_Read1_External_Adapter | >Illumina Multiplexing Index Sequencing Primer
 GATCGGAAGAGCACACGTCTGAACTCCAGTCAC
@@ -48,8 +49,8 @@ Duplication rate: 13.8206%
 
 Insert size peak (evaluated by paired-end reads): 0
 
-JSON report: T7M2.fastp.json
-HTML report: T7M2.fastp.html
+JSON report: results/upstream/fastp/T7M2.fastp.json
+HTML report: results/upstream/fastp/T7M2.fastp.html
 
-fastp --in1 T7M2_R1.fastq.gz --in2 T7M2_R2.fastq.gz --out1 T7M2_R1.fastp.fastq.gz --out2 T7M2_R2.fastp.fastq.gz --json T7M2.fastp.json --html T7M2.fastp.html --thread 6 --detect_adapter_for_pe -q 30 -u 15 -y -g -Y 10 -l 100 -b 150 -B 150 
-fastp v1.3.6, time used: 400 seconds
+/opt/wave/.pixi/envs/default/bin/fastp --in1 data/raw/Unknown_CU317-001T0020_1.fq.gz --in2 data/raw/Unknown_CU317-001T0020_2.fq.gz --out1 data/processed/fastp/T7M2_R1.fastp.fastq.gz --out2 data/processed/fastp/T7M2_R2.fastp.fastq.gz --json results/upstream/fastp/T7M2.fastp.json --html results/upstream/fastp/T7M2.fastp.html --thread 6 --detect_adapter_for_pe -q 30 -u 15 -y -g -Y 10 -l 100 -b 150 -B 150 
+fastp v1.3.6, time used: 168 seconds
