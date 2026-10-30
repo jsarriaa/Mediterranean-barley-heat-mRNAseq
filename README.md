@@ -513,7 +513,6 @@ colour strips show the population.
 | `upset_top30_intersections.tsv` | the 30 intersections in the UpSet plot |
 | `library_table.tsv` | library → genotype → population |
 | `size_factors_genotypes.tsv` | DESeq2 size factors (sequencing depth correction) per genotype |
-| `R_sessionInfo.txt` | R and package versions of the run |
 
 ### Part B — Functions of the genes that differ between populations
 
@@ -973,7 +972,6 @@ normalised count + 1).
 | `heat_response_genes_E.tsv` | the 76 Part C genes: log2 fold change and adjusted p in each genotype |
 | `hsf_normalised_counts.tsv` | normalised counts of the 5 HSFs per library |
 | `size_factors.tsv` | DESeq2 size factors of the 15 libraries |
-| `R_sessionInfo.txt` | R and package versions |
 
 ## Conclusions
 

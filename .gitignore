@@ -46,3 +46,6 @@ CLAUDE.md
 Rplots.pdf
 __pycache__/
 *.py[cod]
+
+# R session records stay local
+R_sessionInfo.txt
